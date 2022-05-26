@@ -54,9 +54,14 @@ a,
   transition: 0.4s;
 }
 
+.blue {
+  text-decoration: none;
+  color: hsl(201, 100%, 37%);
+  transition: 0.4s;
+}
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: hsla(166, 100%, 37%, 0.2);
   }
 }
 
