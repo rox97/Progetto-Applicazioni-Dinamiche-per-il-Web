@@ -1,5 +1,3 @@
-scalar GraphQLBigDecimal
-scalar Date
 
 schema{
     query: Query
@@ -10,11 +8,16 @@ type Query{
     OrderByOrdNum(ordNum:Int): Order
 }
 
+scalar BigDecimal
+scalar Date
 
 type Order{
     ordNum: Int
-    ordAmount: GraphQLBigDecimal
-    advanceAmount: GraphQLBigDecimal
-    ordDate: Date
+    ordAmount: BigDecimal
+    advanceAmount: BigDecimal
     ordDescription: String
+    ordDate: Date
+    ordCusCode: String
+    ordAgentCode: String
 }
+

@@ -6,7 +6,7 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 @Entity
-@Table(name = "customer", schema = "public", catalog = "Orders")
+@Table(name = "customer", schema = "public", catalog = "orders")
 public class CustomerEntity {
     private String custCode;
     private String custName;
@@ -19,6 +19,7 @@ public class CustomerEntity {
     private BigDecimal paymentAmt;
     private BigDecimal outstandingAmt;
     private String phoneNo;
+    private AgentsEntity agentsByAgentCode;
 
     @Id
     @Column(name = "CUST_CODE")
@@ -141,5 +142,15 @@ public class CustomerEntity {
     @Override
     public int hashCode() {
         return Objects.hash(custCode, custName, custCity, workingArea, custCountry, grade, openingAmt, receiveAmt, paymentAmt, outstandingAmt, phoneNo);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "AGENT_CODE", referencedColumnName = "AGENT_CODE", nullable = false)
+    public AgentsEntity getAgentsByAgentCode() {
+        return agentsByAgentCode;
+    }
+
+    public void setAgentsByAgentCode(AgentsEntity agentsByAgentCode) {
+        this.agentsByAgentCode = agentsByAgentCode;
     }
 }
