@@ -15,11 +15,7 @@ import HelloWorld from "@/components/HelloWorld.vue";
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
-      <label for="text">Text:</label>
-      <input type="text" id="text" aria-describedby="textdescr">
-      <p id="textdescr">Inserisci del testo</p>
       <nav role="navigation" aria-label="navigation">
-        <a href="App.vue">ciao</a>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/test">Test</RouterLink>
@@ -40,12 +36,6 @@ import HelloWorld from "@/components/HelloWorld.vue";
 
   font-weight: normal;
 }
-
-#test-link a:focus {
-  outline: none;
-  background-color: aqua;
-}
-
 
 header {
   line-height: 1.5;

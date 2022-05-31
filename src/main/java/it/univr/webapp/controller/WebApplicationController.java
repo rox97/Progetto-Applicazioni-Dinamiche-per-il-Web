@@ -17,14 +17,9 @@ public class WebApplicationController {
     @Autowired
     private CustomerRepository customerRepository;
 
-    /*@GetMapping("/test")
+    @GetMapping("/test")
     public String test() {
         return "Ciao! Sono una pagina di test!";
-    }*/
-
-    @GetMapping("/test")
-    public int test() {
-        return 10;
     }
 
     @GetMapping("/customers")

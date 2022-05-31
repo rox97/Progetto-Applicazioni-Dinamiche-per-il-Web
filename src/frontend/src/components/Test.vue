@@ -1,13 +1,15 @@
-<!---<template>
-  <h1>{{ msg }}</h1>
+<template>
+  <div class="test">
+    <h1>{{ msg }}</h1>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'TestView',
+  name: 'TestPage',
   data() {
     return {
-      msg: ''
+      msg: 'Il web server non è acceso'
     }
   },
   mounted() {
@@ -18,4 +20,6 @@ export default {
         });
   }
 }
-</script>-->
+</script>
+
+
