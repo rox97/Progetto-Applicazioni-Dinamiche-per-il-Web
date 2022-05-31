@@ -1,0 +1,20 @@
+scalar GraphQLBigDecimal
+scalar Date
+
+schema{
+    query: Query
+}
+
+type Query{
+    allOrder: [Order]
+    OrderByOrdNum(ordNum:Int): Order
+}
+
+
+type Order{
+    ordNum: Int
+    ordAmount: GraphQLBigDecimal
+    advanceAmount: GraphQLBigDecimal
+    ordDate: Date
+    ordDescription: String
+}
