@@ -5,7 +5,7 @@ schema{
 
 type Query{
     allOrder: [Order]
-    OrderByOrdNum(ordNum:Int): Order
+    orderByOrdNum(ordNum:Int): Order
 }
 
 scalar BigDecimal

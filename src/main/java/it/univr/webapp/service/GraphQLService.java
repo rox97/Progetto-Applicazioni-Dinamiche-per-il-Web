@@ -31,6 +31,9 @@ public class GraphQLService {
     @Autowired
     private FetchAllOrder fetchAllOrder;
 
+    @Autowired
+    private FetchOrderByOrdNum fetchOrderByOrdNum;
+
     private GraphQL graphQL;
 
     @PostConstruct
@@ -43,7 +46,8 @@ public class GraphQLService {
         RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring().scalar(ExtendedScalars.GraphQLBigDecimal)
                 .scalar(ExtendedScalars.Date)
                 .type("Query",typeWiring->typeWiring
-                        .dataFetcher("allOrder",fetchAllOrder))
+                        .dataFetcher("allOrder",fetchAllOrder)
+                        .dataFetcher("orderByOrdNum",fetchOrderByOrdNum))
                 .build();
 
         GraphQLSchema graphQLSchema= new SchemaGenerator().makeExecutableSchema(typeDefinitionRegistry,runtimeWiring);

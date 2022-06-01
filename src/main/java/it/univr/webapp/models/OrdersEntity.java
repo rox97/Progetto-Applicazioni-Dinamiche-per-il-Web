@@ -3,6 +3,7 @@ package it.univr.webapp.models;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -11,7 +12,7 @@ public class OrdersEntity {
     private int ordNum;
     private BigDecimal ordAmount;
     private BigDecimal advanceAmount;
-    private Date ordDate;
+    private LocalDate ordDate;
     private String ordDescription;
     private CustomerEntity customerByCustCode;
     private AgentsEntity agentsByAgentCode;
@@ -48,11 +49,11 @@ public class OrdersEntity {
 
     @Basic
     @Column(name = "ORD_DATE")
-    public Date getOrdDate() {
+    public LocalDate getOrdDate() {
         return ordDate;
     }
 
-    public void setOrdDate(Date ordDate) {
+    public void setOrdDate(LocalDate ordDate) {
         this.ordDate = ordDate;
     }
 
