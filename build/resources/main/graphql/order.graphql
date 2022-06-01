@@ -1,0 +1,19 @@
+scalar BigDecimal
+scalar Date
+
+schema{
+    query: Query
+}
+
+type Query{
+    allOrder: [Order]
+    orderByOrdNum(ordNum:Int): Order
+}
+
+type Order{
+    ordNum: Int
+    ordAmount: BigDecimal
+    advanceAmount: BigDecimal
+    ordDate: Date
+    ordDescription: String
+}
