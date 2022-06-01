@@ -19,10 +19,10 @@ public class CustomerEntity {
     private BigDecimal paymentAmt;
     private BigDecimal outstandingAmt;
     private String phoneNo;
-    private AgentsEntity agentsByAgentCode;
+    private AgentsEntity agent;
 
     @Id
-    @Column(name = "CUST_CODE")
+    @Column(name = "cust_code")
     public String getCustCode() {
         return custCode;
     }
@@ -32,7 +32,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "CUST_NAME")
+    @Column(name = "cust_name")
     public String getCustName() {
         return custName;
     }
@@ -42,7 +42,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "CUST_CITY")
+    @Column(name = "cust_city")
     public String getCustCity() {
         return custCity;
     }
@@ -52,7 +52,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "WORKING_AREA")
+    @Column(name = "working_area")
     public String getWorkingArea() {
         return workingArea;
     }
@@ -62,7 +62,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "CUST_COUNTRY")
+    @Column(name = "cust_country")
     public String getCustCountry() {
         return custCountry;
     }
@@ -72,7 +72,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "GRADE")
+    @Column(name = "grade")
     public BigInteger getGrade() {
         return grade;
     }
@@ -82,7 +82,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "OPENING_AMT")
+    @Column(name = "opening_amt")
     public BigDecimal getOpeningAmt() {
         return openingAmt;
     }
@@ -92,7 +92,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "RECEIVE_AMT")
+    @Column(name = "receive_amt")
     public BigDecimal getReceiveAmt() {
         return receiveAmt;
     }
@@ -102,7 +102,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "PAYMENT_AMT")
+    @Column(name = "payment_amt")
     public BigDecimal getPaymentAmt() {
         return paymentAmt;
     }
@@ -112,7 +112,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "OUTSTANDING_AMT")
+    @Column(name = "outstanding_amt")
     public BigDecimal getOutstandingAmt() {
         return outstandingAmt;
     }
@@ -122,7 +122,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "PHONE_NO")
+    @Column(name = "phone_no")
     public String getPhoneNo() {
         return phoneNo;
     }
@@ -145,12 +145,12 @@ public class CustomerEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "AGENT_CODE", referencedColumnName = "AGENT_CODE", nullable = false)
+    @JoinColumn(name = "agent_code", referencedColumnName = "agent_code", nullable = false)
     public AgentsEntity getAgentsByAgentCode() {
-        return agentsByAgentCode;
+        return agent;
     }
 
-    public void setAgentsByAgentCode(AgentsEntity agentsByAgentCode) {
-        this.agentsByAgentCode = agentsByAgentCode;
+    public void setAgentsByAgentCode(AgentsEntity agent) {
+        this.agent = agent;
     }
 }

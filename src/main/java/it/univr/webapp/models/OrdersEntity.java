@@ -2,7 +2,6 @@ package it.univr.webapp.models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -14,11 +13,13 @@ public class OrdersEntity {
     private BigDecimal advanceAmount;
     private LocalDate ordDate;
     private String ordDescription;
-    private CustomerEntity customerByCustCode;
-    private AgentsEntity agentsByAgentCode;
+    private CustomerEntity customer;
+    private AgentsEntity agent;
+
+
 
     @Id
-    @Column(name = "ORD_NUM")
+    @Column(name = "ord_num")
     public int getOrdNum() {
         return ordNum;
     }
@@ -28,7 +29,7 @@ public class OrdersEntity {
     }
 
     @Basic
-    @Column(name = "ORD_AMOUNT")
+    @Column(name = "ord_amount")
     public BigDecimal getOrdAmount() {
         return ordAmount;
     }
@@ -38,7 +39,7 @@ public class OrdersEntity {
     }
 
     @Basic
-    @Column(name = "ADVANCE_AMOUNT")
+    @Column(name = "advance_amount")
     public BigDecimal getAdvanceAmount() {
         return advanceAmount;
     }
@@ -48,7 +49,7 @@ public class OrdersEntity {
     }
 
     @Basic
-    @Column(name = "ORD_DATE")
+    @Column(name = "ord_date")
     public LocalDate getOrdDate() {
         return ordDate;
     }
@@ -58,7 +59,7 @@ public class OrdersEntity {
     }
 
     @Basic
-    @Column(name = "ORD_DESCRIPTION")
+    @Column(name = "ord_description")
     public String getOrdDescription() {
         return ordDescription;
     }
@@ -81,22 +82,22 @@ public class OrdersEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "CUST_CODE", referencedColumnName = "CUST_CODE", nullable = false)
+    @JoinColumn(name = "cust_code", referencedColumnName = "cust_code", nullable = false)
     public CustomerEntity getCustomerByCustCode() {
-        return customerByCustCode;
+        return customer;
     }
 
-    public void setCustomerByCustCode(CustomerEntity customerByCustCode) {
-        this.customerByCustCode = customerByCustCode;
+    public void setCustomerByCustCode(CustomerEntity customer) {
+        this.customer = customer;
     }
 
     @ManyToOne
-    @JoinColumn(name = "AGENT_CODE", referencedColumnName = "AGENT_CODE", nullable = false)
+    @JoinColumn(name = "agent_code", referencedColumnName = "agent_code", nullable = false)
     public AgentsEntity getAgentsByAgentCode() {
-        return agentsByAgentCode;
+        return agent;
     }
 
-    public void setAgentsByAgentCode(AgentsEntity agentsByAgentCode) {
-        this.agentsByAgentCode = agentsByAgentCode;
+    public void setAgentsByAgentCode(AgentsEntity agent) {
+        this.agent = agent;
     }
 }

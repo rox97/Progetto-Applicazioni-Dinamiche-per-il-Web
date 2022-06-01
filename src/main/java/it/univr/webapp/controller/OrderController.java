@@ -1,7 +1,6 @@
 package it.univr.webapp.controller;
 
 import graphql.ExecutionResult;
-import it.univr.webapp.models.OrderRepository;
 import it.univr.webapp.service.GraphQLService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +24,9 @@ public class OrderController {
         try{
             ExecutionResult executionResult=graphQLService.getGraphQL().execute(query);
             return new ResponseEntity<>(executionResult, HttpStatus.OK);
+
         }catch(Exception e) {
-            LOGGER.info("error occurred in method getAllEmployee :{}",e.getMessage());
+            LOGGER.info("error occurred in method getAllOrders :{}",e.getMessage());
             throw new RuntimeException(new Error((e.getMessage())));
         }
 

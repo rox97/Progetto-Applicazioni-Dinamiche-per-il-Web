@@ -42,9 +42,10 @@ public class GraphQLService {
 
         TypeDefinitionRegistry typeDefinitionRegistry=new SchemaParser().parse(schema);
 
-
-        RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring().scalar(ExtendedScalars.GraphQLBigDecimal)
+        RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring()
+                .scalar(ExtendedScalars.GraphQLBigDecimal)
                 .scalar(ExtendedScalars.Date)
+                .scalar(ExtendedScalars.GraphQLBigInteger)
                 .type("Query",typeWiring->typeWiring
                         .dataFetcher("allOrder",fetchAllOrder)
                         .dataFetcher("orderByOrdNum",fetchOrderByOrdNum))

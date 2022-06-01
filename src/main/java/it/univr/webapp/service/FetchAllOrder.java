@@ -2,8 +2,8 @@ package it.univr.webapp.service;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
-import it.univr.webapp.models.OrderRepository;
 import it.univr.webapp.models.OrdersEntity;
+import it.univr.webapp.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

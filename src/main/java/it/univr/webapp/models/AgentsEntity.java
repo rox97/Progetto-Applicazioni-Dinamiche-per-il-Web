@@ -15,7 +15,7 @@ public class AgentsEntity {
     private String country;
 
     @Id
-    @Column(name = "AGENT_CODE")
+    @Column(name = "agent_code")
     public String getAgentCode() {
         return agentCode;
     }
@@ -25,7 +25,7 @@ public class AgentsEntity {
     }
 
     @Basic
-    @Column(name = "AGENT_NAME")
+    @Column(name = "agent_name")
     public String getAgentName() {
         return agentName;
     }
@@ -35,7 +35,7 @@ public class AgentsEntity {
     }
 
     @Basic
-    @Column(name = "WORKING_AREA")
+    @Column(name = "working_area")
     public String getWorkingArea() {
         return workingArea;
     }
@@ -45,7 +45,7 @@ public class AgentsEntity {
     }
 
     @Basic
-    @Column(name = "COMMISSION")
+    @Column(name = "commission")
     public BigDecimal getCommission() {
         return commission;
     }
@@ -55,7 +55,7 @@ public class AgentsEntity {
     }
 
     @Basic
-    @Column(name = "PHONE_NO")
+    @Column(name = "phone_no")
     public String getPhoneNo() {
         return phoneNo;
     }
@@ -65,7 +65,7 @@ public class AgentsEntity {
     }
 
     @Basic
-    @Column(name = "COUNTRY")
+    @Column(name = "country")
     public String getCountry() {
         return country;
     }
