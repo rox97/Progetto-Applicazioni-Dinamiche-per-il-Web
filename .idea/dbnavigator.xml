@@ -17,8 +17,8 @@
       <scope value="GLOBAL" />
       <destination value="FILE" />
       <format value="EXCEL" />
-      <charset value="UTF-8" />
-      <charset value="UTF-8" />
+      <charset value="windows-1252" />
+      <charset value="windows-1252" />
     </export-instructions>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -73,7 +73,7 @@
           <description value="Orders DB" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="12.11" />
+          <database-version value="14.3" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />

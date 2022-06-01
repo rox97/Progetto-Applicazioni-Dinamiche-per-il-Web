@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 @Component
-public class FetchAllOrder implements DataFetcher<List<OrdersEntity>> {
+public class FetchAllOrders implements DataFetcher<List<OrdersEntity>> {
     @Autowired
     private OrderRepository orderRepository;
 

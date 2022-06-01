@@ -7,7 +7,7 @@ import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
-import it.univr.webapp.service.dataFetcher.FetchAllOrder;
+import it.univr.webapp.service.dataFetcher.FetchAllOrders;
 import it.univr.webapp.service.dataFetcher.FetchOrderByOrdNum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +26,7 @@ public class GraphQLService {
     private Resource resource;
 
     @Autowired
-    private FetchAllOrder fetchAllOrder;
+    private FetchAllOrders fetchAllOrder;
 
     @Autowired
     private FetchOrderByOrdNum fetchOrderByOrdNum;
