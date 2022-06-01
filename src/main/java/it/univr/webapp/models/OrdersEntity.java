@@ -6,13 +6,15 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "orders", schema = "public", catalog = "Orders")
+@Table(name = "orders", schema = "public", catalog = "orders")
 public class OrdersEntity {
     private int ordNum;
     private BigDecimal ordAmount;
     private BigDecimal advanceAmount;
     private Date ordDate;
     private String ordDescription;
+    private CustomerEntity customerByCustCode;
+    private AgentsEntity agentsByAgentCode;
 
     @Id
     @Column(name = "ORD_NUM")
@@ -75,5 +77,25 @@ public class OrdersEntity {
     @Override
     public int hashCode() {
         return Objects.hash(ordNum, ordAmount, advanceAmount, ordDate, ordDescription);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "CUST_CODE", referencedColumnName = "CUST_CODE", nullable = false)
+    public CustomerEntity getCustomerByCustCode() {
+        return customerByCustCode;
+    }
+
+    public void setCustomerByCustCode(CustomerEntity customerByCustCode) {
+        this.customerByCustCode = customerByCustCode;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "AGENT_CODE", referencedColumnName = "AGENT_CODE", nullable = false)
+    public AgentsEntity getAgentsByAgentCode() {
+        return agentsByAgentCode;
+    }
+
+    public void setAgentsByAgentCode(AgentsEntity agentsByAgentCode) {
+        this.agentsByAgentCode = agentsByAgentCode;
     }
 }

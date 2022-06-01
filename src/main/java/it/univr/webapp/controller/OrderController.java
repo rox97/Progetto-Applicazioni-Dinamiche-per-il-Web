@@ -20,9 +20,6 @@ public class OrderController {
     @Autowired
     private GraphQLService graphQLService;
 
-    @Autowired
-    private OrderRepository orderRepository;
-
     @PostMapping
     public ResponseEntity<ExecutionResult> getAllOrders(@RequestBody String query){
         try{
