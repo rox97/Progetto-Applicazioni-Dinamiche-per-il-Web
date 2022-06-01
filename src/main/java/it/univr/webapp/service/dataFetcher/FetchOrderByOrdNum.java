@@ -1,4 +1,4 @@
-package it.univr.webapp.service;
+package it.univr.webapp.service.dataFetcher;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
