@@ -1,11 +1,14 @@
 package it.univr.webapp.models;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "orders", schema = "public", catalog = "orders")
 public class OrdersEntity {
     private int ordNum;
@@ -17,6 +20,16 @@ public class OrdersEntity {
     private AgentsEntity agent;
 
 
+
+    public OrdersEntity(int ordNum, BigDecimal ordAmount, BigDecimal advanceAmount, LocalDate ordDate, String ordDescription, CustomerEntity customer, AgentsEntity agent) {
+        this.ordNum = ordNum;
+        this.ordAmount = ordAmount;
+        this.advanceAmount = advanceAmount;
+        this.ordDate = ordDate;
+        this.ordDescription = ordDescription;
+        this.customer = customer;
+        this.agent = agent;
+    }
 
     @Id
     @Column(name = "ord_num")
