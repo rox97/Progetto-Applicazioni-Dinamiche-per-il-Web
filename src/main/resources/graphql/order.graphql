@@ -1,15 +1,6 @@
-scalar BigDecimal
+
 scalar Date
-scalar BigInteger
-
-schema{
-    query: Query
-}
-
-type Query{
-    allOrder: [Order]
-    orderByOrdNum(ordNum:Int): Order
-}
+scalar BigDecimal
 
 type Order{
     ordNum: Int
@@ -17,30 +8,5 @@ type Order{
     advanceAmount: BigDecimal
     ordDate: Date
     ordDescription: String
-    customer: Customer
-    agent: Agent
 }
 
-type Customer{
-    custCode: String
-    custName: String
-    custCity: String
-    workingArea: String
-    custCountry: String
-    grade: BigInteger
-    openingAmt: BigDecimal
-    receiveAmt: BigDecimal
-    paymentAmt: BigDecimal
-    outstandingAmt: BigDecimal
-    phoneNo: String
-    agent: Agent
-}
-
-type Agent{
-    agentCode: String
-    agentName: String
-    workingArea: String
-    commission: BigDecimal
-    phoneNo: String
-    country: String
-}

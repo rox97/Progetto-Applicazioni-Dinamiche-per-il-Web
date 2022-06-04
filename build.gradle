@@ -4,6 +4,8 @@ plugins {
     id 'java'
 }
 
+
+
 group 'it.univr'
 version '1.0-SNAPSHOT'
 sourceCompatibility = '11'
@@ -33,30 +35,27 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework:spring-webflux'
-    testImplementation 'org.springframework.graphql:spring-graphql-test'
 
 
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-graphql'
+
     implementation 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
     implementation 'com.graphql-java:graphql-java:18.1'
-    implementation 'com.graphql-java:graphql-java-extended-scalars:18.1'
     implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:12.0.0'
-    //implementation 'com.graphql-java:graphql-spring-boot-starter'
-    //implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //implementation 'com.graphql-java:graphql-java-tools:5.2.4'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
     runtimeOnly 'org.postgresql:postgresql'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework:spring-webflux'
     testImplementation 'org.springframework.graphql:spring-graphql-test'
     testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.4.0'
-    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework:spring-webflux'
+    testImplementation 'org.springframework.graphql:spring-graphql-test'
 
-    //implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 test {

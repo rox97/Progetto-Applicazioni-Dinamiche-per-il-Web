@@ -21,16 +21,6 @@ public class OrdersEntity {
 
 
 
-    public OrdersEntity(int ordNum, BigDecimal ordAmount, BigDecimal advanceAmount, LocalDate ordDate, String ordDescription, CustomerEntity customer, AgentsEntity agent) {
-        this.ordNum = ordNum;
-        this.ordAmount = ordAmount;
-        this.advanceAmount = advanceAmount;
-        this.ordDate = ordDate;
-        this.ordDescription = ordDescription;
-        this.customer = customer;
-        this.agent = agent;
-    }
-
     @Id
     @Column(name = "ord_num")
     public int getOrdNum() {
@@ -43,10 +33,7 @@ public class OrdersEntity {
 
     @Basic
     @Column(name = "ord_amount")
-    public BigDecimal getOrdAmount() {
-        return ordAmount;
-    }
-
+    public BigDecimal getOrdAmount() {return ordAmount;}
     public void setOrdAmount(BigDecimal ordAmount) {
         this.ordAmount = ordAmount;
     }
