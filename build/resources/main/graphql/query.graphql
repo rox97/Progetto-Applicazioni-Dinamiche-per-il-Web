@@ -1,0 +1,5 @@
+type Query{
+    allOrder: [Order]
+    orderByOrdNum(ordNum: Int):Order
+
+}

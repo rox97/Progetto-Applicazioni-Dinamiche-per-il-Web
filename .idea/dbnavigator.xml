@@ -17,8 +17,8 @@
       <scope value="GLOBAL" />
       <destination value="FILE" />
       <format value="EXCEL" />
-      <charset value="windows-1252" />
-      <charset value="windows-1252" />
+      <charset value="UTF-8" />
+      <charset value="UTF-8" />
     </export-instructions>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -29,7 +29,8 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="e059da39-15ae-41db-a21b-21b180b7b785">
-      <console name="Orders" type="STANDARD" schema="" session="Main" />
+      <console name="Orders" type="STANDARD" schema="public" session="Main"><![CDATA[select *
+from orders;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -73,7 +74,7 @@
           <description value="Orders DB" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="14.3" />
+          <database-version value="12.11" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />

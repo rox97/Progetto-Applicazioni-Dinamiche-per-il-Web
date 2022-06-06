@@ -1,11 +1,14 @@
 package it.univr.webapp.models;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Objects;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "customer", schema = "public", catalog = "orders")
 public class CustomerEntity {
     private String custCode;
