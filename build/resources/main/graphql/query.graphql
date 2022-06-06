@@ -1,9 +1,8 @@
-schema {
-    query: Query
-}
+
 type Query{
     allOrder:[Order]
     orderByOrdNum(ordNum: Int):Order
     allAgents:[Agent]
-    agentByAgentCode(agentCode: String):Agent
+
+
 }

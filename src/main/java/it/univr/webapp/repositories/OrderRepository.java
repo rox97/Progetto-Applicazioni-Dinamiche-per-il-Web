@@ -7,6 +7,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository <OrdersEntity,Integer> {
-    /*@Query("SELECT u FROM User u WHERE u.status = ?1 and u.name = ?2")
-    List<OrdersEntity>findByAgentCode(String agentCode);*/
+
 }

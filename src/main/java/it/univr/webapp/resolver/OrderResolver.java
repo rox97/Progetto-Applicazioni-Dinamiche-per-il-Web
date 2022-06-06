@@ -32,8 +32,7 @@ public class OrderResolver implements GraphQLQueryResolver {
     }
 
     /*public List<OrdersEntity> ordersByAgentCode(String agentCode){
-        //prendersi agentCode
-        //Trovare ordini tramite agent code
+
         return orderRepository.findByAgentCode(agentsRepository.findById(agentCode).get().getAgentCode());
     }*/
 
@@ -45,6 +44,8 @@ public class OrderResolver implements GraphQLQueryResolver {
         return agentsRepository.findAll();
     }
 
-    public AgentsEntity agentByAgentCode(String agentCode){ return agentsRepository.findById(agentCode).get();}
+    public AgentsEntity agentByAgentCode(String agentCode){
+        return agentsRepository.findById(agentCode).get();
+    }
 
 }
