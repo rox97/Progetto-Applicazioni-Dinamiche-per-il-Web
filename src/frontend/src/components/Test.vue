@@ -1,6 +1,11 @@
 <template>
   <div class="test">
-    <h1>{{ msg }}</h1>
+    <h1>Test </h1>
+    <tr v-for="agent in agents">
+      <td>{{ agent.agentCode }}</td>
+      <td>{{ agent.agentName }}</td>
+
+    </tr>
   </div>
 </template>
 
@@ -9,14 +14,14 @@ export default {
   name: 'TestPage',
   data() {
     return {
-      msg: 'Il web server non è acceso'
+      agents: null
     }
   },
   mounted() {
-    fetch("/api/test")
-        .then((response) => response.text())
-        .then((data) => {
-          this.msg = data;
+    fetch("/api/test", {method: "GET"})
+        .then((response) => response.json())
+        .then((agents) => {
+          this.agents = agents;
         });
   }
 }

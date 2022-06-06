@@ -1,11 +1,14 @@
 package it.univr.webapp.models;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
 @Table(name = "agents", schema = "public", catalog = "orders")
+@NoArgsConstructor
 public class AgentsEntity {
     private String agentCode;
     private String agentName;
@@ -13,6 +16,24 @@ public class AgentsEntity {
     private BigDecimal commission;
     private String phoneNo;
     private String country;
+
+
+    public AgentsEntity(String agentCode, String agentName, String workingArea, BigDecimal commission, String phoneNo, String country) {
+        this.agentCode = agentCode;
+        this.agentName = agentName;
+        this.workingArea = workingArea;
+        this.commission = commission;
+        this.phoneNo = phoneNo;
+        this.country = country;
+    }
+
+    public AgentsEntity(String agentCode) {
+        this.agentCode = agentCode;
+    }
+    public AgentsEntity(String agentCode, String agentName) {
+        this.agentCode = agentCode;
+        this.agentName = agentName;
+    }
 
     @Id
     @Column(name = "agent_code")
