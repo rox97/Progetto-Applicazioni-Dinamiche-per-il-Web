@@ -1,5 +1,5 @@
 {
-  "name": "Untitled GraphQL Schema",
+  "name": "Orders Manager GraphQL Schema",
   "schemaPath": "query.graphql",
   "extensions": {
     "endpoints": {

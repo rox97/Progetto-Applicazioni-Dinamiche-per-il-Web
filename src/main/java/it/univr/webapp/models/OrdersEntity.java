@@ -83,21 +83,21 @@ public class OrdersEntity {
 
     @ManyToOne
     @JoinColumn(name = "cust_code", referencedColumnName = "cust_code", nullable = false)
-    public CustomerEntity getCustomerByCustCode() {
+    public CustomerEntity getCustomer() {
         return customer;
     }
 
-    public void setCustomerByCustCode(CustomerEntity customer) {
+    public void setCustomer(CustomerEntity customer) {
         this.customer = customer;
     }
 
     @ManyToOne
     @JoinColumn(name = "agent_code", referencedColumnName = "agent_code", nullable = false)
-    public AgentsEntity getAgentsByAgentCode() {
+    public AgentsEntity getAgent() {
         return agent;
     }
 
-    public void setAgentsByAgentCode(AgentsEntity agent) {
+    public void setAgent(AgentsEntity agent) {
         this.agent = agent;
     }
 }

@@ -149,11 +149,11 @@ public class CustomerEntity {
 
     @ManyToOne
     @JoinColumn(name = "agent_code", referencedColumnName = "agent_code", nullable = false)
-    public AgentsEntity getAgentsByAgentCode() {
+    public AgentsEntity getAgent() {
         return agent;
     }
 
-    public void setAgentsByAgentCode(AgentsEntity agent) {
+    public void setAgent(AgentsEntity agent) {
         this.agent = agent;
     }
 }
