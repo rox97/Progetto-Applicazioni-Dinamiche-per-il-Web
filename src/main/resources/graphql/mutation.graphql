@@ -1,3 +1,4 @@
 type Mutation{
     deleteOrder(ordNum: Int): Int
+    updateOrder(input: updateOrder): Order
 }

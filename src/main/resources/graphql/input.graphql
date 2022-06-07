@@ -1,0 +1,7 @@
+input updateOrder{
+    ordNum: Int
+    ordAmount: BigDecimal
+    advanceAmount: BigDecimal
+    ordDate: Date
+    ordDescription: String
+}

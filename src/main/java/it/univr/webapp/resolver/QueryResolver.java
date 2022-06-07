@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class OrderResolver implements GraphQLQueryResolver {
+public class QueryResolver implements GraphQLQueryResolver {
 
     @Autowired
     OrderRepository orderRepository;
