@@ -1,4 +1,7 @@
 type Mutation{
+    createOrder(input: createOrder): Order
     deleteOrder(ordNum: Int): Int
     updateOrder(input: updateOrder): Order
+    updateAgent(input: updateAgent): Agent
+    updateCustomer(input: updateCustomer): Customer
 }

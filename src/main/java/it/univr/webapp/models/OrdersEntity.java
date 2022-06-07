@@ -1,5 +1,6 @@
 package it.univr.webapp.models;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "orders", schema = "public", catalog = "orders")
 public class OrdersEntity {
     private int ordNum;
@@ -16,8 +18,8 @@ public class OrdersEntity {
     private BigDecimal advanceAmount;
     private LocalDate ordDate;
     private String ordDescription;
-    private CustomerEntity customer;
     private AgentsEntity agent;
+    private CustomerEntity customer;
 
 
 
