@@ -1,7 +1,0 @@
-type Customer{
-    custCode:String
-    custName:String
-    custCity:String
-    workingArea:String
-    custCountry:String
-}

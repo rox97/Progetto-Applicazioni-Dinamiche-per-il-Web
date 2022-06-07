@@ -2,6 +2,7 @@ package it.univr.webapp.resolver;
 
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import it.univr.webapp.models.AgentsEntity;
+import it.univr.webapp.models.CustomerEntity;
 import it.univr.webapp.models.OrdersEntity;
 import it.univr.webapp.repositories.AgentsRepository;
 import it.univr.webapp.repositories.CustomersRepository;
@@ -23,18 +24,27 @@ public class OrderResolver implements GraphQLQueryResolver {
     @Autowired
     CustomersRepository customersRepository;
 
-    public List<OrdersEntity> allOrder(){
+    public List<OrdersEntity> allOrders(){
         return orderRepository.findAll();
     }
 
-    public OrdersEntity orderByOrdNum(int ordNum){
+    public List<CustomerEntity> allCustomers(){
+        return customersRepository.findAll();
+    }
+
+    public OrdersEntity ordersByOrdNum(int ordNum){
         return orderRepository.findById(ordNum).get();
     }
 
-    /*public List<OrdersEntity> ordersByAgentCode(String agentCode){
+    public List<OrdersEntity> ordersByAgentCode(String agentCode){
 
-        return orderRepository.findByAgentCode(agentsRepository.findById(agentCode).get().getAgentCode());
-    }*/
+        return orderRepository.findByAgent(agentsRepository.findById(agentCode).get());
+    }
+
+    public List<OrdersEntity> ordersByCustCode(String custCode){
+
+        return orderRepository.findByCustomer(customersRepository.findById(custCode).get());
+    }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -46,6 +56,10 @@ public class OrderResolver implements GraphQLQueryResolver {
 
     public AgentsEntity agentByAgentCode(String agentCode){
         return agentsRepository.findById(agentCode).get();
+    }
+
+    public CustomerEntity customerByCustCode(String custCode){
+        return customersRepository.findById(custCode).get();
     }
 
 }
