@@ -10,7 +10,20 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: "/service",
+      meta: {requiresAuth: true},
+      name: "service",
+      component: () => import("../views/ServiceView.vue"),
+    },
+    {
+      path: "/orders",
+      meta: {requiresAuth: false},
+      name: "ordersPage",
+      component: () => import("../views/LoginView.vue"),
+    },
+    {
       path: "/about",
+      meta: {requiresAuth: false},
       name: "about",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -19,11 +32,13 @@ const router = createRouter({
     },
     {
       path: "/test",
+      meta: {requiresAuth: true},
       name: "testPage",
       component: () => import("../views/TestView.vue"),
     },
     {
       path: "/login",
+      meta: {requiresAuth: false},
       name: "loginPage",
       component: () => import("../views/LoginView.vue"),
     },
@@ -31,8 +46,18 @@ const router = createRouter({
       path: "/mainPage",
       name: "mainPage",
       component: () => import("../views/AboutView.vue"),
-    }
+    },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && localStorage.getItem("userLogged") === "false") {
+    next({path:'/login'});
+  }
+  else {
+    next();
+  }
+  });
+
 
 export default router;
