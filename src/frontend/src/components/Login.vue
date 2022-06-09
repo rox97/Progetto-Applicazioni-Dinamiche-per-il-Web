@@ -1,3 +1,18 @@
+<script setup>
+import { useQuery } from '@vue/apollo-composable'
+import {gql} from 'graphql-tag'
+const { result } = useQuery(gql`
+  query {
+    allAgents {
+      agentCode
+      agentName
+      workingArea
+      commission
+    }
+  }
+`)
+</script>
+
 <template>
   <head>
     <title>WebApp</title>
@@ -18,26 +33,44 @@
     <input id="password" type="password" placeholder="Enter Password" name="password"><br>
     <input type="submit" value="Login" />
     <button type="submit">Login</button>
+
+    <div >Messaggio: {{msg}}</div>
+
+
+    <div >Risultato query: {{result}}</div>
+
+    <div class="query">Risultato seconda query: {{agents}}</div>
+
+
   </form>
   </div>
 </template>
 
 <script>
+import { useQuery } from '@vue/apollo-composable'
+import {gql} from 'graphql-tag'
+let agents = ''
+
 export default {
+
   name: "LoginPage",
   data() {
+
     return {
-      msg: 'Il web server non è acceso'
+      msg: 'Il web server non è acceso',
+      agents: ''
     }
   },
-  mounted() {
-    fetch("/api/login")
-        .then((response) => response.text())
-        .then((data) => {
-          this.msg = data;
-        });
-  }
+  query(){
+    return agents = useQuery(gql`query {
+      allAgents {
+        agentCode
+      }
+    }`)
+  },
+
 }
+
 </script>
 
 <style scoped>
