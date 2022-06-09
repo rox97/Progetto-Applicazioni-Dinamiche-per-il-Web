@@ -29,7 +29,8 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="e059da39-15ae-41db-a21b-21b180b7b785">
-      <console name="Orders" type="STANDARD" schema="information_schema" session="Main" />
+      <console name="Orders" type="STANDARD" schema="public" session="Main">select *
+from orders;</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

@@ -1,0 +1,40 @@
+input createOrder{
+    ordNum: Int!
+    ordAmount: BigDecimal!
+    advanceAmount: BigDecimal!
+    ordDate: Date!
+    ordDescription: String!
+    agentCode: String!
+    custCode: String!
+}
+
+input updateOrder{
+    ordNum: Int
+    ordAmount: BigDecimal
+    advanceAmount: BigDecimal
+    ordDate: Date
+    ordDescription: String
+}
+
+input updateAgent{
+    agentCode: String
+    agentName: String
+    workingArea: String
+    commission : BigDecimal
+    phoneNo: String
+    country: String
+}
+
+input updateCustomer{
+    custCode:String
+    custName:String
+    custCity:String
+    workingArea:String
+    custCountry:String
+    grade: BigInteger
+    openingAmt: BigDecimal
+    receiveAmt: BigDecimal
+    paymentAmt: BigDecimal
+    outstandingAmt: BigDecimal
+    phoneNo: String
+}

@@ -11,8 +11,11 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.6",
+    "@vue/apollo-composable": "^4.0.0-alpha.17",
     "pinia": "^2.0.13",
     "vue": "^3.2.33",
+    "vue-apollo": "^3.1.0",
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
@@ -24,6 +27,7 @@
     "eslint": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-vue": "^8.2.0",
+    "graphql-tag": "^2.12.6",
     "jsdom": "^19.0.0",
     "prettier": "^2.5.1",
     "start-server-and-test": "^1.14.0",

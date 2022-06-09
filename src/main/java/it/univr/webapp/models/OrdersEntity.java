@@ -1,11 +1,16 @@
 package it.univr.webapp.models;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "orders", schema = "public", catalog = "orders")
 public class OrdersEntity {
     private int ordNum;
@@ -13,8 +18,8 @@ public class OrdersEntity {
     private BigDecimal advanceAmount;
     private LocalDate ordDate;
     private String ordDescription;
-    private CustomerEntity customer;
     private AgentsEntity agent;
+    private CustomerEntity customer;
 
 
 
@@ -30,10 +35,7 @@ public class OrdersEntity {
 
     @Basic
     @Column(name = "ord_amount")
-    public BigDecimal getOrdAmount() {
-        return ordAmount;
-    }
-
+    public BigDecimal getOrdAmount() {return ordAmount;}
     public void setOrdAmount(BigDecimal ordAmount) {
         this.ordAmount = ordAmount;
     }
@@ -83,21 +85,21 @@ public class OrdersEntity {
 
     @ManyToOne
     @JoinColumn(name = "cust_code", referencedColumnName = "cust_code", nullable = false)
-    public CustomerEntity getCustomerByCustCode() {
+    public CustomerEntity getCustomer() {
         return customer;
     }
 
-    public void setCustomerByCustCode(CustomerEntity customer) {
+    public void setCustomer(CustomerEntity customer) {
         this.customer = customer;
     }
 
     @ManyToOne
     @JoinColumn(name = "agent_code", referencedColumnName = "agent_code", nullable = false)
-    public AgentsEntity getAgentsByAgentCode() {
+    public AgentsEntity getAgent() {
         return agent;
     }
 
-    public void setAgentsByAgentCode(AgentsEntity agent) {
+    public void setAgent(AgentsEntity agent) {
         this.agent = agent;
     }
 }

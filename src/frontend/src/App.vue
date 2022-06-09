@@ -27,6 +27,16 @@ import Login from "@/components/Login.vue";
   <RouterView />
 </template>
 
+<script>
+
+  import {ALL_ORDERS} from "./queries/query";
+
+  export default {
+    name: "App"
+  }
+
+</script>
+
 <style>
 @import "@/assets/base.css";
 

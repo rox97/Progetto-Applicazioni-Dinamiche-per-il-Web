@@ -1,3 +1,18 @@
+<script setup>
+import { useQuery } from '@vue/apollo-composable'
+import {gql} from 'graphql-tag'
+const { result } = useQuery(gql`
+  query {
+    allAgents {
+      agentCode
+      agentName
+      workingArea
+      commission
+    }
+  }
+`)
+</script>
+
 <template>
   <head>
     <title>WebApp</title>
@@ -22,16 +37,42 @@
     <div v-if="test" class="alert alert-secondary mt-2" role="alert"><pre>test:{{test}}</pre></div>
 
     <div v-if="postResult" class="alert alert-secondary mt-2" role="alert"><pre>postresult:{{postResult}}</pre></div>
+    <div >Messaggio: {{msg}}</div>
+
+
+    <div >Risultato query: {{result}}</div>
+
+    <div class="query">Risultato seconda query: {{agents}}</div>
 
 
   </div>
 </template>
 
 <script>
-
-
+import { useQuery } from '@vue/apollo-composable'
+import {gql} from 'graphql-tag'
+let agents = ''
 
 export default {
+
+  name: "LoginPage",
+  data() {
+
+    return {
+      msg: 'Il web server non è acceso',
+      agents: ''
+    }
+  },
+  query(){
+    return agents = useQuery(gql`query {
+      allAgents {
+        agentCode
+      }
+    }`)
+  },
+
+}
+/*export default {
   name: "loginPage",
   data() {
     return {
@@ -91,7 +132,7 @@ export default {
       }
     }
   }
-}
+}*/
 </script>
 
 <style scoped>
@@ -121,10 +162,6 @@ input[type=submit] {
   border: none;
   cursor: pointer;
   width: 100%;
-}
-
-input[type=submit]:hover {
-  opacity: 0.8;
 }
 
 button {

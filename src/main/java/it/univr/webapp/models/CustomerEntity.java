@@ -1,11 +1,14 @@
 package it.univr.webapp.models;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Objects;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "customer", schema = "public", catalog = "orders")
 public class CustomerEntity {
     private String custCode;
@@ -146,11 +149,11 @@ public class CustomerEntity {
 
     @ManyToOne
     @JoinColumn(name = "agent_code", referencedColumnName = "agent_code", nullable = false)
-    public AgentsEntity getAgentsByAgentCode() {
+    public AgentsEntity getAgent() {
         return agent;
     }
 
-    public void setAgentsByAgentCode(AgentsEntity agent) {
+    public void setAgent(AgentsEntity agent) {
         this.agent = agent;
     }
 }
