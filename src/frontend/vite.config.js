@@ -5,8 +5,8 @@ import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  server:{
-    port:8081,
+  server: {
+    port: 8081,
     proxy: {
       "/api": {
         target: "http://localhost:8080",

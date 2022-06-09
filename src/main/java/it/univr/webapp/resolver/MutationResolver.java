@@ -106,6 +106,24 @@ public class MutationResolver implements GraphQLMutationResolver {
         if(input.getCustCountry()!=null){
             customer.setCustCountry(input.getCustCountry());
         }
+        if(input.getGrade()!=null){
+            customer.setGrade(input.getGrade());
+        }
+        if(input.getOpeningAmt()!=null){
+            customer.setOpeningAmt(input.getOpeningAmt());
+        }
+        if(input.getReceiveAmt()!=null){
+            customer.setReceiveAmt(input.getReceiveAmt());
+        }
+        if(input.getPaymentAmt()!=null){
+            customer.setPaymentAmt(input.getPaymentAmt());
+        }
+        if(input.getOutstandingAmt()!=null){
+            customer.setOutstandingAmt(input.getOutstandingAmt());
+        }
+        if(input.getPhoneNo()!=null){
+            customer.setPhoneNo(input.getPhoneNo());
+        }
 
         return customer;
     }

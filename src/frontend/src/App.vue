@@ -27,6 +27,16 @@ import HelloWorld from "@/components/HelloWorld.vue";
   <RouterView />
 </template>
 
+<script>
+
+  import {ALL_ORDERS} from "./queries/query";
+
+  export default {
+    name:
+  }
+
+</script>
+
 <style>
 @import "@/assets/base.css";
 
