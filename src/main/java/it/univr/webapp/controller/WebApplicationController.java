@@ -1,7 +1,7 @@
 package it.univr.webapp.controller;
 
-import it.univr.webapp.models.AgentsEntity;
-import it.univr.webapp.repositories.CustomersRepository;
+import it.univr.webapp.models.orders.AgentsEntity;
+import it.univr.webapp.repositories.orders.CustomersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
