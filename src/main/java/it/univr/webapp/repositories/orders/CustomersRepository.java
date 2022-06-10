@@ -1,6 +1,6 @@
-package it.univr.webapp.repositories;
+package it.univr.webapp.repositories.orders;
 
-import it.univr.webapp.models.CustomerEntity;
+import it.univr.webapp.models.orders.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,5 +1,6 @@
-package it.univr.webapp.models;
+package it.univr.webapp.models.orders;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "customer", schema = "public", catalog = "orders")
 public class CustomerEntity {
     private String custCode;

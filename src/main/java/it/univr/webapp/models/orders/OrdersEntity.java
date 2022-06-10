@@ -1,4 +1,4 @@
-package it.univr.webapp.models;
+package it.univr.webapp.models.orders;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

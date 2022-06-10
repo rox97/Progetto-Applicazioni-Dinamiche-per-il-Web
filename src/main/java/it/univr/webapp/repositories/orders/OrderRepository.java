@@ -1,10 +1,9 @@
-package it.univr.webapp.repositories;
+package it.univr.webapp.repositories.orders;
 
-import it.univr.webapp.models.AgentsEntity;
-import it.univr.webapp.models.CustomerEntity;
-import it.univr.webapp.models.OrdersEntity;
+import it.univr.webapp.models.orders.AgentsEntity;
+import it.univr.webapp.models.orders.CustomerEntity;
+import it.univr.webapp.models.orders.OrdersEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

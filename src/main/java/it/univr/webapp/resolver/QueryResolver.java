@@ -1,12 +1,12 @@
 package it.univr.webapp.resolver;
 
 import graphql.kickstart.tools.GraphQLQueryResolver;
-import it.univr.webapp.models.AgentsEntity;
-import it.univr.webapp.models.CustomerEntity;
-import it.univr.webapp.models.OrdersEntity;
-import it.univr.webapp.repositories.AgentsRepository;
-import it.univr.webapp.repositories.CustomersRepository;
-import it.univr.webapp.repositories.OrderRepository;
+import it.univr.webapp.models.orders.AgentsEntity;
+import it.univr.webapp.models.orders.CustomerEntity;
+import it.univr.webapp.models.orders.OrdersEntity;
+import it.univr.webapp.repositories.orders.AgentsRepository;
+import it.univr.webapp.repositories.orders.CustomersRepository;
+import it.univr.webapp.repositories.orders.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

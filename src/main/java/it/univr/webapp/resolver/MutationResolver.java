@@ -8,20 +8,17 @@ import it.univr.webapp.input.CreateOrder;
 import it.univr.webapp.input.UpdateAgent;
 import it.univr.webapp.input.UpdateCustomer;
 import it.univr.webapp.input.UpdateOrder;
-import it.univr.webapp.models.AgentsEntity;
-import it.univr.webapp.models.CustomerEntity;
-import it.univr.webapp.models.OrdersEntity;
-import it.univr.webapp.repositories.AgentsRepository;
-import it.univr.webapp.repositories.CustomersRepository;
-import it.univr.webapp.repositories.OrderRepository;
+import it.univr.webapp.models.orders.AgentsEntity;
+import it.univr.webapp.models.orders.CustomerEntity;
+import it.univr.webapp.models.orders.OrdersEntity;
+import it.univr.webapp.repositories.orders.AgentsRepository;
+import it.univr.webapp.repositories.orders.CustomersRepository;
+import it.univr.webapp.repositories.orders.OrderRepository;
 import lombok.AllArgsConstructor;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import javax.xml.bind.SchemaOutputResolver;
-import java.util.Optional;
 
 @Component
 @AllArgsConstructor

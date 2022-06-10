@@ -1,15 +1,10 @@
 package it.univr.webapp.controller;
 
-import it.univr.webapp.models.OrdersEntity;
-import it.univr.webapp.repositories.AgentsRepository;
-import it.univr.webapp.repositories.CustomersRepository;
-import it.univr.webapp.resolver.MutationResolver;
+import it.univr.webapp.repositories.orders.AgentsRepository;
+import it.univr.webapp.repositories.orders.CustomersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
