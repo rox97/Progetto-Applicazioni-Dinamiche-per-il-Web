@@ -4,9 +4,11 @@ import graphql.kickstart.tools.GraphQLQueryResolver;
 import it.univr.webapp.models.orders.AgentsEntity;
 import it.univr.webapp.models.orders.CustomerEntity;
 import it.univr.webapp.models.orders.OrdersEntity;
+import it.univr.webapp.models.users.UserEntity;
 import it.univr.webapp.repositories.orders.AgentsRepository;
 import it.univr.webapp.repositories.orders.CustomersRepository;
 import it.univr.webapp.repositories.orders.OrderRepository;
+import it.univr.webapp.repositories.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +25,9 @@ public class QueryResolver implements GraphQLQueryResolver {
 
     @Autowired
     CustomersRepository customersRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     public List<OrdersEntity> allOrders(){
         return orderRepository.findAll();
@@ -48,7 +53,9 @@ public class QueryResolver implements GraphQLQueryResolver {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+    public List<UserEntity> allUser(){
+        return userRepository.findAll();
+    }
 
     public List<AgentsEntity> allAgents(){
         return agentsRepository.findAll();
@@ -62,4 +69,9 @@ public class QueryResolver implements GraphQLQueryResolver {
         return customersRepository.findById(custCode).get();
     }
 
+    public UserEntity userByUserCode(String user_code){ return userRepository.findById(user_code).get();}
+
+    public UserEntity userByUserAndPswd(String user_code,String user_password) {
+        return userRepository.findByUserCodeAndAndUserPassword(user_code, user_password);
+    }
 }
