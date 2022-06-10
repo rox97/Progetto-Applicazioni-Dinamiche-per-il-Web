@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 @Configuration
 @PropertySource({"classpath:persistence-multiple-db.properties"})
-@EnableJpaRepositories(basePackages = "it.univr.webapp.repositories.orders", entityManagerFactoryRef = "userEntityManager", transactionManagerRef = "userTransactionManager")
+@EnableJpaRepositories(basePackages = "it.univr.webapp.repositories.orders", entityManagerFactoryRef = "orderEntityManager", transactionManagerRef = "orderTransactionManager")
 @Profile("!tc")
 public class OrderDBConfig {
     @Autowired
@@ -30,7 +30,7 @@ public class OrderDBConfig {
 
     @Primary
     @Bean
-    public LocalContainerEntityManagerFactoryBean userEntityManager() {
+    public LocalContainerEntityManagerFactoryBean orderEntityManager() {
         System.out.println("loading config");
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(orderDataSource());
@@ -62,7 +62,7 @@ public class OrderDBConfig {
     @Bean
     public PlatformTransactionManager orderTransactionManager() {
         final JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(userEntityManager().getObject());
+        transactionManager.setEntityManagerFactory(orderEntityManager().getObject());
         return transactionManager;
     }
 }

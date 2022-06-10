@@ -1,12 +1,17 @@
 type Query{
     allOrders:[Order]
     allAgents:[Agent]
-    allCustomers: [Customer]
+    allCustomers:[Customer]
+    allUsers:[User]
 
     ordersByOrdNum(ordNum: Int):Order
     ordersByAgentCode(agentCode: String):[Order]
     ordersByCustCode(custCode: String): [Order]
 
-    agentByAgentCode(agentCode: String): Agent
-    customerByCustCode(custCode: String): Customer
+    agentByAgentCode(agentCode: String):Agent
+
+    customerByCustCode(custCode: String):Customer
+
+    userByUserCode(user_code:String):User
+    userByUserAndPswd(user_code:String,user_password:String):User
 }

@@ -53,7 +53,7 @@ public class QueryResolver implements GraphQLQueryResolver {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public List<UserEntity> allUser(){
+    public List<UserEntity> allUsers(){
         return userRepository.findAll();
     }
 

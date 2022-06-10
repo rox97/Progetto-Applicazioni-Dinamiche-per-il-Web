@@ -28,10 +28,8 @@ public class UserDBConfig {
 
     //
 
-    @Primary
     @Bean
     public LocalContainerEntityManagerFactoryBean userEntityManager() {
-        System.out.println("loading config");
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(userDataSource());
         em.setPackagesToScan("it.univr.webapp.models.users");
@@ -46,7 +44,6 @@ public class UserDBConfig {
         return em;
     }
 
-    @Primary
     @Bean
     public DataSource userDataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -58,7 +55,6 @@ public class UserDBConfig {
         return dataSource;
     }
 
-    @Primary
     @Bean
     public PlatformTransactionManager userTransactionManager() {
         final JpaTransactionManager transactionManager = new JpaTransactionManager();
