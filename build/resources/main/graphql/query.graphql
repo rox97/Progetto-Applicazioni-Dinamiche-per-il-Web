@@ -1,0 +1,12 @@
+type Query{
+    allOrders:[Order]
+    allAgents:[Agent]
+    allCustomers: [Customer]
+
+    ordersByOrdNum(ordNum: Int):Order
+    ordersByAgentCode(agentCode: String):[Order]
+    ordersByCustCode(custCode: String): [Order]
+
+    agentByAgentCode(agentCode: String): Agent
+    customerByCustCode(custCode: String): Customer
+}

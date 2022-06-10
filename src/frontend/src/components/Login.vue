@@ -1,43 +1,138 @@
+<script setup>
+import { useQuery } from '@vue/apollo-composable'
+import {gql} from 'graphql-tag'
+const { result } = useQuery(gql`
+  query {
+    allAgents {
+      agentCode
+      agentName
+      workingArea
+      commission
+    }
+  }
+`)
+</script>
+
 <template>
   <head>
     <title>WebApp</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
-
   <div class="login">
-  <h1>Login</h1>
+  <h1>Login Page</h1>
     <div class="imgcontainer">
       <img src="https://www.my-personaltrainer.it/2021/04/13/alimentazione-gatto-orig.jpeg" alt="avatar" class="avatar">
     </div>
   </div>
   <div class="container">
-  <form action="mainPage" method="post">
-    <label for="userName"><b>Username</b></label>
-    <input id="userName" type="text" placeholder="Enter Username" name="userName"><br>
+    <div class="form-group">
+      <label for="username"><b>Username</b></label>
+      <input id="username" type="text" ref="username" placeholder="Enter Username" name="username"><br>
+    </div>
+    <div class="form-group">
     <label for="password"><b>Password</b></label>
-    <input id="password" type="password" placeholder="Enter Password" name="password"><br>
-    <input type="submit" value="Login" />
-    <button type="submit">Login</button>
-  </form>
+    <input id="password" type="password" ref="password" placeholder="Enter Password" name="password"><br>
+    </div>
+    <button @click="postData">Login</button>
+    <div v-if="test" class="alert alert-secondary mt-2" role="alert"><pre>test:{{test}}</pre></div>
+
+    <div v-if="postResult" class="alert alert-secondary mt-2" role="alert"><pre>postresult:{{postResult}}</pre></div>
+    <div >Messaggio: {{msg}}</div>
+
+
+    <div >Risultato query: {{result}}</div>
+
+    <div class="query">Risultato seconda query: {{agents}}</div>
+
+
   </div>
 </template>
 
 <script>
+import { useQuery } from '@vue/apollo-composable'
+import {gql} from 'graphql-tag'
+let agents = ''
+
 export default {
+
   name: "LoginPage",
   data() {
+
     return {
-      msg: 'Il web server non è acceso'
+      msg: 'Il web server non è acceso',
+      agents: ''
     }
   },
-  mounted() {
-    fetch("/api/login")
-        .then((response) => response.text())
-        .then((data) => {
-          this.msg = data;
-        });
-  }
+  query(){
+    return agents = useQuery(gql`query {
+      allAgents {
+        agentCode
+      }
+    }`)
+  },
+
 }
+/*export default {
+  name: "loginPage",
+  data() {
+    return {
+      postResult: null,
+      error : false,
+      errorMessage : ''
+    }
+  },
+  methods: {
+    formatResponse(res) {
+      return JSON.stringify(res, null, 2);
+    },
+    async postData() {
+      const postData = {
+        username: this.$refs.username.value,
+        password: this.$refs.password.value,
+      };
+      try {
+        const res = await fetch(`api/authentication`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": "token-value",
+          },
+          body: JSON.stringify(postData),
+        });
+
+        const data = await res.text();
+        const result = {
+          status: res.status + "-" + res.statusText,
+          headers: {
+            "Content-Type": res.headers.get("Content-Type"),
+            "Content-Length": res.headers.get("Content-Length"),
+          },
+          data: data,
+        };
+
+
+        if (data !== "FAILURE") {
+          this.error = false;
+          this.errorMessage = '';
+          localStorage.setItem('userLogged', data);
+          await this.$router.push({path:'api/service'});
+
+        } else {
+          this.error = true;
+          this.errorMessage = 'Something went wrong. Are you sure you have an account?';
+          this.postResult = this.formatResponse(result) + this.errorMessage;
+          localStorage.setItem('userLogged', "false");
+
+          await this.$router.push({path:'api/login'});
+
+        }
+
+      } catch (err) {
+        this.postResult = err.message;
+      }
+    }
+  }
+}*/
 </script>
 
 <style scoped>

@@ -19,6 +19,11 @@ public class AgentsEntity {
     private String phoneNo;
     private String country;
 
+    public AgentsEntity(String agentCode, String agentName) {
+        this.agentCode = agentCode;
+        this.agentName = agentName;
+    }
+
     @Id
     @Column(name = "agent_code")
     public String getAgentCode() {

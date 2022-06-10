@@ -1,0 +1,15 @@
+scalar Date
+scalar BigDecimal
+scalar BigInteger
+
+type Order{
+    ordNum: Int
+    ordAmount: BigDecimal
+    advanceAmount: BigDecimal
+    ordDate: Date
+    ordDescription: String
+    agent:Agent
+    customer:Customer
+}
+
+
