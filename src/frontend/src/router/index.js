@@ -19,7 +19,7 @@ const router = createRouter({
       path: "/orders",
       meta: {requiresAuth: false},
       name: "ordersPage",
-      component: () => import("../views/LoginView.vue"),
+      component: () => import("../components/Orders.vue"),
     },
     {
       path: "/about",
@@ -41,11 +41,6 @@ const router = createRouter({
       meta: {requiresAuth: false},
       name: "loginPage",
       component: () => import("../views/LoginView.vue"),
-    },
-    {
-      path: "/mainPage",
-      name: "mainPage",
-      component: () => import("../views/AboutView.vue"),
     },
   ],
 });

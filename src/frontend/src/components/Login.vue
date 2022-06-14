@@ -1,16 +1,15 @@
 <script setup>
 import { useQuery } from '@vue/apollo-composable'
 import {gql} from 'graphql-tag'
-const { result } = useQuery(gql`
-  query {
-    allAgents {
-      agentCode
-      agentName
-      workingArea
-      commission
-    }
-  }
-`)
+const {result} = useQuery(gql`
+ query {allOrders {
+    ordNum
+    ordAmount
+    advanceAmount
+    ordDate
+    ordDescription
+ }}
+`);
 </script>
 
 <template>
@@ -18,7 +17,7 @@ const { result } = useQuery(gql`
     <title>WebApp</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
-  <div class="login">
+  <div class="login" >
   <h1>Login Page</h1>
     <div class="imgcontainer">
       <img src="https://www.my-personaltrainer.it/2021/04/13/alimentazione-gatto-orig.jpeg" alt="avatar" class="avatar">
@@ -33,7 +32,7 @@ const { result } = useQuery(gql`
     <label for="password"><b>Password</b></label>
     <input id="password" type="password" ref="password" placeholder="Enter Password" name="password"><br>
     </div>
-    <button @click="postData">Login</button>
+    <button @click="query">Login</button>
     <div v-if="test" class="alert alert-secondary mt-2" role="alert"><pre>test:{{test}}</pre></div>
 
     <div v-if="postResult" class="alert alert-secondary mt-2" role="alert"><pre>postresult:{{postResult}}</pre></div>
@@ -42,7 +41,7 @@ const { result } = useQuery(gql`
 
     <div >Risultato query: {{result}}</div>
 
-    <div class="query">Risultato seconda query: {{agents}}</div>
+    <div class="apollo">Risultato seconda query: {{res}}</div>
 
 
   </div>
@@ -51,8 +50,6 @@ const { result } = useQuery(gql`
 <script>
 import { useQuery } from '@vue/apollo-composable'
 import {gql} from 'graphql-tag'
-let agents = ''
-
 export default {
 
   name: "LoginPage",
@@ -60,16 +57,20 @@ export default {
 
     return {
       msg: 'Il web server non è acceso',
-      agents: ''
+      agentName: ''
     }
   },
-  query(){
-    return agents = useQuery(gql`query {
-      allAgents {
-        agentCode
-      }
-    }`)
+  apollo:{
+    test:{
+      query: gql`
+  query {
+    allAgents {
+      agentName
+    }
+  }`,
+    }
   },
+
 
 }
 /*export default {

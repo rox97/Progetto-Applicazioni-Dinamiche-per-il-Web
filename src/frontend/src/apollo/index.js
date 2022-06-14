@@ -4,7 +4,6 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import Vue from "vue";
 import VueApollo from "vue-apollo";
 
-Vue.use(VueApollo);
 
 const httpLink = new HttpLink({
   uri: "http://localhost:8080/graphql",
@@ -15,5 +14,11 @@ const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   connectToDevTools: true,
 });
+Vue.use(VueApollo);
+
 
 export default apolloClient;
+
+export const apolloProvider = new VueApollo({
+  defaultClient: apolloClient
+})

@@ -6,7 +6,7 @@
     </h1>
     <div class="wrapper">
       <nav role="navigation" aria-label="navigation">
-        <RouterLink to="/test">Ordini</RouterLink>
+        <RouterLink to="/orders">Ordini</RouterLink>
         <RouterLink to="/test" v-if="role === 'admin'">Agenti</RouterLink>
         <RouterLink to="/test" v-if="role === 'admin'">Clienti</RouterLink>
         <RouterLink to="/about">About</RouterLink>

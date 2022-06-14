@@ -29,7 +29,6 @@ import Login from "@/components/Login.vue";
 
 <script>
 
-  import {ALL_ORDERS} from "./queries/query";
 
   export default {
     name: "App"
