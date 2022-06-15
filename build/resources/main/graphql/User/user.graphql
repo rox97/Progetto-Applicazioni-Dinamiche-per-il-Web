@@ -1,0 +1,6 @@
+type User{
+    user_code:String
+    user_name:String
+    user_password:String
+    user_role:String
+}
