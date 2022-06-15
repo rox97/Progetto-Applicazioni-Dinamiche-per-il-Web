@@ -29,12 +29,10 @@ public class QueryResolver implements GraphQLQueryResolver {
     @Autowired
     UserRepository userRepository;
 
+    ////////////////////////////////////////ORDERS QUERY////////////////////////////////////////
+
     public List<OrdersEntity> allOrders(){
         return orderRepository.findAll();
-    }
-
-    public List<CustomerEntity> allCustomers(){
-        return customersRepository.findAll();
     }
 
     public OrdersEntity ordersByOrdNum(int ordNum){
@@ -51,11 +49,9 @@ public class QueryResolver implements GraphQLQueryResolver {
         return orderRepository.findByCustomer(customersRepository.findById(custCode).get());
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public List<UserEntity> allUsers(){
-        return userRepository.findAll();
-    }
+    ////////////////////////////////////////AGENTS QUERY////////////////////////////////////////
+
 
     public List<AgentsEntity> allAgents(){
         return agentsRepository.findAll();
@@ -65,8 +61,22 @@ public class QueryResolver implements GraphQLQueryResolver {
         return agentsRepository.findById(agentCode).get();
     }
 
+    ////////////////////////////////////////CUSTOMERS QUERY////////////////////////////////////////
+
+
+    public List<CustomerEntity> allCustomers(){
+        return customersRepository.findAll();
+    }
+
     public CustomerEntity customerByCustCode(String custCode){
         return customersRepository.findById(custCode).get();
+    }
+
+
+    ////////////////////////////////////////USERS QUERY////////////////////////////////////////
+
+    public List<UserEntity> allUsers(){
+        return userRepository.findAll();
     }
 
     public UserEntity userByUserCode(String user_code){ return userRepository.findById(user_code).get();}

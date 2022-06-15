@@ -13,6 +13,10 @@
   "dependencies": {
     "@apollo/client": "^3.6.6",
     "@vue/apollo-composable": "^4.0.0-alpha.17",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
+    "graphql": "^15.8.0",
     "@vue/apollo-option": "^4.0.0-alpha.17",
     "pinia": "^2.0.13",
     "vue": "^3.2.33",
