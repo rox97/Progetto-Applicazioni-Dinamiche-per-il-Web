@@ -14,6 +14,8 @@
         <RouterLink to="/login" @click="logout">Logout</RouterLink>
       </nav>
     </div>
+      <RouterView />
+
     </header>
   </main>
 
@@ -24,7 +26,7 @@ export default {
   name: "ServiceView",
   data() {
     return {
-      role : localStorage.getItem('userLogged')
+      role : localStorage.getItem('userRole')
     };
   },
   methods:{

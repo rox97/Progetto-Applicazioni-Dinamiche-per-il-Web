@@ -1,61 +1,94 @@
-<script setup>
-import { useQuery} from '@vue/apollo-composable'
-import {ALL_ORDERS, ORDERS_BY_AGENT_CODE, ORDERS_BY_CUST_CODE} from "./graphql/graphql_query";
-localStorage.setItem('userRole' , 'customer');
-localStorage.setItem("userCode" , "C00022");
-let code = localStorage.getItem("userCode");
-let role = 'customer';
-let res= ''
-let vars= ''
-switch (role){
-  case 'customer':
-    res = ORDERS_BY_CUST_CODE;
-    vars = {
-      custCode: code
-    };
-    break;
-  case 'agent':
-    res = ORDERS_BY_AGENT_CODE;
-    vars = {
-      agentCode: code
-    };
-    break;
-  case 'admin':
-    res = ALL_ORDERS;
-    vars= '';
-    break;
-  default:
-    res =ALL_ORDERS;
-    vars= '';
-    break;
-}
-const {result} = useQuery(res,vars);
-const res1 = JSON.stringify(result);
-</script>
-
 <template>
 
-  <div >Risultato query: {{result}}</div>
+  <button @click="deleteOrder">Delete</button>
+  <button @click="allOrders">Orders</button>
+  <div >Risultato query: {{res}}</div>
+  <div >Risultato query: {{orders}}</div>
+  <tr v-for="order in orders">
+    <td>{{ order.ordNum }}</td>
+    <td>{{ order.ordAmount }}</td>
 
-  <div>Risultato stringify query: {{ res1 }}</div>
-
-  <div>Risultato script query: {{ test }}</div>
-
-
+  </tr>
 
 </template>
 
 <script>
+import {useMutation, useQuery} from '@vue/apollo-composable'
 import {ALL_ORDERS, ORDERS_BY_AGENT_CODE, ORDERS_BY_CUST_CODE} from "./graphql/graphql_query";
-
+import {gql} from "graphql-tag";
+import {apolloProvider} from "../main";
+import {computed, watchEffect} from "vue";
 
 export default {
   name: "Orders",
-  setup(){
+
+  setup() {
+    let code = localStorage.getItem("userCode");
+    let role = localStorage.getItem("userRole");
+    let query = ''
+    let vars = ''
+    if (role === 'customer') {
+      query = ORDERS_BY_CUST_CODE;
+      vars = {
+        custCode: code
+      };
+    } else if (role === 'agent') {
+      query = ORDERS_BY_AGENT_CODE;
+      vars = {
+        agentCode: code
+      };
+    } else if (role === 'admin') {
+      query = ALL_ORDERS;
+      vars = '';
+    } else {
+      // ERRORE
+    }
+    const {result: res, loading, error} = useQuery(query, vars);
+    //const orders = useResult(test, [], test.allOrders);
+    let orders = '';
+    if (role === 'customer') {
+      orders = computed(() => res.value?.ordersByCustCode ?? [])
+    } else if (role === 'agent') {
+      orders = computed(() => res.value?.ordersByAgentCode ?? [])
+    } else if (role === 'admin') {
+      orders = computed(() => res.value?.allOrders ?? [])
+    } else {
+      // ERRORE
+    }
+    //let orders = computed(() => res.value ?? [])
+    console.log(res);
+    return {
+      res,
+      orders,
+      loading,
+      error
+    }
   },
-  apollo:{
-    test:{
-      query: ALL_ORDERS,
+  methods:{
+    allOrders() {
+      this.$apollo.query({
+        query: gql`
+        query {
+          allOrders {
+            ordNum
+            ordAmount
+          }
+        }
+        `
+      }).then(res => {
+        console.log(res);
+      })
+    },
+    deleteOrder(){
+     this.$apollo.mutate({
+        mutation: gql`
+          mutation {
+            deleteOrder(ordNum: 200100)
+          }
+        `
+      }).then(res => {
+        console.log(res);
+      })
     }
   }
 }

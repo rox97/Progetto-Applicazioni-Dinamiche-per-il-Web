@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import {createApp, h, provide} from "vue";
 
 import App from "./App.vue";
 import router from "./router";
@@ -8,9 +8,9 @@ import {
   InMemoryCache,
 } from "@apollo/client/core";
 import {DefaultApolloClient} from "@vue/apollo-composable";
+import { createApolloProvider } from "@vue/apollo-option";
 import VueApollo from "vue-apollo";
 
-const app = createApp(App);
 
 const httpLink = createHttpLink({
   uri: "http://localhost:8080/graphql",
@@ -19,15 +19,25 @@ const httpLink = createHttpLink({
 const apolloClient = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache(),
-  connectToDevTools: true,
+  //connectToDevTools: true,
 });
+export const provider = createApolloProvider({defaultClient: apolloClient});
+export const apolloProvider = new VueApollo({
+  defaultClient: apolloClient
+})
+const app = createApp({
+  setup() {
+    provide(DefaultApolloClient, apolloClient);
+  },
+  apollo:{},
+  render:() => h(App),
+});
+app.use(provider);
 app.component("Login", () => import("./components/Login.vue"));
-app.provide(DefaultApolloClient, apolloClient);
+app.component("Orders", () => import("./components/Orders.vue"));
 app.use(router);
 //app.use(VueApollo);
 
 app.mount("#app");
 
-export const apolloProvider = new VueApollo({
-  defaultClient: apolloClient
-})
+

@@ -29,9 +29,25 @@ import Login from "@/components/Login.vue";
 
 <script>
 
+  import {gql} from "graphql-tag";
 
   export default {
-    name: "App"
+    name: "App",
+
+    methods:{
+      deleteOrder(){
+
+        this.$apollo.mutate({
+          mutation: gql`
+            mutation {
+              deleteOrder(ordNum: 200100)
+            }
+          `
+        }).then(res => {
+          console.log(res);
+        })
+      }
+    }
   }
 
 </script>

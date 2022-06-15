@@ -13,6 +13,7 @@
   "dependencies": {
     "@apollo/client": "^3.6.6",
     "@vue/apollo-composable": "^4.0.0-alpha.17",
+    "@vue/apollo-option": "^4.0.0-alpha.17",
     "pinia": "^2.0.13",
     "vue": "^3.2.33",
     "vue-apollo": "^3.1.0",
@@ -23,6 +24,7 @@
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/test-utils": "^2.0.0-rc.20",
+    "apollo-boost": "^0.4.9",
     "cypress": "^9.5.4",
     "eslint": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",

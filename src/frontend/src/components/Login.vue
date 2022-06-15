@@ -32,18 +32,7 @@ const {result} = useQuery(gql`
     <label for="password"><b>Password</b></label>
     <input id="password" type="password" ref="password" placeholder="Enter Password" name="password"><br>
     </div>
-    <button @click="query">Login</button>
-    <div v-if="test" class="alert alert-secondary mt-2" role="alert"><pre>test:{{test}}</pre></div>
-
-    <div v-if="postResult" class="alert alert-secondary mt-2" role="alert"><pre>postresult:{{postResult}}</pre></div>
-    <div >Messaggio: {{msg}}</div>
-
-
-    <div >Risultato query: {{result}}</div>
-
-    <div class="apollo">Risultato seconda query: {{res}}</div>
-
-
+    <button @click="auth">Login</button>
   </div>
 </template>
 
@@ -57,21 +46,38 @@ export default {
 
     return {
       msg: 'Il web server non è acceso',
-      agentName: ''
     }
   },
-  apollo:{
-    test:{
-      query: gql`
-  query {
-    allAgents {
-      agentName
+  methods: {
+    auth() {
+      let username = this.$refs.username.value;
+      let password = this.$refs.password.value;
+
+      this.$apollo.query({
+        query: gql`
+          query {
+            userByUserAndPswd(user_code: "${username}", user_password: "${password}") {
+            user_code,
+            user_role
+            }
+          }
+        `
+      }).then(async ({data}) => {
+        if (data.userByUserAndPswd) {
+          localStorage.setItem("userRole", data.userByUserAndPswd.user_role);
+          localStorage.setItem("userCode", data.userByUserAndPswd.user_code);
+          console.log(localStorage.getItem("userRole"));
+          console.log(localStorage.getItem("userCode"));
+          localStorage.setItem("userLogged", "true");
+          await this.$router.push({path: 'api/service'});
+        } else {
+          this.msg = 'Username o password errati';
+        }
+      });
     }
-  }`,
-    }
-  },
 
 
+  }
 }
 /*export default {
   name: "loginPage",

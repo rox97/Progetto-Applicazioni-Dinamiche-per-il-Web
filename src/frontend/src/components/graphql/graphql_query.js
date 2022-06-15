@@ -19,7 +19,7 @@ export const ALL_ORDERS = gql`
 `;
 
 export const ORDERS_BY_CUST_CODE = gql`
-    query ordersByCustCode($custCode: String!) {
+    query ($custCode: String!) {
         ordersByCustCode(custCode: $custCode) {
             ordNum
             ordAmount
@@ -34,7 +34,7 @@ export const ORDERS_BY_CUST_CODE = gql`
 `;
 
 export const ORDERS_BY_AGENT_CODE = gql`
-    query ordersByAgentCode($agentCode: String!) {
+    query ($agentCode: String!) {
         ordersByAgentCode(agentCode: $agentCode) {
             ordNum
             ordAmount
