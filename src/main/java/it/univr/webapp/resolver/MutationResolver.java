@@ -31,6 +31,33 @@ public class MutationResolver implements GraphQLMutationResolver {
     @Autowired
     private CustomersRepository customersRepository;
 
+    ////////////////////////////////////////AGENTS MUTATION////////////////////////////////////////
+
+    @Transactional
+    public AgentsEntity updateAgent(UpdateAgent input){
+        AgentsEntity agent = agentsRepository.findById(input.getAgentCode()).orElseThrow(() -> new AgentNotFoundException(input.getAgentCode()));
+
+        if(input.getAgentName()!=null){
+            agent.setAgentName(input.getAgentName());
+        }
+        if(input.getWorkingArea()!=null){
+            agent.setWorkingArea(input.getWorkingArea());
+        }
+        if(input.getCommision()!=null){
+            agent.setCommission(input.getCommision());
+        }
+        if(input.getPhoneNo()!=null){
+            agent.setPhoneNo(input.getPhoneNo());
+        }
+        if(input.getCountry()!=null){
+            agent.setCountry(input.getCountry());
+        }
+
+        return agent;
+    }
+
+    ////////////////////////////////////////ORDERS MUTATION////////////////////////////////////////
+
     @Transactional
     public OrdersEntity createOrder(CreateOrder input){
 
@@ -64,28 +91,7 @@ public class MutationResolver implements GraphQLMutationResolver {
         return order;
     }
 
-    @Transactional
-    public AgentsEntity updateAgent(UpdateAgent input){
-        AgentsEntity agent = agentsRepository.findById(input.getAgentCode()).orElseThrow(() -> new AgentNotFoundException(input.getAgentCode()));
-
-        if(input.getAgentName()!=null){
-            agent.setAgentName(input.getAgentName());
-        }
-        if(input.getWorkingArea()!=null){
-            agent.setWorkingArea(input.getWorkingArea());
-        }
-        if(input.getCommision()!=null){
-            agent.setCommission(input.getCommision());
-        }
-        if(input.getPhoneNo()!=null){
-            agent.setPhoneNo(input.getPhoneNo());
-        }
-        if(input.getCountry()!=null){
-            agent.setCountry(input.getCountry());
-        }
-
-        return agent;
-    }
+    ////////////////////////////////////////CUSTOMER MUTATION////////////////////////////////////////
 
     @Transactional
     public CustomerEntity updateCustomer(UpdateCustomer input){
