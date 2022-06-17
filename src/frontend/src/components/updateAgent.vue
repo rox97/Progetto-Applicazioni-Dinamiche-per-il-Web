@@ -1,0 +1,92 @@
+<template>
+
+    <div>
+
+      <h2>Update Agent Data</h2>
+
+      <input class="form-control" type="text" disabled placeholder="agentCode" :value="agentData.agentCode" ref="agentCode">
+      <br>
+      <input class="form-control" type="text" placeholder="agentName" :value="agentData.agentName" ref="agentName">
+      <br>
+      <br><input class="form-control" type="text" placeholder="workingArea" :value="agentData.workingArea" ref="workingArea">
+      <br>
+      <br><input class="form-control" type="text" placeholder="commission" :value="agentData.commission" ref="commission">
+      <br>
+      <input class="form-control" placeholder="phone No" type="text" :value="agentData.phoneNo" ref="phoneNo">
+      <br>
+      <input class="form-control" placeholder="country" type="text" :value="agentData.country" ref="country">
+      <br>
+      <p v-if="msg">{{msg}}</p>
+      <br>
+      <br>
+      <br>
+    </div>
+
+    <button type="button" class="btn btn-circle-bottom" v-on:click="updateAgent(agentData)">Update </button>
+
+</template>
+
+<script>
+import {useQuery} from '@vue/apollo-composable'
+import {AGENT_BY_AGENT_CODE} from "./graphql/graphql_query";
+import {computed} from "vue";
+import {UPDATE_AGENT} from "./graphql/graphql_mutation";
+
+
+
+
+export default {
+  name:"updateAgent",
+  data(){
+    return {
+      msg:'',
+    }
+  },
+  setup: function () {
+    const {result} = useQuery(AGENT_BY_AGENT_CODE, {agentCode: "A001"})
+    const agentData = computed(() => result.value?.agentByAgentCode ?? [])
+
+    return {
+      result,
+      agentData
+    }
+  },
+  methods: {
+    updateAgent(agentData){
+
+
+      const inputAgent={
+        "agentCode":agentData.agentCode,"workingArea":this.$refs.workingArea.value,"commission":this.$refs.commission.value,"phoneNo":this.$refs.phoneNo.value,"country":this.$refs.country.value
+      }
+
+      this.$apollo.mutate({
+        mutation: UPDATE_AGENT,
+        variables: {
+          input:
+          inputAgent
+
+
+        },
+      }).then(async ({data})=> {
+        if (data){
+          this.msg="Update Completato"
+        }
+
+      })
+      this.$apollo.query({query:AGENT_BY_AGENT_CODE,
+        variables:{agentCode: agentData.agentCode}}).then(res=>{
+        agentData=res
+      })
+    }
+
+  }
+
+
+
+};
+
+</script>
+
+<style scoped>
+
+</style>

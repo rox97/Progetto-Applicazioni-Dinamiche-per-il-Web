@@ -22,9 +22,7 @@ const apolloClient = new ApolloClient({
   //connectToDevTools: true,
 });
 export const provider = createApolloProvider({defaultClient: apolloClient});
-export const apolloProvider = new VueApollo({
-  defaultClient: apolloClient
-})
+
 const app = createApp({
   setup() {
     provide(DefaultApolloClient, apolloClient);

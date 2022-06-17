@@ -43,8 +43,8 @@ public class MutationResolver implements GraphQLMutationResolver {
         if(input.getWorkingArea()!=null){
             agent.setWorkingArea(input.getWorkingArea());
         }
-        if(input.getCommision()!=null){
-            agent.setCommission(input.getCommision());
+        if(input.getCommission()!=null){
+            agent.setCommission(input.getCommission());
         }
         if(input.getPhoneNo()!=null){
             agent.setPhoneNo(input.getPhoneNo());

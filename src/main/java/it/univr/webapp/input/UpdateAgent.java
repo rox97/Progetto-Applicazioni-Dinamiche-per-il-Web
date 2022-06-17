@@ -13,7 +13,7 @@ public class UpdateAgent {
     private String agentCode;
     private String agentName;
     private String workingArea;
-    private BigDecimal commision;
+    private BigDecimal commission;
     private String phoneNo;
     private String country;
 }

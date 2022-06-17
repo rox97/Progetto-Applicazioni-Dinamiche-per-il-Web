@@ -1,22 +1,4 @@
-<script setup>
-import { useQuery } from '@vue/apollo-composable'
-import {gql} from 'graphql-tag'
-const {result} = useQuery(gql`
- query {allOrders {
-    ordNum
-    ordAmount
-    advanceAmount
-    ordDate
-    ordDescription
- }}
-`);
-</script>
-
 <template>
-  <head>
-    <title>WebApp</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  </head>
   <div class="login" >
   <h1>Login Page</h1>
     <div class="imgcontainer">
@@ -26,13 +8,14 @@ const {result} = useQuery(gql`
   <div class="container">
     <div class="form-group">
       <label for="username"><b>Username</b></label>
-      <input id="username" type="text" ref="username" placeholder="Enter Username" name="username"><br>
+      <input v-on:keyup.enter="auth" id="username" type="text" ref="username" placeholder="Enter Username" name="username"><br>
     </div>
     <div class="form-group">
     <label for="password"><b>Password</b></label>
-    <input id="password" type="password" ref="password" placeholder="Enter Password" name="password"><br>
+    <input v-on:keyup.enter="auth" id="password" type="password" ref="password" placeholder="Enter Password" name="password"><br>
     </div>
-    <button @click="auth">Login</button>
+    <button type="submit" @click="auth">Login</button>
+    <div v-if="msg">{{msg}}</div>
   </div>
 </template>
 
@@ -45,7 +28,7 @@ export default {
   data() {
 
     return {
-      msg: 'Il web server non è acceso',
+      msg: '',
     }
   },
   methods: {
@@ -160,16 +143,6 @@ input[type=text], input[type=password] {
 }
 
 /* Set a style for all buttons */
-
-input[type=submit] {
-  background-color: #00BD7EFF;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
 
 button {
   background-color: #00BD7EFF;

@@ -18,6 +18,57 @@ export const ALL_ORDERS = gql`
     }
 `;
 
+export const ALL_AGENTS = gql`
+    {
+        allAgents {
+            agentCode
+            agentName
+            workingArea
+            commission
+            phoneNo
+            country
+        }
+    }
+`;
+
+export const ALL_CUSTOMERS = gql`
+    {
+        allCustomers {
+            custCode
+            custName
+            custCity
+            workingArea
+            custCountry
+            grade
+            openingAmt
+            receiveAmt
+            paymentAmt
+            outstandingAmt
+            phoneNo
+            agent{
+                agentCode
+            }
+        }
+    }
+`;
+
+export const ORDER_BY_ORD_NUM = gql`
+    query ($ordNum: Int!) {
+        orderByOrdNum(ordNum: $ordNum) {
+            ordNum
+            ordAmount
+            advanceAmount
+            ordDate
+            ordDescription
+        }
+    }
+`;
+export const EXISTS_ORDER_BY_ORD_NUM = gql`
+    query ($ordNum: Int!) {
+        existsOrderByOrdNum(ordNum: $ordNum)
+    }
+`;
+
 export const ORDERS_BY_CUST_CODE = gql`
     query ($custCode: String!) {
         ordersByCustCode(custCode: $custCode) {
@@ -44,6 +95,19 @@ export const ORDERS_BY_AGENT_CODE = gql`
             customer{
                 custCode
             }
+        }
+    }
+`;
+
+export const AGENT_BY_AGENT_CODE = gql`
+    query ($agentCode: String!) {
+        agentByAgentCode(agentCode: $agentCode) {
+            agentCode
+            agentName
+            workingArea
+            commission
+            phoneNo
+            country
         }
     }
 `

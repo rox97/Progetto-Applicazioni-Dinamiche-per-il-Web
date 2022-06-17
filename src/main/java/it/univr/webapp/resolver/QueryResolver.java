@@ -35,7 +35,7 @@ public class QueryResolver implements GraphQLQueryResolver {
         return orderRepository.findAll();
     }
 
-    public OrdersEntity ordersByOrdNum(int ordNum){
+    public OrdersEntity orderByOrdNum(int ordNum){
         return orderRepository.findById(ordNum).get();
     }
 
@@ -47,6 +47,10 @@ public class QueryResolver implements GraphQLQueryResolver {
     public List<OrdersEntity> ordersByCustCode(String custCode){
 
         return orderRepository.findByCustomer(customersRepository.findById(custCode).get());
+    }
+
+    public Boolean existsOrderByOrdNum(int ordNum){
+        return orderRepository.existsById(ordNum);
     }
 
 
@@ -65,7 +69,7 @@ public class QueryResolver implements GraphQLQueryResolver {
 
 
     public List<CustomerEntity> allCustomers(){
-        return customersRepository.findAll();
+        return customersRepository.findByOrderByCustCodeAsc();
     }
 
     public CustomerEntity customerByCustCode(String custCode){

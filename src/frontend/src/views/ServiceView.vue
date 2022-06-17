@@ -7,16 +7,13 @@
     <div class="wrapper">
       <nav role="navigation" aria-label="navigation">
         <RouterLink to="/orders">Ordini</RouterLink>
-        <RouterLink to="/test" v-if="role === 'admin'">Agenti</RouterLink>
-        <RouterLink to="/test" v-if="role === 'admin'">Clienti</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/test">Test</RouterLink>
+        <RouterLink to="/agents" v-if="role === 'admin'">Agenti</RouterLink>
+        <RouterLink to="/customers" v-if="role === 'admin'">Clienti</RouterLink>
         <RouterLink to="/login" @click="logout">Logout</RouterLink>
       </nav>
     </div>
-      <RouterView />
-
     </header>
+    <RouterView />
   </main>
 
 </template>
@@ -40,6 +37,7 @@ export default {
 
 <style scoped>
 @import "@/assets/base.css";
+
 
 @media (hover: hover) {
   a:hover {

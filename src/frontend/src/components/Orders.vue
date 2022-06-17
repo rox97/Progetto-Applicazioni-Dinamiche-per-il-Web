@@ -1,32 +1,46 @@
 <template>
-
-  <button @click="deleteOrder">Delete</button>
-  <button @click="allOrders">Orders</button>
-  <div >Risultato query: {{res}}</div>
-  <div >Risultato query: {{orders}}</div>
-  <tr v-for="order in orders">
+  <service></service>
+  <div class="orders">
+    <nav role="navigation" aria-label="navigation">
+      <RouterLink id="create_order" to="/createOrder" v-if="role === 'agent'">Crea Ordine</RouterLink>
+    </nav>
+  </div>
+  <tr class="table" v-for="order in orders" :key="order.ordNum">
     <td>{{ order.ordNum }}</td>
     <td>{{ order.ordAmount }}</td>
-
+    <td>{{ order.advanceAmount }}</td>
+    <td>{{ order.ordDate }}</td>
+    <td>{{ order.ordDescription }}</td>
+    <td v-if="role === 'admin' || role === 'customer'">{{ order.agent.agentCode }}</td>
+    <td v-if="role === 'admin' || role === 'agent'">{{ order.customer.custCode }}</td>
   </tr>
 
 </template>
 
 <script>
+import ServiceView from '../views/ServiceView.vue'
 import {useMutation, useQuery} from '@vue/apollo-composable'
 import {ALL_ORDERS, ORDERS_BY_AGENT_CODE, ORDERS_BY_CUST_CODE} from "./graphql/graphql_query";
 import {gql} from "graphql-tag";
-import {apolloProvider} from "../main";
-import {computed, watchEffect} from "vue";
+import {computed} from "vue";
 
 export default {
   name: "Orders",
+  components:{
+    'service':ServiceView
+  },
+
+  data() {
+    return {
+      role : localStorage.getItem('userRole')
+    };
+  },
 
   setup() {
     let code = localStorage.getItem("userCode");
     let role = localStorage.getItem("userRole");
-    let query = ''
-    let vars = ''
+    let query = '';
+    let vars = '';
     if (role === 'customer') {
       query = ORDERS_BY_CUST_CODE;
       vars = {
@@ -55,10 +69,8 @@ export default {
     } else {
       // ERRORE
     }
-    //let orders = computed(() => res.value ?? [])
-    console.log(res);
+
     return {
-      res,
       orders,
       loading,
       error
@@ -67,15 +79,7 @@ export default {
   methods:{
     allOrders() {
       this.$apollo.query({
-        query: gql`
-        query {
-          allOrders {
-            ordNum
-            ordAmount
-          }
-        }
-        `
-      }).then(res => {
+        query: ALL_ORDERS}).then(res => {
         console.log(res);
       })
     },
@@ -96,4 +100,26 @@ export default {
 
 <style scoped>
 
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(166, 100%, 37%, 0.2);
+  }
+}
+@media (min-width: 1024px) {
+nav {
+  text-align: center;
+  margin-left: -1rem;
+  font-size: 1rem;
+
+  padding: 1rem 0;
+  margin-top: 1rem;
+}
+}
 </style>

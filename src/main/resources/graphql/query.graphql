@@ -4,9 +4,10 @@ type Query{
     allCustomers:[Customer]
     allUsers:[User]
 
-    ordersByOrdNum(ordNum: Int):Order
+    orderByOrdNum(ordNum: Int):Order
     ordersByAgentCode(agentCode: String):[Order]
     ordersByCustCode(custCode: String): [Order]
+    existsOrderByOrdNum(ordNum: Int):Boolean
 
     agentByAgentCode(agentCode: String):Agent
 

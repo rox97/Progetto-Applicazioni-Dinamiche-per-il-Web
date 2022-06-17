@@ -11,31 +11,43 @@ const router = createRouter({
     },
     {
       path: "/service",
-      meta: {requiresAuth: true},
+      meta: {requiresAuth: true, forAdmin: false},
       name: "service",
       component: () => import("../views/ServiceView.vue"),
     },
     {
       path: "/orders",
-      meta: {requiresAuth: true},
+      meta: {requiresAuth: true, forAdmin: false},
       name: "ordersPage",
       component: () => import("../components/Orders.vue"),
     },
     {
+      path: "/createOrder",
+      meta: {requiresAuth: true, forAdmin: false},
+      name: "createOrderPage",
+      component: () => import("../components/createOrder.vue"),
+    },
+    {
       path: "/agents",
-      meta: {requiresAuth: true},
+      meta: {requiresAuth: true, forAdmin: true},
       name: "agentsPage",
-      component: () => import("../components/Orders.vue"),
+      component: () => import("../components/Agents.vue"),
+    },
+    {
+      path: "/updateAgent",
+      meta: {requiresAuth: true, forAdmin: true},
+      name: "updateAgentPage",
+      component: () => import("../components/updateAgent.vue"),
     },
     {
       path: "/customers",
-      meta: {requiresAuth: true},
+      meta: {requiresAuth: true, forAdmin: true},
       name: "customersPage",
-      component: () => import("../components/Orders.vue"),
+      component: () => import("../components/Customers.vue"),
     },
     {
       path: "/about",
-      meta: {requiresAuth: false},
+      meta: {requiresAuth: false, forAdmin: false},
       name: "about",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -44,13 +56,13 @@ const router = createRouter({
     },
     {
       path: "/test",
-      meta: {requiresAuth: true},
+      meta: {requiresAuth: true, forAdmin: false},
       name: "testPage",
       component: () => import("../views/TestView.vue"),
     },
     {
       path: "/login",
-      meta: {requiresAuth: false},
+      meta: {requiresAuth: false, forAdmin: false},
       name: "loginPage",
       component: () => import("../views/LoginView.vue"),
     },
@@ -61,7 +73,10 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && localStorage.getItem("userLogged") === "false") {
     next({path:'/login'});
   }
-  else {
+  /*else if(to.meta.forAdmin && localStorage.getItem("userRole") !== "admin"){
+    next({path:'/service'});
+  }*/
+  else{
     next();
   }
   });
