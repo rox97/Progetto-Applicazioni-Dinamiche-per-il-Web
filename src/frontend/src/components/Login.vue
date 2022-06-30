@@ -49,8 +49,6 @@ export default {
         if (data.userByUserAndPswd) {
           localStorage.setItem("userRole", data.userByUserAndPswd.user_role);
           localStorage.setItem("userCode", data.userByUserAndPswd.user_code);
-          console.log(localStorage.getItem("userRole"));
-          console.log(localStorage.getItem("userCode"));
           localStorage.setItem("userLogged", "true");
           await this.$router.push({path: 'api/service'});
         } else {
