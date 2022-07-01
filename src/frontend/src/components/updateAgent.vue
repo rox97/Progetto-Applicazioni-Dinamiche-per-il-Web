@@ -31,9 +31,7 @@ import {useQuery} from '@vue/apollo-composable'
 import {AGENT_BY_AGENT_CODE} from "./graphql/graphql_query";
 import {computed} from "vue";
 import {UPDATE_AGENT} from "./graphql/graphql_mutation";
-
-
-
+import {useRoute} from "vue-router";
 
 export default {
   name:"updateAgent",
@@ -42,8 +40,13 @@ export default {
       msg:'',
     }
   },
-  setup: function () {
-    const {result} = useQuery(AGENT_BY_AGENT_CODE, {agentCode: "A001"})
+  setup(){
+    const route = useRoute()
+    let data = route.params.data;
+
+    console.log("data is", data);
+
+    const {result} = useQuery(AGENT_BY_AGENT_CODE, {agentCode: data})
     const agentData = computed(() => result.value?.agentByAgentCode ?? [])
 
     return {
@@ -52,8 +55,18 @@ export default {
     }
   },
   methods: {
-    updateAgent(agentData){
+    /*agentData(){
+      let data = this.$route.params.data;
+      console.log(data);
+      const {result} = useQuery(AGENT_BY_AGENT_CODE, {agentCode: data})
+      const agentData = computed(() => result.value?.agentByAgentCode ?? [])
 
+      return {
+        result,
+        agentData
+      }
+    },*/
+    updateAgent(agentData){
 
       const inputAgent={
         "agentCode":agentData.agentCode,"workingArea":this.$refs.workingArea.value,"commission":this.$refs.commission.value,"phoneNo":this.$refs.phoneNo.value,"country":this.$refs.country.value

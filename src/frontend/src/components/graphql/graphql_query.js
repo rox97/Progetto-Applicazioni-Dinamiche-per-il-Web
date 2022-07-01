@@ -52,6 +52,27 @@ export const ALL_CUSTOMERS = gql`
     }
 `;
 
+export const CUSTOMER_BY_CUST_CODE = gql`
+    query ($custCode: String!){
+        customerByCustCode(custCode: $custCode){
+            custCode
+            custName
+            custCity
+            workingArea
+            custCountry
+            grade
+            openingAmt
+            receiveAmt
+            paymentAmt
+            outstandingAmt
+            phoneNo
+            agent{
+                agentCode
+            }
+        }
+        
+    }
+    `;
 export const ORDER_BY_ORD_NUM = gql`
     query ($ordNum: Int!) {
         orderByOrdNum(ordNum: $ordNum) {

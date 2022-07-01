@@ -34,8 +34,8 @@ const router = createRouter({
       component: () => import("../components/Agents.vue"),
     },
     {
-      path: "/updateAgent",
-      meta: {requiresAuth: true, forAdmin: true},
+      path: "/updateAgent/:data",
+      meta: {requiresAuth: false, forAdmin: false},
       name: "updateAgentPage",
       component: () => import("../components/updateAgent.vue"),
     },

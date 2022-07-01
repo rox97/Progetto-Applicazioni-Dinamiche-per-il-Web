@@ -7,8 +7,9 @@
     <td>{{ agent.commission}}</td>
     <td>{{ agent.phoneNo }}</td>
     <td>{{ agent.country }}</td>
+    <td><button @click="editAgent(agent.agentCode)">Edit</button></td>
   </tr>
-
+  <router-view></router-view>
 </template>
 
 <script>
@@ -42,6 +43,16 @@ export default {
     }
   },
   methods:{
+    editAgent(agentCode){
+      let data = agentCode
+
+      this.$router.push({
+        name: "updateAgentPage",
+        params:  {data}
+      });
+      console.log(data)
+
+    }
   }
 }
 </script>

@@ -17,16 +17,45 @@
       <th @click="sort('customer')" v-if="role === 'admin' || role === 'agent'">Customer Code</th>
     </tr>
     </thead>
-  <tr class="table" v-for="order in sortedOrders" :key="order.ordNum">
-    <td>{{ order.ordNum }}</td>
-    <td>{{ order.ordAmount }}</td>
-    <td>{{ order.advanceAmount }}</td>
-    <td>{{ order.ordDate }}</td>
-    <td>{{ order.ordDescription }}</td>
-    <td v-if="role === 'admin' || role === 'customer'"><button name="answer" @click="showDiv(order.agent.agentCode, order.ordNum)">{{ order.agent.agentCode }}</button></td>
-    <td v-if="role === 'admin' || role === 'agent'"><button name="answer" @click="showDiv(order.customer.custCode)">{{ order.customer.custCode }}</button></td>
-    <!--<td><div id="infoDiv"  style="display:none;" class="answer_list" > WELCOME</div></td>-->
-  </tr>
+    <tbody v-for="order in sortedOrders" :key="order.ordNum">
+    <tr class="table" >
+      <td>{{ order.ordNum }}</td>
+      <td>{{ order.ordAmount }}</td>
+      <td>{{ order.advanceAmount }}</td>
+      <td>{{ order.ordDate }}</td>
+      <td>{{ order.ordDescription }}</td>
+      <td v-if="role === 'admin' || role === 'customer'"><button name="answer" @click="agentToggle(order.agent.agentCode, order.ordNum)" :class="{ agentOpened: agentOpened.includes(order.ordNum) }">{{ order.agent.agentCode }}</button></td>
+      <td v-if="role === 'admin' || role === 'agent'"><button name="answer" @click="customerToggle(order.customer.custCode, order.ordNum)" :class="{ customerOpened: customerOpened.includes(order.ordNum) }">{{ order.customer.custCode }}</button></td>
+      <td v-if="role === 'admin'"><button>Edit</button></td>
+    </tr>
+    <tr v-if="customerOpened.includes(order.ordNum) && role !== 'customer' ">
+      <th>Customer Name</th>
+      <th>Customer City</th>
+      <th>Working Area</th>
+      <th>Customer Country</th>
+      <th>Phone Number</th>
+    </tr>
+    <tr v-if="customerOpened.includes(order.ordNum) && role !== 'customer' ">
+      <td>{{ customerInfo.custName }}</td>
+      <td>{{ customerInfo.custCity }}</td>
+      <td>{{ customerInfo.workingArea }}</td>
+      <td>{{ customerInfo.custCountry }}</td>
+      <td>{{ customerInfo.phoneNo }}</td>
+    </tr>
+    <tr v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
+      <th>Agent Name</th>
+      <th>Working Area</th>
+      <th>Phone Number</th>
+      <th>Agent Country</th>
+    </tr>
+    <tr v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
+      <td>{{ agentInfo.agentName }}</td>
+      <td>{{ agentInfo.workingArea }}</td>
+      <td>{{ agentInfo.phoneNo }}</td>
+      <td>{{ agentInfo.country }}</td>
+    </tr>
+
+    </tbody>
     <tr><td><div id="infoDiv"  style="display:none;" class="answer_list" > WELCOME</div></td></tr>
   </table>
 
@@ -38,7 +67,13 @@
 <script>
 import ServiceView from '../views/ServiceView.vue'
 import {useMutation, useQuery, useResult} from '@vue/apollo-composable'
-import {ALL_ORDERS, ORDERS_BY_AGENT_CODE, ORDERS_BY_CUST_CODE} from "./graphql/graphql_query";
+import {
+  AGENT_BY_AGENT_CODE,
+  ALL_ORDERS,
+  CUSTOMER_BY_CUST_CODE,
+  ORDERS_BY_AGENT_CODE,
+  ORDERS_BY_CUST_CODE
+} from "./graphql/graphql_query";
 import {gql} from "graphql-tag";
 import {computed, onMounted} from "vue";
 
@@ -51,12 +86,14 @@ export default {
     return {
       role : localStorage.getItem('userRole'),
       currentSort:'ordNum',
-      currentSortDir:'asc'
+      currentSortDir:'asc',
+      agentOpened: [],
+      customerOpened: [],
+      agentInfo: [],
+      customerInfo: []
     };
   },
   setup() {
-    /*let currentSort='ordNum'
-    let currentSortDir='asc'*/
     let code = localStorage.getItem("userCode");
     let role = localStorage.getItem("userRole");
     let query = '';
@@ -126,11 +163,31 @@ export default {
       }
       this.currentSort = s;
     },
-    showDiv(code, ordNum) {
-      console.log(code)
-      //let table = document.getElementById("my-table");
-      //let row = table.insertRow;
-      document.getElementById('infoDiv').style.display = "block";
+    agentToggle(id, orderNumber) {
+      this.$apollo.query({
+        query: AGENT_BY_AGENT_CODE,
+        variables:{ agentCode: id}}).then(res => {
+        this.agentInfo = res.data.agentByAgentCode})
+
+      const index = this.agentOpened.indexOf(orderNumber);
+      if (index > -1) {
+        this.agentOpened.splice(index, 1)
+      } else {
+        this.agentOpened.push(orderNumber)
+      }
+    },
+    customerToggle(id, orderNumber) {
+      this.$apollo.query({
+        query: CUSTOMER_BY_CUST_CODE,
+        variables:{ custCode: id}}).then(res => {
+        this.customerInfo = res.data.customerByCustCode})
+
+      const index = this.customerOpened.indexOf(orderNumber);
+      if (index > -1) {
+        this.customerOpened.splice(index, 1)
+      } else {
+        this.customerOpened.push(orderNumber)
+      }
     },
     allOrders() {
       this.$apollo.query({
