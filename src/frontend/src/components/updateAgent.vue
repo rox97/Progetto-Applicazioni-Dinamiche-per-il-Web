@@ -86,10 +86,7 @@ export default {
         }
 
       })
-      this.$apollo.query({query:AGENT_BY_AGENT_CODE,
-        variables:{agentCode: agentData.agentCode}}).then(res=>{
-        agentData=res
-      })
+      document.location.reload()
     }
 
   }

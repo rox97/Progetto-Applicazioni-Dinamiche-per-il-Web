@@ -1,6 +1,5 @@
 package it.univr.webapp.config;
 
-import graphql.Scalars;
 import graphql.scalars.ExtendedScalars;
 import graphql.schema.GraphQLScalarType;
 import org.springframework.context.annotation.Bean;

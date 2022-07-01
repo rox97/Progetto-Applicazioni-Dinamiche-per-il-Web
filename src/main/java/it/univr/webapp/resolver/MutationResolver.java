@@ -19,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -129,5 +131,17 @@ public class MutationResolver implements GraphQLMutationResolver {
         }
 
         return customer;
+    }
+
+    @Transactional
+    public Boolean deleteCustomerWithNoOrder(String custCode) {
+        Optional<CustomerEntity> customer = customersRepository.findById(custCode);
+        List<OrdersEntity> ordersForCustomer = orderRepository.findByCustomer(customer.get());
+        if(ordersForCustomer.isEmpty()){
+            customersRepository.deleteById(custCode);
+            return true;
+        } else{
+            return false;
+        }
     }
 }

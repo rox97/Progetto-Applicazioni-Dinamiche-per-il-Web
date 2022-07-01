@@ -4,15 +4,15 @@ type Query{
     allCustomers:[Customer]
     allUsers:[User]
 
-    orderByOrdNum(ordNum: Int):Order
-    ordersByAgentCode(agentCode: String):[Order]
-    ordersByCustCode(custCode: String): [Order]
-    existsOrderByOrdNum(ordNum: Int):Boolean
+    orderByOrdNum(ordNum: Int!):Order
+    ordersByAgentCode(agentCode: String!):[Order]
+    ordersByCustCode(custCode: String!): [Order]
+    existsOrderByOrdNum(ordNum: Int!):Boolean
 
-    agentByAgentCode(agentCode: String):Agent
+    agentByAgentCode(agentCode: String!):Agent
 
-    customerByCustCode(custCode: String):Customer
+    customerByCustCode(custCode: String!):Customer
 
-    userByUserCode(user_code:String):User
-    userByUserAndPswd(user_code:String,user_password:String):User
+    userByUserCode(user_code:String!):User
+    userByUserAndPswd(user_code:String!,user_password:String!):User
 }

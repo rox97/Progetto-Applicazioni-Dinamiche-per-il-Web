@@ -15,8 +15,20 @@
       <th @click="sort('ordDescription')">Order Description</th>
       <th @click="sort('agent')" v-if="role === 'admin' || role === 'customer'">Agent Code</th>
       <th @click="sort('customer')" v-if="role === 'admin' || role === 'agent'">Customer Code</th>
+      <th v-if="role === 'agent'">Delete</th>
     </tr>
     </thead>
+  <tr class="table" v-for="order in sortedOrders" :key="order.ordNum">
+    <td>{{ order.ordNum }}</td>
+    <td>{{ order.ordAmount }}</td>
+    <td>{{ order.advanceAmount }}</td>
+    <td>{{ order.ordDate }}</td>
+    <td>{{ order.ordDescription }}</td>
+    <td v-if="role === 'admin' || role === 'customer'"><button name="answer" @click="showDiv(order.agent.agentCode, order.ordNum)">{{ order.agent.agentCode }}</button></td>
+    <td v-if="role === 'admin' || role === 'agent'"><button name="answer" @click="showDiv(order.customer.custCode)">{{ order.customer.custCode }}</button></td>
+    <td v-if="role === 'agent'"><button @click="deleteOrder(order.ordNum)">Delete</button></td>
+    <!--<td><div id="infoDiv"  style="display:none;" class="answer_list" > WELCOME</div></td>-->
+  </tr>
     <tbody v-for="order in sortedOrders" :key="order.ordNum">
     <tr class="table" >
       <td>{{ order.ordNum }}</td>
@@ -76,6 +88,7 @@ import {
 } from "./graphql/graphql_query";
 import {gql} from "graphql-tag";
 import {computed, onMounted} from "vue";
+import {DELETE_ORDER} from "./graphql/graphql_mutation";
 
 export default {
   name: "Orders",
@@ -195,17 +208,23 @@ export default {
         console.log(res);
       })
     },
-    deleteOrder(){
-     this.$apollo.mutate({
-        mutation: gql`
-          mutation {
-            deleteOrder(ordNum: 200100)
-          }
-        `
+
+    deleteOrder(ordNum){
+        this.$apollo.mutate({
+        mutation: DELETE_ORDER,
+        variables: {
+          input:
+          ordNum
+          },
+
       }).then(res => {
         console.log(res);
       })
+      document.location.reload()
     }
+
+
+
   },
 }
 </script>
