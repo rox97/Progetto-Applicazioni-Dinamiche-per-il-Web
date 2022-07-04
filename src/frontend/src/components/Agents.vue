@@ -93,38 +93,6 @@ export default {
 </script>
 
 <style scoped>
+@import "@/assets/table.css";
 
-button {
-  background-color: transparent;
-  color: hsla(160, 100%, 37%, 1);
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  transition: 0.4s;
-}
-table,
-th {
-  border-collapse: collapse;
-  padding: 0.5em 1em;
-  border: 2px solid black;
-  color:hsla(160, 100%, 100%, 1);
-  background-color: hsla(160, 100%, 100%, 0.1);
-  text-align: center;
-}
-.thead th{
-  background-color: hsla(160, 100%, 37%, 1);
-  color: hsla(160, 100%, 100%, 1);
-  position: sticky;
-  top: 0;
-  text-align: center;
-  border: 2px solid black;
-}
-
-@media (hover: hover) {
-  a, button:hover {
-    background-color: hsla(166, 100%, 37%, 0.2);
-  }
-}
 </style>

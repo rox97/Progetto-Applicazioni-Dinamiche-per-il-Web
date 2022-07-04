@@ -1,8 +1,8 @@
 <template>
   <service></service>
   <div class="orders">
-    <nav role="navigation" aria-label="navigation">
-      <RouterLink id="create_order" to="/createOrder" v-if="role === 'agent'">Crea Ordine</RouterLink>
+    <nav role="navigation" v-if="role === 'agent'" aria-label="navigation">
+      <RouterLink class="create" id="create_order" to="/createOrder">Create Order</RouterLink>
     </nav>
   </div>
   <table id="my-table">
@@ -20,16 +20,28 @@
     </tr>
     </thead>
     <tbody v-for="order in sortedOrders">
-    <tr class="table" >
+    <tr class="table">
       <td>{{ order.ordNum }}</td>
       <td>{{ order.ordAmount }}</td>
       <td>{{ order.advanceAmount }}</td>
       <td>{{ order.ordDate }}</td>
       <td>{{ order.ordDescription }}</td>
-      <td v-if="role === 'admin' || role === 'customer'"><button @click="agentToggle(order.agent.agentCode, order.ordNum)" :class="{ agentOpened: agentOpened.includes(order.ordNum) }">{{ order.agent.agentCode }}</button></td>
-      <td v-if="role === 'admin' || role === 'agent'"><button @click="customerToggle(order.customer.custCode, order.ordNum)" :class="{ customerOpened: customerOpened.includes(order.ordNum) }">{{ order.customer.custCode }}</button></td>
-      <td v-if="role === 'admin'|| role === 'agent'"><button @click="editOrder(order.ordNum)">Edit</button></td>
-      <td v-if="role === 'agent'"><button @click="deleteOrder(order.ordNum)">Delete</button></td>
+      <td v-if="role === 'admin' || role === 'customer'">
+        <button @click="agentToggle(order.agent.agentCode, order.ordNum)"
+                :class="{ agentOpened: agentOpened.includes(order.ordNum) }">{{ order.agent.agentCode }}
+        </button>
+      </td>
+      <td v-if="role === 'admin' || role === 'agent'">
+        <button @click="customerToggle(order.customer.custCode, order.ordNum)"
+                :class="{ customerOpened: customerOpened.includes(order.ordNum) }">{{ order.customer.custCode }}
+        </button>
+      </td>
+      <td v-if="role === 'admin'|| role === 'agent'">
+        <button @click="editOrder(order.ordNum)">Edit</button>
+      </td>
+      <td v-if="role === 'agent'">
+        <button @click="deleteOrder(order.ordNum)">Delete</button>
+      </td>
     </tr>
     <tr class="theadinfo" v-if="customerOpened.includes(order.ordNum) && role !== 'customer' ">
       <th>Customer Name</th>
@@ -45,7 +57,7 @@
       <td>{{ customerInfo.custCountry }}</td>
       <td>{{ customerInfo.phoneNo }}</td>
     </tr>
-    <tr v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
+    <tr class="theadinfo" v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
       <th>Agent Name</th>
       <th>Working Area</th>
       <th>Phone Number</th>
@@ -76,14 +88,14 @@ import {DELETE_ORDER} from "./graphql/graphql_mutation";
 
 export default {
   name: "Orders",
-  components:{
-    'service':ServiceView
+  components: {
+    'service': ServiceView
   },
   data() {
     return {
-      role : localStorage.getItem('userRole'),
-      currentSort:'ordNum',
-      currentSortDir:'asc',
+      role: localStorage.getItem('userRole'),
+      currentSort: 'ordNum',
+      currentSortDir: 'asc',
       agentOpened: [],
       customerOpened: [],
       agentInfo: [],
@@ -130,21 +142,19 @@ export default {
       error
     }
   },
-  computed:{
+  computed: {
     sortedOrders() {
       let copy = [...this.orders]
-      return copy.sort((a,b) => {
+      return copy.sort((a, b) => {
         let modifier = 1;
-        if(this.currentSortDir === 'desc') modifier = -1;
-        if(this.currentSort === "customer"){
+        if (this.currentSortDir === 'desc') modifier = -1;
+        if (this.currentSort === "customer") {
           if (a[this.currentSort]["custCode"] < b[this.currentSort]["custCode"]) return -1 * modifier;
           if (a[this.currentSort]["custCode"] > b[this.currentSort]["custCode"]) return modifier;
-        }
-        else if (this.currentSort === "agent"){
+        } else if (this.currentSort === "agent") {
           if (a[this.currentSort]["agentCode"] < b[this.currentSort]["agentCode"]) return -1 * modifier;
           if (a[this.currentSort]["agentCode"] > b[this.currentSort]["agentCode"]) return modifier;
-        }
-        else {
+        } else {
           if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
           if (a[this.currentSort] > b[this.currentSort]) return modifier;
         }
@@ -152,18 +162,20 @@ export default {
       });
     }
   },
-  methods:{
+  methods: {
     sort(s) {
-      if(s === this.currentSort) {
-        this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
+      if (s === this.currentSort) {
+        this.currentSortDir = this.currentSortDir === 'asc' ? 'desc' : 'asc';
       }
       this.currentSort = s;
     },
     agentToggle(id, orderNumber) {
       this.$apollo.query({
         query: AGENT_BY_AGENT_CODE,
-        variables:{ agentCode: id}}).then(res => {
-        this.agentInfo = res.data.agentByAgentCode})
+        variables: {agentCode: id}
+      }).then(res => {
+        this.agentInfo = res.data.agentByAgentCode
+      })
 
       const index = this.agentOpened.indexOf(orderNumber);
       if (index > -1) {
@@ -175,8 +187,10 @@ export default {
     customerToggle(id, orderNumber) {
       this.$apollo.query({
         query: CUSTOMER_BY_CUST_CODE,
-        variables:{ custCode: id}}).then(res => {
-        this.customerInfo = res.data.customerByCustCode})
+        variables: {custCode: id}
+      }).then(res => {
+        this.customerInfo = res.data.customerByCustCode
+      })
 
       const index = this.customerOpened.indexOf(orderNumber);
       if (index > -1) {
@@ -187,28 +201,28 @@ export default {
     },
     allOrders() {
       this.$apollo.query({
-        query: ALL_ORDERS}).then(res => {
+        query: ALL_ORDERS
+      }).then(res => {
         console.log(res);
       })
     },
-    deleteOrder(ordNum){
-     this.$apollo.mutate({
+    deleteOrder(ordNum) {
+      this.$apollo.mutate({
         mutation: DELETE_ORDER,
         variables: {
-          input:ordNum
+          ordNum: ordNum
         }
       }).then(res => {
         console.log(res);
         document.location.reload()
-        //this.sort(this.currentSort)
       });
     },
-    editOrder(ordNum){
+    editOrder(ordNum) {
       let data = ordNum
 
       this.$router.push({
         name: "updateOrderPage",
-        params:  {data}
+        params: {data}
       });
       console.log(data)
 
@@ -218,54 +232,10 @@ export default {
 </script>
 
 <style scoped>
-button {
-  background-color: transparent;
-  color: hsla(160, 100%, 37%, 1);
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  transition: 0.4s;
-}
-table,
-th {
-  border-collapse: collapse;
-  padding: 0.5em 1em;
-  border: 2px solid black;
-  color:hsla(160, 100%, 100%, 1);
-  background-color: hsla(160, 100%, 100%, 0.1);
-  text-align: center;
-}
-.thead th{
-  background-color: hsla(160, 100%, 37%, 1);
-  color: hsla(160, 100%, 100%, 1);
-  position: sticky;
-  top: 0;
-  text-align: center;
-  border: 2px solid black;
+@import "@/assets/table.css";
+
+.create {
+  margin: 0;
 }
 
-
-a.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a, button:hover {
-    background-color: hsla(166, 100%, 37%, 0.2);
-  }
-}
-@media (min-width: 1024px) {
-nav {
-  text-align: center;
-  margin-left: -1rem;
-  font-size: 1rem;
-
-  padding: 1rem 0;
-  margin-top: 1rem;
-}
-}
 </style>

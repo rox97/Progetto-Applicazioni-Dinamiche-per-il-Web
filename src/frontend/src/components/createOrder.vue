@@ -1,6 +1,6 @@
 <template>
   <div class="createOrder" >
-    <h1>Create Page</h1>
+    <h1>Create Order</h1>
   </div>
   <div class="container">
     <div class="form-group">
@@ -8,31 +8,30 @@
       <input id="ordNum" type="text" ref="ordNum" placeholder="Enter order number" name="ordNum"><br>
     </div>
     <div class="form-group">
-      <label for="ordAmount"><b>ordAmount</b></label>
+      <label for="ordAmount"><b>Order Amount</b></label>
       <input id="ordAmount" type="text" ref="ordAmount" placeholder="Enter ordAmount" name="ordAmount"><br>
     </div>
     <div class="form-group">
-      <label for="advanceAmount"><b>advanceAmount</b></label>
+      <label for="advanceAmount"><b>Advance Amount</b></label>
       <input id="advanceAmount" type="text" ref="advanceAmount" placeholder="Enter advanceAmount" name="advanceAmount"><br>
     </div>
     <div class="form-group">
-      <label for="ordDate"><b>ordDate</b></label>
+      <label for="ordDate"><b>Order Date</b></label>
       <input id="ordDate" type="date" ref="ordDate" placeholder="Enter ordDate" name="ordDate"><br>
     </div>
     <div class="form-group">
-      <label for="ordDescription"><b>ordDescription</b></label>
+      <label for="ordDescription"><b>Order Description</b></label>
       <input id="ordDescription" type="text" ref="ordDescription" placeholder="Enter ordDescription" name="ordDescription"><br>
     </div>
     <div class="form-group">
-      <label><b>custCode</b></label>
-      <!--<input id="custCode" type="select" ref="custCode" placeholder="Enter custCode" name="custCode"><br>-->
-      <select id="custCode" ref="custCode" >
-        <option v-for="customer in customers">{{ customer.custCode }}</option>
+      <label for="custCode"><b>Customer Code</b></label>
+      <select ref="custCode" >
+        <option id="custCode" v-for="customer in customers">{{ customer.custCode }}</option>
       </select>
     </div>
     <p>{{msg}}</p>
     <button @click="create">Create</button>
-    <RouterLink to="/orders">Back</RouterLink>
+    <RouterLink to="/orders"><button>Back</button></RouterLink>
   </div>
 </template>
 
@@ -102,69 +101,5 @@ export default {
 </script>
 
 <style scoped>
-
-h1 {
-  text-align: center;
-  color: white;
-}
-
-/* Full-width inputs */
-input[type=text], input[type=password], input[type=number], input[type=date] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-/* Set a style for all buttons */
-
-input[type=submit] {
-  background-color: #00BD7EFF;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-button {
-  background-color: #00BD7EFF;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-a{
-  background-color: #00BD7EFF;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-/* Add a hover effect for buttons */
-button:hover {
-  opacity: 0.8;
-}
-a:hover{
-  opacity: 0.8;
-}
-
-
-/* Add padding to containers */
-.container {
-  padding: 16px;
-}
-
-@media screen and (max-width: 1024px) {
-
-}
+@import "@/assets/form.css";
 </style>

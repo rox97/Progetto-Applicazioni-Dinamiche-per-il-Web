@@ -1,0 +1,50 @@
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password], input[type=number], input[type=date] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+
+input[type=submit] {
+    background-color: #00BD7EFF;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+a, button {
+    background-color: #00BD7EFF;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: medium;
+}
+
+/* Add a hover effect for buttons */
+a, button:hover {
+    opacity: 0.8;
+}
+a{
+    display: contents;
+}
+
+@media (max-width: 1024px) {
+
+}

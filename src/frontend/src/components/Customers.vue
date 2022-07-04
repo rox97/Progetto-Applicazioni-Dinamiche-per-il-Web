@@ -1,7 +1,7 @@
 <template>
   <service></service>
-  <table border="1">
-    <thead>
+  <table>
+    <thead class='thead'>
   <tr>
     <th @click="sort('custCode')">Customer Code</th>
     <th @click="sort('custName')">Customer Name</th>
@@ -18,8 +18,8 @@
     <th>Edit</th>
   </tr>
   </thead>
-    <tbody class="table" v-for="customer in sortedCustomers" :key="customer.custCode">
-  <tr>
+    <tbody v-for="customer in sortedCustomers" :key="customer.custCode">
+  <tr class="table">
     <td>{{ customer.custCode }}</td>
     <td>{{ customer.custName}}</td>
     <td>{{ customer.custCity}}</td>
@@ -138,5 +138,6 @@ export default {
 </script>
 
 <style scoped>
+@import "@/assets/table.css";
 
 </style>

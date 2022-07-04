@@ -88,4 +88,9 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
+@media (prefers-color-scheme: light) {
+  a{
+    color: #008558
+  }
+}
 </style>

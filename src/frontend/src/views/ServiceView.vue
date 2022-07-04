@@ -1,8 +1,9 @@
 <template>
+  <title>Service</title>
   <main>
     <header>
     <h1>
-    {{roleUp}}: {{code}}
+    {{role}}: {{code}}
     </h1>
     <div class="wrapper">
       <nav role="navigation" aria-label="navigation">
@@ -24,8 +25,7 @@ export default {
   data() {
     return {
       role : localStorage.getItem('userRole'),
-      roleUp: localStorage.getItem('userRole').charAt(0).toUpperCase() + localStorage.getItem('userRole').slice(1),
-      code : localStorage.getItem('userCode'),
+      code : localStorage.getItem('userCode')
     };
   },
   methods:{
@@ -72,6 +72,9 @@ nav a.router-link-exact-active:hover {
 
 nav a:first-of-type {
   border: 0;
+}
+h1::first-letter {
+  text-transform: capitalize;
 }
 
 @media (min-width: 1024px) {

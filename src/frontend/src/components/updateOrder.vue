@@ -1,28 +1,32 @@
 <template>
 
-    <div>
-      <h2>Update Order Data</h2>
-      <br>
-      <input class="form-control" type="text" disabled placeholder="ordNum" :value="orderData.ordNum" ref="ordNum">
-      <br>
-      <br>
-      <input class="form-control" type="text" placeholder="ordAmount" :value="orderData.ordAmount" ref="ordAmount">
-      <br>
-      <br>
-      <input class="form-control" type="text" placeholder="advanceAmount" :value="orderData.advanceAmount" ref="advanceAmount">
-      <br>
-      <br>
-      <input class="form-control" type="date" placeholder="ordDate" :value="orderData.ordDate" ref="ordDate">
-      <br>
-      <br>
-      <input class="form-control" placeholder="ordDescription" type="text" :value="orderData.ordDescription" ref="ordDescription">
-      <br>
-      <p v-if="msg">{{msg}}</p>
-    </div>
-<nav>
+  <div>
+    <h2>Update Order Data</h2>
+    <br>
+    <input class="form-control" type="text" disabled placeholder="ordNum" :value="orderData.ordNum" ref="ordNum">
+    <br>
+    <br>
+    <input class="form-control" type="text" placeholder="ordAmount" :value="orderData.ordAmount" ref="ordAmount">
+    <br>
+    <br>
+    <input class="form-control" type="text" placeholder="advanceAmount" :value="orderData.advanceAmount"
+           ref="advanceAmount">
+    <br>
+    <br>
+    <input class="form-control" type="date" placeholder="ordDate" :value="orderData.ordDate" ref="ordDate">
+    <br>
+    <br>
+    <input class="form-control" placeholder="ordDescription" type="text" :value="orderData.ordDescription"
+           ref="ordDescription">
+    <br>
+    <p v-if="msg">{{ msg }}</p>
+  </div>
+  <nav>
     <button @click="updateOrder(orderData)">Update</button>
-    <RouterLink to="/Orders"><button>Back</button></RouterLink>
-</nav>
+    <RouterLink to="/Orders">
+      <button>Back</button>
+    </RouterLink>
+  </nav>
 </template>
 
 <script>
@@ -33,13 +37,13 @@ import {useRoute} from "vue-router";
 import {UPDATE_ORDER} from "./graphql/graphql_mutation";
 
 export default {
-  name:"updateOrder",
-  data(){
+  name: "updateOrder",
+  data() {
     return {
-      msg:'',
+      msg: '',
     }
   },
-  setup(){
+  setup() {
     const route = useRoute()
     let data = route.params.data;
 
@@ -54,14 +58,14 @@ export default {
     }
   },
   methods: {
-    updateOrder(orderData){
+    updateOrder(orderData) {
 
-      const inputOrder={
-        "ordNum":orderData.ordNum,
-        "ordAmount":this.$refs.ordAmount.value,
-        "advanceAmount":this.$refs.advanceAmount.value,
-        "ordDate":this.$refs.ordDate.value,
-        "ordDescription":this.$refs.ordDescription.value
+      const inputOrder = {
+        "ordNum": orderData.ordNum,
+        "ordAmount": this.$refs.ordAmount.value,
+        "advanceAmount": this.$refs.advanceAmount.value,
+        "ordDate": this.$refs.ordDate.value,
+        "ordDescription": this.$refs.ordDescription.value
       }
 
       this.$apollo.mutate({
@@ -70,8 +74,8 @@ export default {
           input:
           inputOrder
         },
-      }).then(async ({data})=> {
-        if (data){
+      }).then(async ({data}) => {
+        if (data) {
           console.log("Update Completato")
           window.location.href = "/orders"
         }
@@ -84,5 +88,6 @@ export default {
 </script>
 
 <style scoped>
+@import "@/assets/form.css";
 
 </style>

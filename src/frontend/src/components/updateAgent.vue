@@ -1,31 +1,32 @@
 <template>
 
-    <div>
-      <h2>Update Agent Data</h2>
-      <br>
-      <input class="form-control" type="text" disabled placeholder="agentCode" :value="agentData.agentCode" ref="agentCode">
-      <br>
-      <br>
-      <input class="form-control" type="text" placeholder="agentName" :value="agentData.agentName" ref="agentName">
-      <br>
-      <br>
-      <input class="form-control" type="text" placeholder="workingArea" :value="agentData.workingArea" ref="workingArea">
-      <br>
-      <br>
-      <input class="form-control" type="text" placeholder="commission" :value="agentData.commission" ref="commission">
-      <br>
-      <br>
-      <input class="form-control" placeholder="phone No" type="text" :value="agentData.phoneNo" ref="phoneNo">
-      <br>
-      <br>
-      <input class="form-control" placeholder="country" type="text" :value="agentData.country" ref="country">
-      <br>
-      <p v-if="msg">{{msg}}</p>
-    </div>
-<nav>
+  <div>
+    <h2>Update Agent Data</h2>
+    <br>
+    <input class="form-control" type="text" disabled placeholder="agentCode" :value="agentData.agentCode"
+           ref="agentCode">
+    <br>
+    <br>
+    <input class="form-control" type="text" placeholder="agentName" :value="agentData.agentName" ref="agentName">
+    <br>
+    <br>
+    <input class="form-control" type="text" placeholder="workingArea" :value="agentData.workingArea" ref="workingArea">
+    <br>
+    <br>
+    <input class="form-control" type="text" placeholder="commission" :value="agentData.commission" ref="commission">
+    <br>
+    <br>
+    <input class="form-control" placeholder="phone No" type="text" :value="agentData.phoneNo" ref="phoneNo">
+    <br>
+    <br>
+    <input class="form-control" placeholder="country" type="text" :value="agentData.country" ref="country">
+    <br>
+    <p v-if="msg">{{ msg }}</p>
+  </div>
+  <nav>
     <button @click="updateAgent(agentData)">Update</button>
     <RouterLink to="/Agents"><button>Back</button></RouterLink>
-</nav>
+  </nav>
 </template>
 
 <script>
@@ -36,13 +37,13 @@ import {UPDATE_AGENT} from "./graphql/graphql_mutation";
 import {useRoute} from "vue-router";
 
 export default {
-  name:"updateAgent",
-  data(){
+  name: "updateAgent",
+  data() {
     return {
-      msg:'',
+      msg: '',
     }
   },
-  setup(){
+  setup() {
     const route = useRoute()
     let data = route.params.data;
 
@@ -57,15 +58,15 @@ export default {
     }
   },
   methods: {
-    updateAgent(agentData){
+    updateAgent(agentData) {
 
-      const inputAgent={
-        "agentCode":agentData.agentCode,
-        "agentName":this.$refs.agentName.value,
-        "workingArea":this.$refs.workingArea.value,
-        "commission":this.$refs.commission.value,
-        "phoneNo":this.$refs.phoneNo.value,
-        "country":this.$refs.country.value
+      const inputAgent = {
+        "agentCode": agentData.agentCode,
+        "agentName": this.$refs.agentName.value,
+        "workingArea": this.$refs.workingArea.value,
+        "commission": this.$refs.commission.value,
+        "phoneNo": this.$refs.phoneNo.value,
+        "country": this.$refs.country.value
       }
 
       this.$apollo.mutate({
@@ -74,8 +75,8 @@ export default {
           input:
           inputAgent
         },
-      }).then(async ({data})=> {
-        if (data){
+      }).then(async ({data}) => {
+        if (data) {
           console.log("Update Completato")
           window.location.href = "/agents"
         }
@@ -87,5 +88,6 @@ export default {
 </script>
 
 <style scoped>
+@import "@/assets/form.css";
 
 </style>
