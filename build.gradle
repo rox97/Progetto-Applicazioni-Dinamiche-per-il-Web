@@ -4,8 +4,6 @@ plugins {
     id 'java'
 }
 
-
-
 group 'it.univr'
 version '1.0-SNAPSHOT'
 sourceCompatibility = '11'
@@ -22,65 +20,12 @@ repositories {
 
 dependencies {
 
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-    implementation 'org.springframework.boot:spring-boot-starter-graphql'
-    implementation 'org.springframework.boot:spring-boot-starter-mustache'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+
+    implementation 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
     implementation 'com.graphql-java:graphql-java-extended-scalars:18.1'
-    implementation 'com.graphql-java-kickstart:voyager-spring-boot-starter:7.0.1'
-    compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:12.0.0'
+
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
-
-
-
-    implementation 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
-    implementation 'com.graphql-java:graphql-java:18.1'
-    implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:12.0.0'
-    //implementation 'com.graphql-java:graphql-java-tools:5.2.4'
-    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
-
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
-    runtimeOnly 'org.postgresql:postgresql'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework:spring-webflux'
-    testImplementation 'org.springframework.graphql:spring-graphql-test'
-    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.4.0'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework:spring-webflux'
-    testImplementation 'org.springframework.graphql:spring-graphql-test'
-
 }
-
-test {
-    useJUnitPlatform()
-}
-
-/*
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
-    implementation 'com.graphql-java:graphiql-spring-boot-starter:5.0.2'
-    implementation 'com.graphql-java:graphql-java-tools:5.2.4'
-    runtimeOnly 'org.postgresql:postgresql'
-    implementation 'junit:junit:4.12'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'io.rest-assured:rest-assured:3.1.1'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.4.0'
-    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
-}
-test {
-    useJUnitPlatform()
-}
- */

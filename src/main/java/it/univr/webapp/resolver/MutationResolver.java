@@ -1,9 +1,6 @@
 package it.univr.webapp.resolver;
 
 import graphql.kickstart.tools.GraphQLMutationResolver;
-import it.univr.webapp.exception.AgentNotFoundException;
-import it.univr.webapp.exception.CustomerNotFoundException;
-import it.univr.webapp.exception.OrderNotFoundException;
 import it.univr.webapp.input.CreateOrder;
 import it.univr.webapp.input.UpdateAgent;
 import it.univr.webapp.input.UpdateCustomer;
@@ -19,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -37,7 +32,7 @@ public class MutationResolver implements GraphQLMutationResolver {
 
     @Transactional
     public AgentsEntity updateAgent(UpdateAgent input){
-        AgentsEntity agent = agentsRepository.findById(input.getAgentCode()).orElseThrow(() -> new AgentNotFoundException(input.getAgentCode()));
+        AgentsEntity agent = agentsRepository.findById(input.getAgentCode()).get();
 
         if(input.getAgentName()!=null){
             agent.setAgentName(input.getAgentName());
@@ -75,7 +70,7 @@ public class MutationResolver implements GraphQLMutationResolver {
 
     @Transactional
     public OrdersEntity updateOrder(UpdateOrder input){
-        OrdersEntity order = orderRepository.findById(input.getOrdNum()).orElseThrow(() -> new OrderNotFoundException(input.getOrdNum()));
+        OrdersEntity order = orderRepository.findById(input.getOrdNum()).get();
 
         if(input.getOrdAmount()!=null){
             order.setOrdAmount(input.getOrdAmount());
@@ -97,7 +92,7 @@ public class MutationResolver implements GraphQLMutationResolver {
 
     @Transactional
     public CustomerEntity updateCustomer(UpdateCustomer input){
-        CustomerEntity customer = customersRepository.findById(input.getCustCode()).orElseThrow(() -> new CustomerNotFoundException(input.getCustCode()));
+        CustomerEntity customer = customersRepository.findById(input.getCustCode()).get();
 
         if(input.getCustName()!=null){
             customer.setCustName(input.getCustName());
@@ -133,26 +128,4 @@ public class MutationResolver implements GraphQLMutationResolver {
         return customer;
     }
 
-    @Transactional
-    public Boolean deleteCustomerWithNoOrder(String custCode) {
-        Optional<CustomerEntity> customer = customersRepository.findById(custCode);
-        List<OrdersEntity> ordersForCustomer = orderRepository.findByCustomer(customer.get());
-        if(ordersForCustomer.isEmpty()){
-            customersRepository.deleteById(custCode);
-            return true;
-        } else{
-            return false;
-        }
-    }
-    @Transactional
-    public Boolean deleteAgentWithNoOrder(String agentCode) {
-        Optional<AgentsEntity> agent = agentsRepository.findById(agentCode);
-        List<OrdersEntity> ordersForAgents = orderRepository.findByAgent(agent.get());
-        if(ordersForAgents.isEmpty()){
-            agentsRepository.deleteById(agentCode);
-            return true;
-        } else{
-            return false;
-        }
-    }
 }

@@ -4,17 +4,8 @@ export const UPDATE_AGENT = gql`mutation ($input: updateAgent!) {
         updateAgent(input:$input){
             agentCode
         }
-    }`;
-export const UPDATE_ORDER = gql`mutation ($input: updateOrder!) {
-    updateOrder(input:$input){
-        ordNum
-    }
 }`;
-export const UPDATE_CUSTOMER = gql`mutation ($input: updateCustomer!) {
-    updateCustomer(input:$input){
-        custCode
-    }
-}`;
+
 export const CREATE_ORDER = gql`mutation ($input: createOrder!) {
     createOrder(input:$input){
         ordNum
@@ -31,10 +22,17 @@ export const CREATE_ORDER = gql`mutation ($input: createOrder!) {
     }
 }`;
 
-export const DELETE_ORDER = gql`mutation ($input: Int!) {
-    deleteOrder(ordNum: $input)
+export const DELETE_ORDER = gql`mutation ($ordNum: Int!) {
+    deleteOrder(ordNum: $ordNum)
 }`;
 
-export const DELETE_CUSTOMER_WITH_NO_ORDER = gql`mutation ($custCode: String!) {
-    deleteCustomerWithNoOrder(custCode:$custCode)
+export const UPDATE_ORDER = gql`mutation ($input: updateOrder!) {
+    updateOrder(input:$input){
+        ordNum
+    }
+}`;
+export const UPDATE_CUSTOMER = gql`mutation ($input: updateCustomer!) {
+    updateCustomer(input:$input){
+        custCode
+    }
 }`;

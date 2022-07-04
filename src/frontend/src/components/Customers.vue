@@ -54,7 +54,7 @@
 <script>
 import ServiceView from '../views/ServiceView.vue'
 import {useQuery} from '@vue/apollo-composable'
-import {AGENT_BY_AGENT_CODE, ALL_CUSTOMERS, CUSTOMER_BY_CUST_CODE} from "./graphql/graphql_query";
+import {AGENT_BY_AGENT_CODE, ALL_CUSTOMERS} from "./graphql/graphql_query";
 import {computed} from "vue";
 
 export default {

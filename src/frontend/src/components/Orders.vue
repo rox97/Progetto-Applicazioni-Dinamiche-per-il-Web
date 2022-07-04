@@ -63,7 +63,7 @@
 
 <script>
 import ServiceView from '../views/ServiceView.vue'
-import {useMutation, useQuery} from '@vue/apollo-composable'
+import {useQuery} from '@vue/apollo-composable'
 import {
   AGENT_BY_AGENT_CODE,
   ALL_ORDERS,
@@ -123,6 +123,7 @@ export default {
     } else {
       // ERRORE
     }
+
     return {
       orders,
       loading,

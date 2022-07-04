@@ -57,21 +57,15 @@ export default {
     }
   },
   methods: {
-    /*agentData(){
-      let data = this.$route.params.data;
-      console.log(data);
-      const {result} = useQuery(AGENT_BY_AGENT_CODE, {agentCode: data})
-      const agentData = computed(() => result.value?.agentByAgentCode ?? [])
-
-      return {
-        result,
-        agentData
-      }
-    },*/
     updateAgent(agentData){
 
       const inputAgent={
-        "agentCode":agentData.agentCode,"workingArea":this.$refs.workingArea.value,"commission":this.$refs.commission.value,"phoneNo":this.$refs.phoneNo.value,"country":this.$refs.country.value
+        "agentCode":agentData.agentCode,
+        "agentName":this.$refs.agentName.value,
+        "workingArea":this.$refs.workingArea.value,
+        "commission":this.$refs.commission.value,
+        "phoneNo":this.$refs.phoneNo.value,
+        "country":this.$refs.country.value
       }
 
       this.$apollo.mutate({
@@ -85,11 +79,8 @@ export default {
           console.log("Update Completato")
           window.location.href = "/agents"
         }
-        else{
-          //ERRORE
-        }
       })
-          }
+    }
   }
 };
 

@@ -10,5 +10,5 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository <OrdersEntity,Integer> {
     List<OrdersEntity> findByAgent(AgentsEntity agent);
     List<OrdersEntity> findByCustomer(CustomerEntity customer);
-    int deleteByOrdNum(int ordNum);
+    Integer deleteByOrdNum(int ordNum);
 }

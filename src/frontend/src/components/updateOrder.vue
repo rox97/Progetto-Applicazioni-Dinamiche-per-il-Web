@@ -57,7 +57,11 @@ export default {
     updateOrder(orderData){
 
       const inputOrder={
-        "ordNum":orderData.ordNum,"ordAmount":this.$refs.ordAmount.value,"advanceAmount":this.$refs.advanceAmount.value,"ordDate":this.$refs.ordDate.value,"ordDescription":this.$refs.ordDescription.value
+        "ordNum":orderData.ordNum,
+        "ordAmount":this.$refs.ordAmount.value,
+        "advanceAmount":this.$refs.advanceAmount.value,
+        "ordDate":this.$refs.ordDate.value,
+        "ordDescription":this.$refs.ordDescription.value
       }
 
       this.$apollo.mutate({
@@ -70,9 +74,6 @@ export default {
         if (data){
           console.log("Update Completato")
           window.location.href = "/orders"
-        }
-        else{
-          //ERRORE
         }
       })
 

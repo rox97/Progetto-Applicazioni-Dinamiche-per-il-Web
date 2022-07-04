@@ -12,7 +12,6 @@ import it.univr.webapp.repositories.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
@@ -54,17 +53,12 @@ public class QueryResolver implements GraphQLQueryResolver {
         return orderRepository.existsById(ordNum);
     }
 
-    @Transactional
-    public boolean ordersByOrdNumBool(int ordNum){
-        return orderRepository.existsById(ordNum);
-    }
-
 
     ////////////////////////////////////////AGENTS QUERY////////////////////////////////////////
 
 
     public List<AgentsEntity> allAgents(){
-        return agentsRepository.findAll();
+        return agentsRepository.findByOrderByAgentCodeAsc();
     }
 
     public AgentsEntity agentByAgentCode(String agentCode){

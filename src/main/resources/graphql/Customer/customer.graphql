@@ -1,14 +1,14 @@
 type Customer{
-    custCode:String
-    custName:String
+    custCode:String!
+    custName:String!
     custCity:String
-    workingArea:String
-    custCountry:String
+    workingArea:String!
+    custCountry:String!
     grade: BigInteger
-    openingAmt: BigDecimal
-    receiveAmt: BigDecimal
-    paymentAmt: BigDecimal
-    outstandingAmt: BigDecimal
-    phoneNo: String
-    agent: Agent
+    openingAmt: BigDecimal!
+    receiveAmt: BigDecimal!
+    paymentAmt: BigDecimal!
+    outstandingAmt: BigDecimal!
+    phoneNo: String!
+    agent: Agent!
 }

@@ -10,5 +10,6 @@ import java.util.List;
 public interface CustomersRepository extends JpaRepository<CustomerEntity, String> {
 
     List<CustomerEntity> findByOrderByCustCodeAsc();
+    Integer deleteByCustCode(String custCode);
 
 }
