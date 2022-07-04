@@ -1,53 +1,15 @@
 <script setup>
 import {RouterLink, RouterView} from 'vue-router';
-import HelloWorld from "@/components/HelloWorld.vue";
-import Login from "@/components/Login.vue";
 </script>
 
 <template>
-<!--<header>
-    <img
-        alt="Vue logo"
-        class="logo"
-        src="@/assets/logo.svg"
-        width="125"
-        height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-      <nav role="navigation" aria-label="navigation">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/test">Test</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-      </nav>
-    </div>
-  </header>-->
   <RouterView />
 </template>
 
 <script>
 
-  import {gql} from "graphql-tag";
-
   export default {
     name: "App",
-
-    methods:{
-      deleteOrder(){
-
-        this.$apollo.mutate({
-          mutation: gql`
-            mutation {
-              deleteOrder(ordNum: 200100)
-            }
-          `
-        }).then(res => {
-          console.log(res);
-        })
-      }
-    }
   }
 
 </script>
@@ -63,11 +25,9 @@ import Login from "@/components/Login.vue";
   font-weight: normal;
 }
 
-
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+h1,h2,h3,h4,h5,h6 {
+  margin:0;
+  font-weight: normal;
 }
 
 a,
@@ -110,18 +70,13 @@ nav a:first-of-type {
 
 @media (min-width: 1024px) {
   body {
-    display: flex;
+    align-content: center;
   }
 
   #app {
     display: grid;
     grid-template-columns: 1fr;
     padding: 0 2rem;
-  }
-
-
-  .logo {
-    margin: 0 2rem 0 0;
   }
 
   nav {

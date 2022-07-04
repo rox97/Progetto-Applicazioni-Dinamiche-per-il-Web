@@ -5,4 +5,5 @@ type Mutation{
     updateAgent(input: updateAgent!): Agent
     updateCustomer(input: updateCustomer!): Customer
     deleteCustomerWithNoOrder(custCode: String!): Boolean
+    deleteAgentWithNoOrder(agentCode: String!): Boolean
 }

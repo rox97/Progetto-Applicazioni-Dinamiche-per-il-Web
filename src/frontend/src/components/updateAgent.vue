@@ -1,29 +1,31 @@
 <template>
 
     <div>
-
       <h2>Update Agent Data</h2>
-
+      <br>
       <input class="form-control" type="text" disabled placeholder="agentCode" :value="agentData.agentCode" ref="agentCode">
+      <br>
       <br>
       <input class="form-control" type="text" placeholder="agentName" :value="agentData.agentName" ref="agentName">
       <br>
-      <br><input class="form-control" type="text" placeholder="workingArea" :value="agentData.workingArea" ref="workingArea">
       <br>
-      <br><input class="form-control" type="text" placeholder="commission" :value="agentData.commission" ref="commission">
+      <input class="form-control" type="text" placeholder="workingArea" :value="agentData.workingArea" ref="workingArea">
+      <br>
+      <br>
+      <input class="form-control" type="text" placeholder="commission" :value="agentData.commission" ref="commission">
+      <br>
       <br>
       <input class="form-control" placeholder="phone No" type="text" :value="agentData.phoneNo" ref="phoneNo">
+      <br>
       <br>
       <input class="form-control" placeholder="country" type="text" :value="agentData.country" ref="country">
       <br>
       <p v-if="msg">{{msg}}</p>
-      <br>
-      <br>
-      <br>
     </div>
-
-    <button type="button" class="btn btn-circle-bottom" v-on:click="updateAgent(agentData)">Update </button>
-
+<nav>
+    <button @click="updateAgent(agentData)">Update</button>
+    <RouterLink to="/Agents"><button>Back</button></RouterLink>
+</nav>
 </template>
 
 <script>
@@ -77,22 +79,18 @@ export default {
         variables: {
           input:
           inputAgent
-
-
         },
       }).then(async ({data})=> {
         if (data){
-          this.msg="Update Completato"
+          console.log("Update Completato")
+          window.location.href = "/agents"
         }
-
+        else{
+          //ERRORE
+        }
       })
-      document.location.reload()
-    }
-
+          }
   }
-
-
-
 };
 
 </script>

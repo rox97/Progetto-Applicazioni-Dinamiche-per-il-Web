@@ -5,7 +5,16 @@ export const UPDATE_AGENT = gql`mutation ($input: updateAgent!) {
             agentCode
         }
     }`;
-
+export const UPDATE_ORDER = gql`mutation ($input: updateOrder!) {
+    updateOrder(input:$input){
+        ordNum
+    }
+}`;
+export const UPDATE_CUSTOMER = gql`mutation ($input: updateCustomer!) {
+    updateCustomer(input:$input){
+        custCode
+    }
+}`;
 export const CREATE_ORDER = gql`mutation ($input: createOrder!) {
     createOrder(input:$input){
         ordNum

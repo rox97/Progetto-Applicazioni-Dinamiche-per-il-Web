@@ -144,4 +144,15 @@ public class MutationResolver implements GraphQLMutationResolver {
             return false;
         }
     }
+    @Transactional
+    public Boolean deleteAgentWithNoOrder(String agentCode) {
+        Optional<AgentsEntity> agent = agentsRepository.findById(agentCode);
+        List<OrdersEntity> ordersForAgents = orderRepository.findByAgent(agent.get());
+        if(ordersForAgents.isEmpty()){
+            agentsRepository.deleteById(agentCode);
+            return true;
+        } else{
+            return false;
+        }
+    }
 }

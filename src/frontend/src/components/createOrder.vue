@@ -84,7 +84,14 @@ export default {
             },
           }).then(({data}) => {
             if (data) {
-              this.msg = "Create Completato"
+              console.log("Create Completato")
+              window.location.href = "/orders";
+              /*this.$router.push({
+                name: "ordersPage",
+              });*/
+            }
+            else{
+              //ERRORE
             }
           });
         }

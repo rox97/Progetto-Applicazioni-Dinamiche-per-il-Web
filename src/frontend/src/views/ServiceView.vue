@@ -2,13 +2,13 @@
   <main>
     <header>
     <h1>
-    Ruolo: {{role}}
+    {{roleUp}}: {{code}}
     </h1>
     <div class="wrapper">
       <nav role="navigation" aria-label="navigation">
-        <RouterLink to="/orders">Ordini</RouterLink>
-        <RouterLink to="/agents" v-if="role === 'admin'">Agenti</RouterLink>
-        <RouterLink to="/customers" v-if="role === 'admin'">Clienti</RouterLink>
+        <RouterLink to="/orders">Orders</RouterLink>
+        <RouterLink to="/agents" v-if="role === 'admin'">Agents</RouterLink>
+        <RouterLink to="/customers" v-if="role === 'admin'">Customers</RouterLink>
         <RouterLink to="/login" @click="logout">Logout</RouterLink>
       </nav>
     </div>
@@ -23,7 +23,9 @@ export default {
   name: "ServiceView",
   data() {
     return {
-      role : localStorage.getItem('userRole')
+      role : localStorage.getItem('userRole'),
+      roleUp: localStorage.getItem('userRole').charAt(0).toUpperCase() + localStorage.getItem('userRole').slice(1),
+      code : localStorage.getItem('userCode'),
     };
   },
   methods:{
@@ -77,7 +79,6 @@ nav a:first-of-type {
   nav {
     text-align: center;
     font-size: 3rem;
-
     padding: 1rem 0;
     margin-top: 2rem;
   }
