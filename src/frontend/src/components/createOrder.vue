@@ -5,7 +5,7 @@
   <div class="container">
     <div class="form-group">
       <label for="ordNum"><b>Order Number</b></label>
-      <input id="ordNum" type="text" ref="ordNum" placeholder="Enter order number" name="ordNum"><br>
+      <input autofocus id="ordNum" type="text" ref="ordNum" placeholder="Enter order number" name="ordNum"><br>
     </div>
     <div class="form-group">
       <label for="ordAmount"><b>Order Amount</b></label>
@@ -24,7 +24,7 @@
       <input id="ordDescription" type="text" ref="ordDescription" placeholder="Enter ordDescription" name="ordDescription"><br>
     </div>
     <div class="form-group">
-      <label for="custCode"><b>Customer Code</b></label>
+      <label for="custCode"><b>Customer Code </b></label>
       <select aria-label="custCode" ref="custCode" >
         <option id="custCode" v-for="customer in customers">{{ customer.custCode }}</option>
       </select>
@@ -45,7 +45,7 @@ export default {
   name: "createOrder",
   data() {
     return {
-      msg: "",
+      msg: ""
     }
   },
   setup() {
@@ -64,8 +64,7 @@ export default {
         }
       }).then(res => {
         if (res.data.existsOrderByOrdNum) {
-          this.msg = "L'ordine esiste già";
-          console.log("Order already exists");
+          this.msg = "Order already exists";
         } else {
           const inputOrder = {
             "ordNum": this.$refs.ordNum.value,
@@ -83,14 +82,14 @@ export default {
             },
           }).then(({data}) => {
             if (data) {
-              console.log("Create Completato")
+              console.log("Create Complete")
               window.location.href = "/orders";
               /*this.$router.push({
                 name: "ordersPage",
               });*/
             }
             else{
-              //ERRORE
+              this.msg = "Error: failed creation"
             }
           });
         }

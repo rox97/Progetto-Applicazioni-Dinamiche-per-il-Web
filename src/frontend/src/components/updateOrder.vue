@@ -5,13 +5,13 @@
       <br>
       <div class="form-group">
         <label for="ordNum"><b>Order number</b></label>
-        <input id="ordNum" type="text" disabled placeholder="ordNum" :value="orderData.ordNum" ref="ordNum">
+        <input id="ordNum" type="text" readonly placeholder="ordNum" :value="orderData.ordNum">
       </div>
       <br>
       <br>
       <div class="form-group">
         <label for="ordAmount"><b>Order amount</b></label>
-        <input id="ordAmount" type="text" placeholder="ordAmount" :value="orderData.ordAmount" ref="ordAmount">
+        <input autofocus id="ordAmount" type="text" placeholder="ordAmount" :value="orderData.ordAmount" ref="ordAmount">
       </div>
       <br>
       <br>
@@ -53,7 +53,7 @@ export default {
   name: "updateOrder",
   data() {
     return {
-      msg: '',
+      msg: ''
     }
   },
   setup() {
@@ -89,8 +89,11 @@ export default {
         },
       }).then(async ({data}) => {
         if (data) {
-          console.log("Update Completato")
+          console.log("Update Complete")
           window.location.href = "/orders"
+        }
+        else{
+          this.msg = "Error: failed update"
         }
       })
 

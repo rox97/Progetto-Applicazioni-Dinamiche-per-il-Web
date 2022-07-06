@@ -8,11 +8,11 @@
     <th @click="sort('custCity')">City</th>
     <th @click="sort('workingArea')">Working Area</th>
     <th @click="sort('custCountry')">Country</th>
-    <th @click="sort('grade')">Grade</th>
+   <!-- <th @click="sort('grade')">Grade</th>
     <th @click="sort('openingAmt')">Opening Amount</th>
     <th @click="sort('receiveAmt')">Receive Amount</th>
     <th @click="sort('paymentAmt')">Payment Amount</th>
-    <th @click="sort('outstandingAmt')">Outstanding Amount</th>
+    <th @click="sort('outstandingAmt')">Outstanding Amount</th>-->
     <th @click="sort('phoneNo')">Phone No</th>
     <th @click="sort('agent')">Agent Code</th>
     <th>Edit</th>
@@ -25,22 +25,22 @@
     <td>{{ customer.custCity}}</td>
     <td>{{ customer.workingArea}}</td>
     <td>{{ customer.custCountry }}</td>
-    <td>{{ customer.grade }}</td>
+    <!--<td>{{ customer.grade }}</td>
     <td>{{ customer.openingAmt }}</td>
     <td>{{ customer.receiveAmt }}</td>
     <td>{{ customer.paymentAmt }}</td>
-    <td>{{ customer.outstandingAmt }}</td>
+    <td>{{ customer.outstandingAmt }}</td>-->
     <td>{{ customer.phoneNo }}</td>
-    <td><button name="answer" @click="agentToggle(customer.agent.agentCode, customer.custCode)" :class="{ agentOpened: agentOpened.includes(customer.custCode) }">{{ customer.agent.agentCode }}</button></td>
+    <td><button @click="agentToggle(customer.agent.agentCode, customer.custCode)" :class="{ agentOpened: agentOpened.includes(customer.custCode) }">{{ customer.agent.agentCode }}</button></td>
     <td><button @click="editCustomer(customer.custCode)">Edit</button></td>
   </tr>
-  <tr v-if="agentOpened.includes(customer.custCode)">
+  <tr class="theadInfo" v-if="agentOpened.includes(customer.custCode)">
     <th>Agent Name</th>
     <th>Working Area</th>
     <th>Phone Number</th>
     <th>Agent Country</th>
   </tr>
-  <tr v-if="agentOpened.includes(customer.custCode)">
+  <tr class="tbodyInfo" v-if="agentOpened.includes(customer.custCode)">
     <td>{{ agentInfo.agentName }}</td>
     <td>{{ agentInfo.workingArea }}</td>
     <td>{{ agentInfo.phoneNo }}</td>
@@ -69,8 +69,7 @@ export default {
       currentSort:'ordNum',
       currentSortDir:'asc',
       agentOpened: [],
-      agentInfo: [],
-
+      agentInfo: []
     };
   },
 
@@ -78,7 +77,7 @@ export default {
     const {result: res, loading, error} = useQuery(ALL_CUSTOMERS);
     //const orders = useResult(test, [], test.allOrders);
     let customers = '';
-    customers = computed(() => res.value?.allCustomers ?? [])
+    customers = computed(() => res.value?.allCustomers ?? []);
 
     return {
       customers,
@@ -121,6 +120,7 @@ export default {
       if (index > -1) {
         this.agentOpened.splice(index, 1)
       } else {
+        this.agentOpened =  []
         this.agentOpened.push(customerCode)
       }
     },

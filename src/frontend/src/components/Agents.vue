@@ -43,14 +43,14 @@ export default {
     return {
       role : localStorage.getItem('userRole'),
       currentSort:'ordNum',
-      currentSortDir:'asc',
+      currentSortDir:'asc'
     };
   },
 
   setup() {
-    const {result: res, loading, error} = useQuery(ALL_AGENTS);
+    const {result: res, loading, error} = useQuery(ALL_AGENTS)
     //const orders = useResult(test, [], test.allOrders);
-    let agents = '';
+    let agents = ''
     agents = computed(() => res.value?.allAgents ?? [])
 
     return {

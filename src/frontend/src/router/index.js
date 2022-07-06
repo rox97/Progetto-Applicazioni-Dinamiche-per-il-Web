@@ -6,6 +6,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      meta: {requiresAuth: false},
       name: "home",
       component: HomeView,
     },
@@ -58,24 +59,12 @@ const router = createRouter({
       component: () => import("../components/Customers.vue"),
     },
     {
-      path: "/about",
-      meta: {requiresAuth: false, forAdmin: false, forAgent: false},
-      name: "about",
-      component: () => import("../views/AboutView.vue"),
-    },
-    {
-      path: "/test",
-      meta: {requiresAuth: true, forAdmin: false, forAgent: false},
-      name: "testPage",
-      component: () => import("../views/TestView.vue"),
-    },
-    {
       path: "/login",
       meta: {requiresAuth: false},
       name: "loginPage",
       component: () => import("../views/LoginView.vue"),
-    },
-  ],
+    }
+  ]
 });
 
 router.beforeEach((to, from, next) => {

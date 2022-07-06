@@ -6,13 +6,13 @@
       <br>
       <div class="form-group">
         <label for="custCode"><b>Customer code</b></label>
-        <input id="custCode" type="text" disabled placeholder="custCode" :value="custData.custCode" ref="custCode">
+        <input id="custCode" type="text" readonly  placeholder="custCode" :value="custData.custCode">
       </div>
       <br>
       <br>
       <div class="form-group">
         <label for="custName"><b>Customer name</b></label>
-        <input id="custName" type="text" placeholder="custName" :value="custData.custName" ref="custName">
+        <input autofocus id="custName" type="text" placeholder="custName" :value="custData.custName" ref="custName">
       </div>
       <br>
       <br>
@@ -88,7 +88,7 @@ export default {
   name:"updateCustomer",
   data(){
     return {
-      msg:'',
+      msg:''
     }
   },
   setup(){
@@ -125,13 +125,15 @@ export default {
       this.$apollo.mutate({
         mutation: UPDATE_CUSTOMER,
         variables: {
-          input:
-          inputCustomer
+          input: inputCustomer
         },
       }).then(async ({data})=> {
         if (data){
-          console.log("Update Completato")
+          console.log("Update Complete")
           window.location.href = "/customers"
+        }
+        else{
+          this.msg = "Error: failed update"
         }
 
       })

@@ -1,7 +1,6 @@
 
 h1 {
     text-align: center;
-    color: white;
 }
 
 /* Full-width inputs */
@@ -47,4 +46,9 @@ a{
 
 @media (max-width: 1024px) {
 
+}
+@media (prefers-color-scheme: light){
+    a,button{
+        background-color: #008558;
+    }
 }

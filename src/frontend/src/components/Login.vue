@@ -28,7 +28,7 @@ export default {
   data() {
 
     return {
-      msg: '',
+      msg: ''
     }
   },
   methods: {
@@ -45,19 +45,17 @@ export default {
             }
           }
         `
-      }).then(async ({data}) => {
+      }).then(({data}) => {
         if (data.userByUserAndPswd) {
           localStorage.setItem("userRole", data.userByUserAndPswd.user_role);
           localStorage.setItem("userCode", data.userByUserAndPswd.user_code);
           localStorage.setItem("userLogged", "true");
-          await this.$router.push({path: 'api/service'});
+          this.$router.push({path: 'api/service'});
         } else {
-          this.msg = 'Username o password errati';
+          this.msg = 'Wrong username or password';
         }
       });
     }
-
-
   }
 }
 </script>
@@ -84,7 +82,7 @@ input[type=text], input[type=password] {
 
 button {
   background-color: #00BD7EFF;
-  color: black;
+  color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -116,5 +114,13 @@ img.avatar {
 }
 
 @media screen and (max-width: 1024px) {
+}
+@media (prefers-color-scheme: light){
+  button{
+    background-color: #008558
+  }
+  h1{
+    color: black;
+  }
 }
 </style>

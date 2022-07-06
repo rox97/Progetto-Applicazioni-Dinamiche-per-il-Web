@@ -5,22 +5,22 @@
       <RouterLink class="create" id="create_order" to="/createOrder">Create Order</RouterLink>
     </nav>
   </div>
-  <table id="my-table">
+  <table role="table" aria-label="order table" >
     <thead class='thead'>
     <tr>
-      <th @click="sort('ordNum')">Order Number</th>
-      <th @click="sort('ordAmount')">Order Amount</th>
-      <th @click="sort('advanceAmount')">Advance Amount</th>
-      <th @click="sort('ordDate')">Order Date</th>
-      <th @click="sort('ordDescription')">Order Description</th>
-      <th @click="sort('agent')" v-if="role === 'admin' || role === 'customer'">Agent Code</th>
-      <th @click="sort('customer')" v-if="role === 'admin' || role === 'agent'">Customer Code</th>
-      <th v-if="role === 'admin' || role === 'agent'">Edit</th>
-      <th v-if="role === 'agent'">Delete</th>
+      <th scope="col" @click="sort('ordNum')">Order Number</th>
+      <th scope="col" @click="sort('ordAmount')">Order Amount</th>
+      <th scope="col" @click="sort('advanceAmount')">Advance Amount</th>
+      <th scope="col" @click="sort('ordDate')">Order Date</th>
+      <th scope="col" @click="sort('ordDescription')">Order Description</th>
+      <th scope="col" @click="sort('agent')" v-if="role === 'admin' || role === 'customer'">Agent Code</th>
+      <th scope="col" @click="sort('customer')" v-if="role === 'admin' || role === 'agent'">Customer Code</th>
+      <th scope="col" v-if="role === 'admin' || role === 'agent'">Edit</th>
+      <th scope="col" v-if="role === 'agent'">Delete</th>
     </tr>
     </thead>
     <tbody v-for="order in sortedOrders">
-    <tr class="table">
+    <tr aria-label="row" class="table">
       <td>{{ order.ordNum }}</td>
       <td>{{ order.ordAmount }}</td>
       <td>{{ order.advanceAmount }}</td>
@@ -43,32 +43,33 @@
         <button @click="deleteOrder(order.ordNum)">Delete</button>
       </td>
     </tr>
-    <tr class="theadinfo" v-if="customerOpened.includes(order.ordNum) && role !== 'customer' ">
+    <tr class="theadInfo" id="agentHead" v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
+      <th>Agent Name</th>
+      <th>Working Area</th>
+      <th>Phone Number</th>
+      <th>Country</th>
+    </tr>
+    <tr class="tbodyInfo" v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
+      <td>{{ agentInfo.agentName }}</td>
+      <td>{{ agentInfo.workingArea }}</td>
+      <td>{{ agentInfo.phoneNo }}</td>
+      <td>{{ agentInfo.country }}</td>
+    </tr>
+    <tr class="theadInfo" v-if="customerOpened.includes(order.ordNum) && role !== 'customer' ">
       <th>Customer Name</th>
       <th>Customer City</th>
       <th>Working Area</th>
-      <th>Customer Country</th>
+      <th>Country</th>
       <th>Phone Number</th>
     </tr>
-    <tr v-if="customerOpened.includes(order.ordNum) && role !== 'customer' ">
+    <tr class="tbodyInfo" v-if="customerOpened.includes(order.ordNum) && role !== 'customer' ">
       <td>{{ customerInfo.custName }}</td>
       <td>{{ customerInfo.custCity }}</td>
       <td>{{ customerInfo.workingArea }}</td>
       <td>{{ customerInfo.custCountry }}</td>
       <td>{{ customerInfo.phoneNo }}</td>
     </tr>
-    <tr class="theadinfo" v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
-      <th>Agent Name</th>
-      <th>Working Area</th>
-      <th>Phone Number</th>
-      <th>Agent Country</th>
-    </tr>
-    <tr v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
-      <td>{{ agentInfo.agentName }}</td>
-      <td>{{ agentInfo.workingArea }}</td>
-      <td>{{ agentInfo.phoneNo }}</td>
-      <td>{{ agentInfo.country }}</td>
-    </tr>
+
     </tbody>
   </table>
 </template>
@@ -121,7 +122,7 @@ export default {
       query = ALL_ORDERS;
       vars = '';
     } else {
-      // ERRORE
+      console.log("Error: wrong user role")
     }
     const {result: res, loading, error} = useQuery(query, vars);
     //const order = useResult(res, [], res.allOrders);
@@ -133,7 +134,7 @@ export default {
     } else if (role === 'admin') {
       orders = computed(() => res.value?.allOrders ?? [])
     } else {
-      // ERRORE
+      console.log("Error: failed fetch")
     }
 
     return {
@@ -144,8 +145,8 @@ export default {
   },
   computed: {
     sortedOrders() {
-      let copy = [...this.orders]
-      return copy.sort((a, b) => {
+      let sortedOrders = [...this.orders]
+      return sortedOrders.sort((a, b) => {
         let modifier = 1;
         if (this.currentSortDir === 'desc') modifier = -1;
         if (this.currentSort === "customer") {
@@ -170,6 +171,7 @@ export default {
       this.currentSort = s;
     },
     agentToggle(id, orderNumber) {
+
       this.$apollo.query({
         query: AGENT_BY_AGENT_CODE,
         variables: {agentCode: id}
@@ -179,12 +181,16 @@ export default {
 
       const index = this.agentOpened.indexOf(orderNumber);
       if (index > -1) {
+        //chiudi
         this.agentOpened.splice(index, 1)
       } else {
+        //apri
+        this.agentOpened =  []
         this.agentOpened.push(orderNumber)
       }
     },
     customerToggle(id, orderNumber) {
+
       this.$apollo.query({
         query: CUSTOMER_BY_CUST_CODE,
         variables: {custCode: id}
@@ -196,6 +202,7 @@ export default {
       if (index > -1) {
         this.customerOpened.splice(index, 1)
       } else {
+        this.customerOpened =  []
         this.customerOpened.push(orderNumber)
       }
     },
@@ -203,7 +210,7 @@ export default {
       this.$apollo.query({
         query: ALL_ORDERS
       }).then(res => {
-        console.log(res);
+        console.log("Fetch all orders");
       })
     },
     deleteOrder(ordNum) {
@@ -213,7 +220,7 @@ export default {
           ordNum: ordNum
         }
       }).then(res => {
-        console.log(res);
+        console.log("Delete complete");
         document.location.reload()
         //this.sort(this.currentSort)
       });
@@ -225,7 +232,6 @@ export default {
         name: "updateOrderPage",
         params: {data}
       });
-      console.log(data)
 
     }
   },

@@ -26,12 +26,10 @@ public class OrderDBConfig {
         super();
     }
 
-    //
 
     @Primary
     @Bean
     public LocalContainerEntityManagerFactoryBean orderEntityManager() {
-        System.out.println("loading config");
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(orderDataSource());
         em.setPackagesToScan("it.univr.webapp.models.orders");

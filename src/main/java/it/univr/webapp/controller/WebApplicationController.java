@@ -24,24 +24,17 @@ public class WebApplicationController {
         agents.add(new AgentsEntity("A123", "Andrea"));
         agents.add(new AgentsEntity("A456", "Simone"));
         agents.add(new AgentsEntity("A789", "Andrea"));
-
-        //return "Ciao! Sono una pagina di test!";
         return ResponseEntity.ok(agents);
     }
 
     @GetMapping("/customers")
     public String customers(Model model) {
-        System.out.println("QUI");
         model.addAttribute("customers", customerRepository.findAll());
-        System.out.println(customerRepository.findAll());
-        System.out.println("QUA");
         return "index";
     }
 
     @PostMapping(value = "/authentication")
     public ResponseEntity<String> auth(@RequestBody Map<String, String> request) {
-        System.out.println("QUI");
-        System.out.println(request);
 
         if(request.get("username").equals("a") && request.get("password").equals("a")) {
             return ResponseEntity.ok("admin");

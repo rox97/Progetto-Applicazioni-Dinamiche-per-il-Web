@@ -5,12 +5,12 @@
     <h1>
     {{role}}: {{code}}
     </h1>
-    <div class="wrapper">
+    <div>
       <nav role="navigation" aria-label="navigation">
-        <RouterLink to="/orders">Orders</RouterLink>
-        <RouterLink to="/agents" v-if="role === 'admin'">Agents</RouterLink>
-        <RouterLink to="/customers" v-if="role === 'admin'">Customers</RouterLink>
-        <RouterLink to="/login" @click="logout">Logout</RouterLink>
+        <RouterLink id="orders" to="/orders">Orders</RouterLink>
+        <RouterLink id="agents" to="/agents" v-if="role === 'admin'">Agents</RouterLink>
+        <RouterLink id="customers" to="/customers" v-if="role === 'admin'">Customers</RouterLink>
+        <RouterLink id="logout" to="/login" @click="logout">Logout</RouterLink>
       </nav>
     </div>
     </header>
@@ -28,11 +28,14 @@ export default {
       code : localStorage.getItem('userCode')
     };
   },
-  methods:{
-    logout(){
-      localStorage.setItem('userLogged' , 'false');
+  methods: {
+    logout() {
+      localStorage.removeItem('userLogged');
+      localStorage.removeItem('userRole');
+      localStorage.removeItem('userCode');
+      //this.$router.push({path: '/login'});
     }
-    }
+  }
 }
 
 </script>
@@ -50,7 +53,7 @@ export default {
 h1 {
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 80px;
+  font-size: 50px;
 
 }
 

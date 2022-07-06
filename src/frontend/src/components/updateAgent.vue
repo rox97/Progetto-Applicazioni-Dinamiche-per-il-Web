@@ -5,13 +5,13 @@
       <br>
       <div class="form-group">
         <label for="agentCode"><b>Agent code</b></label>
-        <input id="agentCode" type="text" disabled placeholder="agentCode" :value="agentData.agentCode" ref="agentCode">
+        <input id="agentCode" type="text" readonly placeholder="agentCode" :value="agentData.agentCode">
       </div>
       <br>
       <br>
       <div class="form-group">
         <label for="agentName"><b>Agent name</b></label>
-        <input id="agentName" type="text" placeholder="agentName" :value="agentData.agentName" ref="agentName">
+        <input autofocus id="agentName" type="text" placeholder="agentName" :value="agentData.agentName" ref="agentName">
       </div>
       <br>
       <br>
@@ -57,7 +57,7 @@ export default {
   name: "updateAgent",
   data() {
     return {
-      msg: '',
+      msg: ''
     }
   },
   setup() {
@@ -89,13 +89,15 @@ export default {
       this.$apollo.mutate({
         mutation: UPDATE_AGENT,
         variables: {
-          input:
-          inputAgent
+          input: inputAgent
         },
       }).then(async ({data}) => {
         if (data) {
-          console.log("Update Completato")
+          console.log("Update Complete")
           window.location.href = "/agents"
+        }
+        else{
+          this.msg = "Error: failed update"
         }
       })
     }

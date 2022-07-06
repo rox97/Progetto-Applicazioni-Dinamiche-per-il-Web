@@ -9,7 +9,7 @@ import {
 } from "@apollo/client/core";
 import {DefaultApolloClient} from "@vue/apollo-composable";
 import { createApolloProvider } from "@vue/apollo-option";
-import VueApollo from "vue-apollo";
+//import VueApollo from "vue-apollo";
 
 
 const httpLink = createHttpLink({
