@@ -6,11 +6,11 @@
     {{role}}: {{code}}
     </h1>
     <div>
-      <nav role="navigation" aria-label="navigation">
-        <RouterLink role="menuitem" id="orders" to="/orders">Orders</RouterLink>
-        <RouterLink role="menuitem" id="agents" to="/agents" v-if="role === 'admin'">Agents</RouterLink>
-        <RouterLink role="menuitem" id="customers" to="/customers" v-if="role === 'admin'">Customers</RouterLink>
-        <RouterLink role="menuitem" id="logout" to="/login" @click="logout">Logout</RouterLink>
+      <nav role="navigation">
+        <RouterLink role="link" id="orders" to="/orders">Orders</RouterLink>
+        <RouterLink role="link" id="agents" to="/agents" v-if="role === 'admin'">Agents</RouterLink>
+        <RouterLink role="link" id="customers" to="/customers" v-if="role === 'admin'">Customers</RouterLink>
+        <RouterLink role="link" id="logout" to="/login" @click="logout">Logout</RouterLink>
       </nav>
     </div>
     </header>

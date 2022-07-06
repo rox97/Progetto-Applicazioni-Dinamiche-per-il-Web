@@ -69,7 +69,6 @@
       <td class="otherInfo">{{ customerInfo.custCountry }}</td>
       <td>{{ customerInfo.phoneNo }}</td>
     </tr>
-
     </tbody>
   </table>
 </template>
