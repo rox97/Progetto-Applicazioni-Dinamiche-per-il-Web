@@ -2,7 +2,7 @@
   <title>Login Page</title>
   <div class="login" >
   <h1>Login Page</h1>
-    <div class="imgcontainer">
+    <div class="imgcontainer" aria-label="avatar image">
       <img src="https://www.my-personaltrainer.it/2021/04/13/alimentazione-gatto-orig.jpeg" alt="avatar" class="avatar">
     </div>
   </div>

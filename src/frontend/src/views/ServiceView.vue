@@ -7,10 +7,10 @@
     </h1>
     <div>
       <nav role="navigation" aria-label="navigation">
-        <RouterLink id="orders" to="/orders">Orders</RouterLink>
-        <RouterLink id="agents" to="/agents" v-if="role === 'admin'">Agents</RouterLink>
-        <RouterLink id="customers" to="/customers" v-if="role === 'admin'">Customers</RouterLink>
-        <RouterLink id="logout" to="/login" @click="logout">Logout</RouterLink>
+        <RouterLink role="menuitem" id="orders" to="/orders">Orders</RouterLink>
+        <RouterLink role="menuitem" id="agents" to="/agents" v-if="role === 'admin'">Agents</RouterLink>
+        <RouterLink role="menuitem" id="customers" to="/customers" v-if="role === 'admin'">Customers</RouterLink>
+        <RouterLink role="menuitem" id="logout" to="/login" @click="logout">Logout</RouterLink>
       </nav>
     </div>
     </header>
@@ -53,13 +53,12 @@ export default {
 h1 {
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 50px;
-
+  font-size: 3rem;
 }
 
 nav {
   width: 100%;
-  font-size: 40px;
+  font-size: 2rem;
   text-align: center;
   margin-top: 2rem;
 }
@@ -81,6 +80,11 @@ h1::first-letter {
 }
 
 @media (min-width: 1024px) {
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 5rem;
+  }
 
   nav {
     text-align: center;
@@ -90,5 +94,20 @@ h1::first-letter {
   }
 
 }
+@media (max-width: 375px) {
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+  nav {
+    text-align: center;
+    font-size: 1rem;
+    padding: 1rem 0;
+    margin-top: 2rem;
+  }
+
+}
+
 
 </style>

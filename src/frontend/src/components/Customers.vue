@@ -5,32 +5,32 @@
   <tr>
     <th @click="sort('custCode')">Customer Code</th>
     <th @click="sort('custName')">Customer Name</th>
-    <th @click="sort('custCity')">City</th>
-    <th @click="sort('workingArea')">Working Area</th>
-    <th @click="sort('custCountry')">Country</th>
+    <th class="otherInfo" @click="sort('custCity')">City</th>
+    <th class="otherInfo" @click="sort('workingArea')">Working Area</th>
+    <th class="otherInfo" @click="sort('custCountry')">Country</th>
    <!-- <th @click="sort('grade')">Grade</th>
     <th @click="sort('openingAmt')">Opening Amount</th>
     <th @click="sort('receiveAmt')">Receive Amount</th>
     <th @click="sort('paymentAmt')">Payment Amount</th>
     <th @click="sort('outstandingAmt')">Outstanding Amount</th>-->
-    <th @click="sort('phoneNo')">Phone No</th>
+    <th class="otherInfo" @click="sort('phoneNo')">Phone No</th>
     <th @click="sort('agent')">Agent Code</th>
-    <th>Edit</th>
+    <th class="infoCol">Edit</th>
   </tr>
   </thead>
     <tbody v-for="customer in sortedCustomers" :key="customer.custCode">
   <tr class="table">
     <td>{{ customer.custCode }}</td>
     <td>{{ customer.custName}}</td>
-    <td>{{ customer.custCity}}</td>
-    <td>{{ customer.workingArea}}</td>
-    <td>{{ customer.custCountry }}</td>
+    <td class="otherInfo">{{ customer.custCity}}</td>
+    <td class="otherInfo">{{ customer.workingArea}}</td>
+    <td class="otherInfo">{{ customer.custCountry }}</td>
     <!--<td>{{ customer.grade }}</td>
     <td>{{ customer.openingAmt }}</td>
     <td>{{ customer.receiveAmt }}</td>
     <td>{{ customer.paymentAmt }}</td>
     <td>{{ customer.outstandingAmt }}</td>-->
-    <td>{{ customer.phoneNo }}</td>
+    <td class="otherInfo">{{ customer.phoneNo }}</td>
     <td><button @click="agentToggle(customer.agent.agentCode, customer.custCode)" :class="{ agentOpened: agentOpened.includes(customer.custCode) }">{{ customer.agent.agentCode }}</button></td>
     <td><button @click="editCustomer(customer.custCode)">Edit</button></td>
   </tr>

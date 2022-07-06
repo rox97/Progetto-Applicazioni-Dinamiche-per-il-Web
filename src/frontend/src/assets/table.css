@@ -1,23 +1,30 @@
 button {
     background-color: transparent;
     color: hsla(160, 100%, 37%, 1);
-    padding: 14px 20px;
-    margin: 8px 0;
+    padding: 0.5em;
+    margin: 1em 0;
     border: none;
     cursor: pointer;
     width: 100%;
     transition: 0.4s;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
 }
-table,
-th {
+table{
+    position: center;
+}
+table{
+    margin: auto;
+    width: 100%;
     border-collapse: collapse;
-    padding: 0.5em 1em;
+    padding: 1em 1em 1em 1em;
     color:hsla(160, 100%, 100%, 1);
     background-color: rgb(47,47,47);
     text-align: center;
     font-size: 1.2em;
+}
+th{
+    padding: 1em 1em 1em 1em;
 }
 .thead th{
     background-color: hsla(160, 100%, 37%, 1);
@@ -26,6 +33,10 @@ th {
     top: 0;
     text-align: center;
     font-size: 1.2em;
+    cursor: pointer;
+}
+.thead th.infoCol{
+    cursor: default;
 }
 .theadInfo th{
     background-color: hsla(160, 100%, 37%, 1);
@@ -35,30 +46,56 @@ th {
     font-size: 0.8em;
     padding: 0.1em 1em;
 }
+
 @media (hover: hover) {
     button:hover {
         background-color: hsla(166, 100%, 37%, 0.2);
     }
 }
+@media (max-width: 1023px) {
+    .otherInfo{
+        visibility: hidden;
+        display: none;
+    }
+
+}
 @media (min-width: 1024px) {
     nav {
         text-align: center;
-        margin-left: -1rem;
         font-size: 1rem;
         padding: 1rem 0;
         margin-top: 1rem;
     }
     a{
         text-align: center;
-        margin-left: -1rem;
         font-size: 2rem;
         padding: 1rem 0;
         margin-top: 1rem;
     }
 }
+@media (max-width: 500px) {
+    table{
+        margin: auto;
+        width: 100%;
+        border-collapse: collapse;
+        padding: 0.5em 0.5em 0.5em 0.5em;
+        color:hsla(160, 100%, 100%, 1);
+        background-color: rgb(47,47,47);
+        text-align: center;
+        font-size: 0.8em;
+    }
+    th{
+        border-collapse: collapse;
+        padding: 1em 1em 1em 1em;
+        color:hsla(160, 100%, 100%, 1);
+        background-color: rgb(47,47,47);
+        text-align: center;
+        font-size: 0.8em;
+    }
+}
 @media (prefers-color-scheme: light) {
     table,
-    th {
+    th{
         background-color: rgba(255,255,255);
         color: black;
     }

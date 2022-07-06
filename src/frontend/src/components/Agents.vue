@@ -5,21 +5,21 @@
     <tr>
       <th @click="sort('agentCode')">Agent Code</th>
       <th @click="sort('agentName')">Agent Name</th>
-      <th @click="sort('workingArea')">Working Area</th>
-      <th @click="sort('commission')">Commission</th>
+      <th class="otherInfo" @click="sort('workingArea')">Working Area</th>
+      <th class="otherInfo" @click="sort('commission')">Commission</th>
       <th @click="sort('phoneNo')">Phone Number</th>
-      <th @click="sort('country')">Agent Country</th>
-      <th>Edit</th>
+      <th class="otherInfo" @click="sort('country')">Agent Country</th>
+      <th class="infoCol">Edit</th>
     </tr>
     </thead>
     <tbody v-for="agent in sortedAgents" :key="agent.agentCode">
   <tr class="table">
     <td>{{ agent.agentCode }}</td>
     <td>{{ agent.agentName}}</td>
-    <td>{{ agent.workingArea}}</td>
-    <td>{{ agent.commission}}</td>
+    <td class="otherInfo">{{ agent.workingArea}}</td>
+    <td class="otherInfo">{{ agent.commission}}</td>
     <td>{{ agent.phoneNo }}</td>
-    <td>{{ agent.country }}</td>
+    <td class="otherInfo">{{ agent.country }}</td>
     <td><button @click="editAgent(agent.agentCode)">Edit</button></td>
   </tr>
     </tbody>

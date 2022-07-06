@@ -19,9 +19,8 @@ import {RouterLink, RouterView} from 'vue-router';
 
 #app {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
+  margin: auto;
+  padding: 2rem 2rem 2rem 2rem;
   font-weight: normal;
 }
 
@@ -30,8 +29,7 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
 }
 
-a,
-.green {
+a{
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;

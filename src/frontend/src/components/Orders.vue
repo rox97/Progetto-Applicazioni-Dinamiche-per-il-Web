@@ -1,31 +1,31 @@
 <template>
   <service></service>
   <div class="orders">
-    <nav role="navigation" v-if="role === 'agent'" aria-label="navigation">
+    <nav role="navigation" v-if="role === 'agent'">
       <RouterLink class="create" id="create_order" to="/createOrder">Create Order</RouterLink>
     </nav>
   </div>
-  <table role="table" aria-label="order table" >
+  <table role="table" aria-label="Orders table" >
     <thead class='thead'>
     <tr>
-      <th scope="col" @click="sort('ordNum')">Order Number</th>
-      <th scope="col" @click="sort('ordAmount')">Order Amount</th>
-      <th scope="col" @click="sort('advanceAmount')">Advance Amount</th>
-      <th scope="col" @click="sort('ordDate')">Order Date</th>
-      <th scope="col" @click="sort('ordDescription')">Order Description</th>
-      <th scope="col" @click="sort('agent')" v-if="role === 'admin' || role === 'customer'">Agent Code</th>
-      <th scope="col" @click="sort('customer')" v-if="role === 'admin' || role === 'agent'">Customer Code</th>
-      <th scope="col" v-if="role === 'admin' || role === 'agent'">Edit</th>
-      <th scope="col" v-if="role === 'agent'">Delete</th>
+      <th role="button" scope="col" @click="sort('ordNum')">Order Number</th>
+      <th role="button" class="otherInfo"  scope="col" @click="sort('ordAmount')">Order Amount</th>
+      <th role="button" class="otherInfo" scope="col" @click="sort('advanceAmount')">Advance Amount</th>
+      <th role="button" class="otherInfo" scope="col" @click="sort('ordDate')">Order Date</th>
+      <th role="button" class="otherInfo" scope="col" @click="sort('ordDescription')">Order Description</th>
+      <th role="button" scope="col" @click="sort('agent')" v-if="role === 'admin' || role === 'customer'">Agent Code</th>
+      <th role="button" scope="col" @click="sort('customer')" v-if="role === 'admin' || role === 'agent'">Customer Code</th>
+      <th class="infoCol" scope="col" v-if="role === 'admin' || role === 'agent'">Edit</th>
+      <th class="infoCol" scope="col" v-if="role === 'agent'">Delete</th>
     </tr>
     </thead>
     <tbody v-for="order in sortedOrders">
     <tr aria-label="row" class="table">
       <td>{{ order.ordNum }}</td>
-      <td>{{ order.ordAmount }}</td>
-      <td>{{ order.advanceAmount }}</td>
-      <td>{{ order.ordDate }}</td>
-      <td>{{ order.ordDescription }}</td>
+      <td class="otherInfo">{{ order.ordAmount }}</td>
+      <td class="otherInfo">{{ order.advanceAmount }}</td>
+      <td class="otherInfo">{{ order.ordDate }}</td>
+      <td class="otherInfo">{{ order.ordDescription }}</td>
       <td v-if="role === 'admin' || role === 'customer'">
         <button @click="agentToggle(order.agent.agentCode, order.ordNum)"
                 :class="{ agentOpened: agentOpened.includes(order.ordNum) }">{{ order.agent.agentCode }}
@@ -43,13 +43,13 @@
         <button @click="deleteOrder(order.ordNum)">Delete</button>
       </td>
     </tr>
-    <tr class="theadInfo" id="agentHead" v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
+    <tr aria-label="agent info table" class="theadInfo" id="agentHead" v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
       <th>Agent Name</th>
       <th>Working Area</th>
       <th>Phone Number</th>
       <th>Country</th>
     </tr>
-    <tr class="tbodyInfo" v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
+    <tr aria-label="agent info row" class="tbodyInfo" v-if="agentOpened.includes(order.ordNum) && role !== 'agent'">
       <td>{{ agentInfo.agentName }}</td>
       <td>{{ agentInfo.workingArea }}</td>
       <td>{{ agentInfo.phoneNo }}</td>
@@ -59,14 +59,14 @@
       <th>Customer Name</th>
       <th>Customer City</th>
       <th>Working Area</th>
-      <th>Country</th>
+      <th class="otherInfo">Country</th>
       <th>Phone Number</th>
     </tr>
     <tr class="tbodyInfo" v-if="customerOpened.includes(order.ordNum) && role !== 'customer' ">
       <td>{{ customerInfo.custName }}</td>
       <td>{{ customerInfo.custCity }}</td>
       <td>{{ customerInfo.workingArea }}</td>
-      <td>{{ customerInfo.custCountry }}</td>
+      <td class="otherInfo">{{ customerInfo.custCountry }}</td>
       <td>{{ customerInfo.phoneNo }}</td>
     </tr>
 
