@@ -1,27 +1,40 @@
 <template>
 
-  <div>
-    <h2>Update Order Data</h2>
-    <br>
-    <input class="form-control" type="text" disabled placeholder="ordNum" :value="orderData.ordNum" ref="ordNum">
-    <br>
-    <br>
-    <input class="form-control" type="text" placeholder="ordAmount" :value="orderData.ordAmount" ref="ordAmount">
-    <br>
-    <br>
-    <input class="form-control" type="text" placeholder="advanceAmount" :value="orderData.advanceAmount"
-           ref="advanceAmount">
-    <br>
-    <br>
-    <input class="form-control" type="date" placeholder="ordDate" :value="orderData.ordDate" ref="ordDate">
-    <br>
-    <br>
-    <input class="form-control" placeholder="ordDescription" type="text" :value="orderData.ordDescription"
-           ref="ordDescription">
-    <br>
-    <p v-if="msg">{{ msg }}</p>
-  </div>
-  <nav>
+    <div>
+      <h2>Update Order Data</h2>
+      <br>
+      <div class="form-group">
+        <label for="ordNum"><b>Order number</b></label>
+        <input id="ordNum" type="text" disabled placeholder="ordNum" :value="orderData.ordNum" ref="ordNum">
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <label for="ordAmount"><b>Order amount</b></label>
+        <input id="ordAmount" type="text" placeholder="ordAmount" :value="orderData.ordAmount" ref="ordAmount">
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <label for="advanceAmount"><b>Advance amount</b></label>
+        <input id="advanceAmount" type="text" placeholder="advanceAmount" :value="orderData.advanceAmount" ref="advanceAmount">
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <label for="ordDate"><b>Order date</b></label>
+        <input id="ordDate" type="date" placeholder="ordDate" :value="orderData.ordDate" ref="ordDate">
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <label for="ordDescription"><b>Order description</b></label>
+        <input id="ordDescription" placeholder="ordDescription" type="text" :value="orderData.ordDescription" ref="ordDescription">
+      </div>
+      <br>
+      <p v-if="msg">{{msg}}</p>
+    </div>
+<nav>
     <button @click="updateOrder(orderData)">Update</button>
     <RouterLink to="/Orders">
       <button>Back</button>

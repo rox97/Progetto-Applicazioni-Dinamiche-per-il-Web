@@ -4,37 +4,70 @@
     <div>
       <h2>Update Customer Data</h2>
       <br>
-      <input class="form-control" type="text" disabled placeholder="custCode" :value="custData.custCode" ref="custCode">
+      <div class="form-group">
+        <label for="custCode"><b>Customer code</b></label>
+        <input id="custCode" type="text" disabled placeholder="custCode" :value="custData.custCode" ref="custCode">
+      </div>
       <br>
       <br>
-      <input class="form-control" type="text" placeholder="custName" :value="custData.custName" ref="custName">
+      <div class="form-group">
+        <label for="custName"><b>Customer name</b></label>
+        <input id="custName" type="text" placeholder="custName" :value="custData.custName" ref="custName">
+      </div>
       <br>
       <br>
-      <input class="form-control" type="text" placeholder="custCity" :value="custData.custCity" ref="custCity">
+      <div class="form-group">
+        <label for="custCity"><b>Customer city</b></label>
+        <input id="custCity" type="text" placeholder="custCity" :value="custData.custCity" ref="custCity">
+      </div>
       <br>
       <br>
-      <input class="form-control" type="text" placeholder="workingArea" :value="custData.workingArea" ref="workingArea">
+      <div class="form-group">
+        <label for="workingArea"><b>Working area</b></label>
+        <input id="workingArea" type="text" placeholder="workingArea" :value="custData.workingArea" ref="workingArea">
+      </div>
       <br>
       <br>
-      <input class="form-control" placeholder="custCountry" type="text" :value="custData.custCountry" ref="custCountry">
+      <div class="form-group">
+        <label for="custCountry"><b>Customer country</b></label>
+        <input id="custCountry" placeholder="custCountry" type="text" :value="custData.custCountry" ref="custCountry">
+      </div>
       <br>
       <br>
-      <input class="form-control" placeholder="grade" type="text" :value="custData.grade" ref="grade">
+      <div class="form-group">
+        <label for="grade"><b>Grade</b></label>
+        <input id="grade" placeholder="grade" type="text" :value="custData.grade" ref="grade">
+      </div>
       <br>
       <br>
-      <input class="form-control" placeholder="openingAmt" type="text" :value="custData.openingAmt" ref="openingAmt">
+      <div class="form-group">
+        <label for="openingAmt"><b>Opening amount</b></label>
+        <input id="openingAmt" placeholder="openingAmt" type="text" :value="custData.openingAmt" ref="openingAmt">
+      </div>
       <br>
       <br>
-      <input class="form-control" placeholder="receiveAmt" type="text" :value="custData.receiveAmt" ref="receiveAmt">
+      <div class="form-group">
+        <label for="receiveAmt"><b>Receive amount</b></label>
+        <input id="receiveAmt" placeholder="receiveAmt" type="text" :value="custData.receiveAmt" ref="receiveAmt">
+      </div>
       <br>
       <br>
-      <input class="form-control" placeholder="paymentAmt" type="text" :value="custData.paymentAmt" ref="paymentAmt">
+      <div class="form-group">
+        <label for="paymentAmt"><b>Payment amount </b></label>
+        <input id="paymentAmt" placeholder="paymentAmt" type="text" :value="custData.paymentAmt" ref="paymentAmt">
+      </div>
       <br>
       <br>
-      <input class="form-control" placeholder="outstandingAmt" type="text" :value="custData.outstandingAmt" ref="outstandingAmt">
+      <div class="form-group">
+        <label for="outstandingAmt"><b>Outstanding amount</b></label>
+      <input id="outstandingAmt" placeholder="outstandingAmt" type="text" :value="custData.outstandingAmt" ref="outstandingAmt">
+      </div>
       <br>
       <br>
-      <input class="form-control" placeholder="phoneNo" type="text" :value="custData.phoneNo" ref="phoneNo">
+      <div class="form-group">
+        <label for="phoneNo"><b>Phone number</b></label>
+        <input id="phoneNo" placeholder="phoneNo" type="text" :value="custData.phoneNo" ref="phoneNo">
+      </div>
       <br>
       <p v-if="msg">{{msg}}</p>
     </div>

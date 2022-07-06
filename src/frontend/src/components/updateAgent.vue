@@ -1,29 +1,46 @@
 <template>
 
-  <div>
-    <h2>Update Agent Data</h2>
-    <br>
-    <input class="form-control" type="text" disabled placeholder="agentCode" :value="agentData.agentCode"
-           ref="agentCode">
-    <br>
-    <br>
-    <input class="form-control" type="text" placeholder="agentName" :value="agentData.agentName" ref="agentName">
-    <br>
-    <br>
-    <input class="form-control" type="text" placeholder="workingArea" :value="agentData.workingArea" ref="workingArea">
-    <br>
-    <br>
-    <input class="form-control" type="text" placeholder="commission" :value="agentData.commission" ref="commission">
-    <br>
-    <br>
-    <input class="form-control" placeholder="phone No" type="text" :value="agentData.phoneNo" ref="phoneNo">
-    <br>
-    <br>
-    <input class="form-control" placeholder="country" type="text" :value="agentData.country" ref="country">
-    <br>
-    <p v-if="msg">{{ msg }}</p>
-  </div>
-  <nav>
+    <div>
+      <h2>Update Agent Data</h2>
+      <br>
+      <div class="form-group">
+        <label for="agentCode"><b>Agent code</b></label>
+        <input id="agentCode" type="text" disabled placeholder="agentCode" :value="agentData.agentCode" ref="agentCode">
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <label for="agentName"><b>Agent name</b></label>
+        <input id="agentName" type="text" placeholder="agentName" :value="agentData.agentName" ref="agentName">
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <label for="workingArea"><b>Working area</b></label>
+        <input id="workingArea" type="text" placeholder="workingArea" :value="agentData.workingArea" ref="workingArea">
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <label for="commission"><b>Commission</b></label>
+        <input id="commission" type="text" placeholder="commission" :value="agentData.commission" ref="commission">
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <label for="phoneNo"><b>Phone number</b></label>
+        <input id="phoneNo" placeholder="phone No" type="text" :value="agentData.phoneNo" ref="phoneNo">
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <label for="country"><b>Country</b></label>
+        <input id="country" placeholder="country" type="text" :value="agentData.country" ref="country">
+      </div>
+      <br>
+      <p v-if="msg">{{msg}}</p>
+    </div>
+<nav>
     <button @click="updateAgent(agentData)">Update</button>
     <RouterLink to="/Agents"><button>Back</button></RouterLink>
   </nav>

@@ -215,6 +215,7 @@ export default {
       }).then(res => {
         console.log(res);
         document.location.reload()
+        //this.sort(this.currentSort)
       });
     },
     editOrder(ordNum) {

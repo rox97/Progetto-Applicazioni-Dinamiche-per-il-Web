@@ -25,7 +25,7 @@
     </div>
     <div class="form-group">
       <label for="custCode"><b>Customer Code</b></label>
-      <select ref="custCode" >
+      <select aria-label="custCode" ref="custCode" >
         <option id="custCode" v-for="customer in customers">{{ customer.custCode }}</option>
       </select>
     </div>
