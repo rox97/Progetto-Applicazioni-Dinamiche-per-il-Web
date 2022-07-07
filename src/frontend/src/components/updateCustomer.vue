@@ -93,11 +93,10 @@ export default {
   },
   setup(){
     const route = useRoute()
-    let data = route.params.data;
+    let custCode = route.params.custCode;
 
-    console.log("data is", data);
 
-    const {result} = useQuery(CUSTOMER_BY_CUST_CODE, {custCode: data})
+    const {result} = useQuery(CUSTOMER_BY_CUST_CODE, {custCode: custCode})
     const custData = computed(() => result.value?.customerByCustCode ?? [])
 
     return {

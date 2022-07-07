@@ -26,7 +26,6 @@ public class UserDBConfig {
         super();
     }
 
-    //
 
     @Bean
     public LocalContainerEntityManagerFactoryBean userEntityManager() {

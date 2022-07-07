@@ -12,6 +12,7 @@ import it.univr.webapp.repositories.orders.AgentsRepository;
 import it.univr.webapp.repositories.orders.CustomersRepository;
 import it.univr.webapp.repositories.orders.OrderRepository;
 import lombok.AllArgsConstructor;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -58,9 +59,17 @@ public class MutationResolver implements GraphQLMutationResolver {
     @Transactional
     public OrdersEntity createOrder(CreateOrder input){
 
-        return orderRepository.saveAndFlush(new OrdersEntity(input.getOrdNum(),input.getOrdAmount(),input.getAdvanceAmount(),
-                input.getOrdDate(),input.getOrdDescription(),agentsRepository.findById(input.getAgentCode()).get(),
-                customersRepository.findById(input.getCustCode()).get()));
+        OrdersEntity newOrder = new OrdersEntity(
+                                    input.getOrdNum(),
+                                    input.getOrdAmount(),
+                                    input.getAdvanceAmount(),
+                                    input.getOrdDate(),
+                                    input.getOrdDescription(),
+                                    agentsRepository.findById(input.getAgentCode()).get(),
+                                    customersRepository.findById(input.getCustCode()).get()
+                                );
+
+        return orderRepository.saveAndFlush(newOrder);
     }
 
     @Transactional

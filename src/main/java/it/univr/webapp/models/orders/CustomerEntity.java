@@ -31,7 +31,6 @@ public class CustomerEntity {
     public String getCustCode() {
         return custCode;
     }
-
     public void setCustCode(String custCode) {
         this.custCode = custCode;
     }
@@ -41,7 +40,6 @@ public class CustomerEntity {
     public String getCustName() {
         return custName;
     }
-
     public void setCustName(String custName) {
         this.custName = custName;
     }
@@ -51,7 +49,6 @@ public class CustomerEntity {
     public String getCustCity() {
         return custCity;
     }
-
     public void setCustCity(String custCity) {
         this.custCity = custCity;
     }
@@ -61,7 +58,6 @@ public class CustomerEntity {
     public String getWorkingArea() {
         return workingArea;
     }
-
     public void setWorkingArea(String workingArea) {
         this.workingArea = workingArea;
     }
@@ -71,7 +67,6 @@ public class CustomerEntity {
     public String getCustCountry() {
         return custCountry;
     }
-
     public void setCustCountry(String custCountry) {
         this.custCountry = custCountry;
     }
@@ -81,7 +76,6 @@ public class CustomerEntity {
     public BigInteger getGrade() {
         return grade;
     }
-
     public void setGrade(BigInteger grade) {
         this.grade = grade;
     }
@@ -91,7 +85,6 @@ public class CustomerEntity {
     public BigDecimal getOpeningAmt() {
         return openingAmt;
     }
-
     public void setOpeningAmt(BigDecimal openingAmt) {
         this.openingAmt = openingAmt;
     }
@@ -101,7 +94,6 @@ public class CustomerEntity {
     public BigDecimal getReceiveAmt() {
         return receiveAmt;
     }
-
     public void setReceiveAmt(BigDecimal receiveAmt) {
         this.receiveAmt = receiveAmt;
     }
@@ -111,7 +103,6 @@ public class CustomerEntity {
     public BigDecimal getPaymentAmt() {
         return paymentAmt;
     }
-
     public void setPaymentAmt(BigDecimal paymentAmt) {
         this.paymentAmt = paymentAmt;
     }
@@ -121,7 +112,6 @@ public class CustomerEntity {
     public BigDecimal getOutstandingAmt() {
         return outstandingAmt;
     }
-
     public void setOutstandingAmt(BigDecimal outstandingAmt) {
         this.outstandingAmt = outstandingAmt;
     }
@@ -131,7 +121,6 @@ public class CustomerEntity {
     public String getPhoneNo() {
         return phoneNo;
     }
-
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
@@ -154,7 +143,6 @@ public class CustomerEntity {
     public AgentsEntity getAgent() {
         return agent;
     }
-
     public void setAgent(AgentsEntity agent) {
         this.agent = agent;
     }

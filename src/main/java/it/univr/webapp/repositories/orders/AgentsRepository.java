@@ -8,5 +8,4 @@ import java.util.List;
 public interface AgentsRepository extends JpaRepository<AgentsEntity,String> {
     Integer deleteByAgentCode(String agentCode);
     List<AgentsEntity> findByOrderByAgentCodeAsc();
-
 }

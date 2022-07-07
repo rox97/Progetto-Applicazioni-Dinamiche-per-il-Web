@@ -22,11 +22,11 @@
 
 <script>
 import {gql} from 'graphql-tag'
+
 export default {
 
-  name: "LoginPage",
+  name: "Login",
   data() {
-
     return {
       msg: ''
     }

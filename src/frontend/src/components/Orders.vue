@@ -225,11 +225,10 @@ export default {
       });
     },
     editOrder(ordNum) {
-      let data = ordNum
 
       this.$router.push({
         name: "updateOrderPage",
-        params: {data}
+        params: {ordNum}
       });
 
     }

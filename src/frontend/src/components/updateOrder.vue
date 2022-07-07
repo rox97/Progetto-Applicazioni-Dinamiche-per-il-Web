@@ -58,11 +58,9 @@ export default {
   },
   setup() {
     const route = useRoute()
-    let data = route.params.data;
+    let ordNum = route.params.ordNum;
 
-    console.log("data is", data);
-
-    const {result} = useQuery(ORDER_BY_ORD_NUM, {ordNum: data})
+    const {result} = useQuery(ORDER_BY_ORD_NUM, {ordNum: ordNum})
     const orderData = computed(() => result.value?.orderByOrdNum ?? [])
 
     return {

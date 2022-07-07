@@ -62,11 +62,9 @@ export default {
   },
   setup() {
     const route = useRoute()
-    let data = route.params.data;
+    let agentCode = route.params.agentCode;
 
-    console.log("data is", data);
-
-    const {result} = useQuery(AGENT_BY_AGENT_CODE, {agentCode: data})
+    const {result} = useQuery(AGENT_BY_AGENT_CODE, {agentCode: agentCode})
     const agentData = computed(() => result.value?.agentByAgentCode ?? [])
 
     return {

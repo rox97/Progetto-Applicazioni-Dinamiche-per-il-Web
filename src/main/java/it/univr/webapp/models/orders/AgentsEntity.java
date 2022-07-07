@@ -29,7 +29,6 @@ public class AgentsEntity {
     public String getAgentCode() {
         return agentCode;
     }
-
     public void setAgentCode(String agentCode) {
         this.agentCode = agentCode;
     }
@@ -39,7 +38,6 @@ public class AgentsEntity {
     public String getAgentName() {
         return agentName;
     }
-
     public void setAgentName(String agentName) {
         this.agentName = agentName;
     }
@@ -49,7 +47,6 @@ public class AgentsEntity {
     public String getWorkingArea() {
         return workingArea;
     }
-
     public void setWorkingArea(String workingArea) {
         this.workingArea = workingArea;
     }
@@ -59,7 +56,6 @@ public class AgentsEntity {
     public BigDecimal getCommission() {
         return commission;
     }
-
     public void setCommission(BigDecimal commission) {
         this.commission = commission;
     }
@@ -69,7 +65,6 @@ public class AgentsEntity {
     public String getPhoneNo() {
         return phoneNo;
     }
-
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
@@ -79,7 +74,6 @@ public class AgentsEntity {
     public String getCountry() {
         return country;
     }
-
     public void setCountry(String country) {
         this.country = country;
     }

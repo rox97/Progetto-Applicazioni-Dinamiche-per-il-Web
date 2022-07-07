@@ -28,7 +28,6 @@ public class OrdersEntity {
     public int getOrdNum() {
         return ordNum;
     }
-
     public void setOrdNum(int ordNum) {
         this.ordNum = ordNum;
     }
@@ -45,7 +44,6 @@ public class OrdersEntity {
     public BigDecimal getAdvanceAmount() {
         return advanceAmount;
     }
-
     public void setAdvanceAmount(BigDecimal advanceAmount) {
         this.advanceAmount = advanceAmount;
     }
@@ -55,7 +53,6 @@ public class OrdersEntity {
     public LocalDate getOrdDate() {
         return ordDate;
     }
-
     public void setOrdDate(LocalDate ordDate) {
         this.ordDate = ordDate;
     }
@@ -65,7 +62,6 @@ public class OrdersEntity {
     public String getOrdDescription() {
         return ordDescription;
     }
-
     public void setOrdDescription(String ordDescription) {
         this.ordDescription = ordDescription;
     }
@@ -88,7 +84,6 @@ public class OrdersEntity {
     public CustomerEntity getCustomer() {
         return customer;
     }
-
     public void setCustomer(CustomerEntity customer) {
         this.customer = customer;
     }
@@ -98,7 +93,6 @@ public class OrdersEntity {
     public AgentsEntity getAgent() {
         return agent;
     }
-
     public void setAgent(AgentsEntity agent) {
         this.agent = agent;
     }

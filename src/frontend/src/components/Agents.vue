@@ -24,7 +24,7 @@
   </tr>
     </tbody>
   </table>
-  <router-view></router-view>
+  <router-view />
 </template>
 
 <script>
@@ -38,7 +38,6 @@ export default {
   components:{
     'service':ServiceView
   },
-
   data() {
     return {
       role : localStorage.getItem('userRole'),
@@ -79,13 +78,11 @@ export default {
       this.currentSort = s;
     },
     editAgent(agentCode){
-      let data = agentCode
 
       this.$router.push({
         name: "updateAgentPage",
-        params:  {data}
+        params:  {agentCode}
       });
-      console.log(data)
 
     }
   }

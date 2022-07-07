@@ -19,11 +19,9 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @javax.persistence.Column(name = "user_code")
-
     public String getUserCode() {
         return userCode;
     }
-
     public void setUserCode(String userCode) {
         this.userCode = userCode;
     }
@@ -33,7 +31,6 @@ public class UserEntity {
     public String getUserName() {
         return userName;
     }
-
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -43,7 +40,6 @@ public class UserEntity {
     public String getUserPassword() {
         return userPassword;
     }
-
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
@@ -53,7 +49,6 @@ public class UserEntity {
     public String getUserRole() {
         return userRole;
     }
-
     public void setUserRole(String userRole) {
         this.userRole = userRole;
     }

@@ -35,19 +35,19 @@ const router = createRouter({
       component: () => import("../components/Agents.vue"),
     },
     {
-      path: "/updateAgent/:data",
+      path: "/updateAgent/:agentCode",
       meta: {requiresAuth: true, forAdmin: true, forAgent: false},
       name: "updateAgentPage",
       component: () => import("../components/updateAgent.vue"),
     },
     {
-      path: "/updateCustomer/:data",
+      path: "/updateCustomer/:custCode",
       meta: {requiresAuth: true, forAdmin: true, forAgent: false},
       name: "updateCustomerPage",
       component: () => import("../components/updateCustomer.vue"),
     },
     {
-      path: "/updateOrder/:data",
+      path: "/updateOrder/:ordNum",
       meta: {requiresAuth: true,forAdminAndAgent: true},
       name: "updateOrderPage",
       component: () => import("../components/updateOrder.vue"),
@@ -61,7 +61,7 @@ const router = createRouter({
     {
       path: "/login",
       meta: {requiresAuth: false},
-      name: "loginPage",
+      name: "login",
       component: () => import("../views/LoginView.vue"),
     }
   ]

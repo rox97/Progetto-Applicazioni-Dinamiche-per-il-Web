@@ -125,13 +125,11 @@ export default {
       }
     },
     editCustomer(custCode) {
-      let data = custCode
 
       this.$router.push({
         name: "updateCustomerPage",
-        params:  {data}
+        params:  {custCode}
       });
-      console.log(data)
     }
   }
 }
