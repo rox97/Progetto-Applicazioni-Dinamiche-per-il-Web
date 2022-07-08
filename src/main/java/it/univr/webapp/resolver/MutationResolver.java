@@ -11,15 +11,12 @@ import it.univr.webapp.models.orders.OrdersEntity;
 import it.univr.webapp.repositories.orders.AgentsRepository;
 import it.univr.webapp.repositories.orders.CustomersRepository;
 import it.univr.webapp.repositories.orders.OrderRepository;
-import lombok.AllArgsConstructor;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 
 @Component
-@AllArgsConstructor
 public class MutationResolver implements GraphQLMutationResolver {
 
     @Autowired

@@ -65,7 +65,7 @@ export default {
       }).then(res => {
         if (res.data.existsOrderByOrdNum) {
           this.msg = "Order already exists";
-        } else {
+        } else if(this.$refs.ordDescription.value !== "") {
           const inputOrder = {
             "ordNum": this.$refs.ordNum.value,
             "ordAmount": this.$refs.ordAmount.value,
@@ -91,8 +91,15 @@ export default {
             else{
               this.msg = "Error: failed creation"
             }
+          }).catch(error =>{
+            this.msg = "Error: some fields use a wrong data type"
           });
         }
+        else{
+          this.msg = "Error: description field is empty"
+        }
+      }).catch(error =>{
+        this.msg = "Error: some fields use a wrong data type"
       });
     }
   }
