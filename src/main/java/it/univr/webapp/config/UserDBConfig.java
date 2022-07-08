@@ -17,7 +17,6 @@ import java.util.HashMap;
 @Configuration
 @PropertySource({"classpath:persistence-multiple-db.properties"})
 @EnableJpaRepositories(basePackages = "it.univr.webapp.repositories.users", entityManagerFactoryRef = "userEntityManager", transactionManagerRef = "userTransactionManager")
-@Profile("!tc")
 public class UserDBConfig {
     @Autowired
     private Environment env;

@@ -17,7 +17,6 @@ import java.util.HashMap;
 @Configuration
 @PropertySource({"classpath:persistence-multiple-db.properties"})
 @EnableJpaRepositories(basePackages = "it.univr.webapp.repositories.orders", entityManagerFactoryRef = "orderEntityManager", transactionManagerRef = "orderTransactionManager")
-@Profile("!tc")
 public class OrderDBConfig {
     @Autowired
     private Environment env;
