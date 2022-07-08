@@ -1,5 +1,4 @@
 <template>
-  <service></service>
   <div class="orders">
     <nav role="navigation" v-if="role === 'agent'">
       <RouterLink class="create" id="create_order" to="/createOrder">Create Order</RouterLink>

@@ -20,7 +20,7 @@ const router = createRouter({
       path: "/orders",
       meta: {requiresAuth: true},
       name: "ordersPage",
-      component: () => import("../components/Orders.vue"),
+      component: () => import("../views/OrdersView.vue"),
     },
     {
       path: "/createOrder",
@@ -32,7 +32,7 @@ const router = createRouter({
       path: "/agents",
       meta: {requiresAuth: true, forAdmin: true, forAgent: false},
       name: "agentsPage",
-      component: () => import("../components/Agents.vue"),
+      component: () => import("../views/AgentsView.vue"),
     },
     {
       path: "/updateAgent/:agentCode",
@@ -56,7 +56,7 @@ const router = createRouter({
       path: "/customers",
       meta: {requiresAuth: true, forAdmin: true, forAgent: false},
       name: "customersPage",
-      component: () => import("../components/Customers.vue"),
+      component: () => import("../views/CustomersView.vue"),
     },
     {
       path: "/login",

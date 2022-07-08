@@ -1,5 +1,4 @@
 <template>
-  <service></service>
   <table>
     <thead class='thead'>
     <tr>
@@ -78,6 +77,7 @@ export default {
       this.currentSort = s;
     },
     editAgent(agentCode){
+
 
       this.$router.push({
         name: "updateAgentPage",

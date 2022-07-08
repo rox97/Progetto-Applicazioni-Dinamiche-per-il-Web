@@ -1,5 +1,4 @@
 <template>
-  <service></service>
   <table>
     <thead class='thead'>
   <tr>
